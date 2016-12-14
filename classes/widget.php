@@ -229,25 +229,25 @@ class Google_Places_Reviews extends WP_Widget {
 
 				//Assign Time to appropriate Math
 				switch ( $expiration ) {
-					case '1 Hour':
+					case '1 hour':
 						$expiration = 3600;
 						break;
-					case '3 Hours':
+					case '3 hours':
 						$expiration = 3600 * 3;
 						break;
-					case '6 Hours':
+					case '6 hours':
 						$expiration = 3600 * 6;
 						break;
-					case '12 Hours':
+					case '12 hours':
 						$expiration = 60 * 60 * 12;
 						break;
-					case '1 Day':
+					case '1 day':
 						$expiration = 60 * 60 * 24;
 						break;
-					case '2 Days':
+					case '2 days':
 						$expiration = 60 * 60 * 48;
 						break;
-					case '1 Week':
+					case '1 week':
 						$expiration = 60 * 60 * 168;
 						break;
 				}
@@ -436,53 +436,37 @@ class Google_Places_Reviews extends WP_Widget {
 	/**
 	 * Get Reviewers Avatars
 	 *
-	 * @description: Google doesn't provide avatars within the normal places API so we have to get them from picasaweb, unfortunately
+	 * Get avatar from Places API response or provide placeholder.
 	 *
 	 * @return array
 	 */
-	public function get_reviewers_avatars( $response ) {
-
-		//GPR Reviews Array
+	function get_reviewers_avatars( $response ) {
+		// GPR Reviews Array.
 		$gpr_reviews = array();
 
-		//includes Avatar image from user
-		//@see: https://gist.github.com/jcsrb/1081548
+		// Includes Avatar image from user.
 		if ( isset( $response['result']['reviews'] ) && ! empty( $response['result']['reviews'] ) ) {
-			//Loop Google Places reviews
+
+			// Loop Google Places reviews.
 			foreach ( $response['result']['reviews'] as $review ) {
-
-				$user_id = isset( $review['author_url'] ) ? str_replace( 'https://plus.google.com/', '', $review['author_url'] ) : '';
-
-				//Add args to URL
-				$request_url = add_query_arg(
-					array(
-						'alt' => 'json',
-					),
-					'https://picasaweb.google.com/data/entry/api/user/' . $user_id
-				);
-
-				$avatar_get      = wp_remote_get( esc_url( $request_url ) );
-				$avatar_get_body = json_decode( wp_remote_retrieve_body( $avatar_get ), true );
-				$avatar_img      = preg_replace( "/^http:/i", "https:", $avatar_get_body['entry']['gphoto$thumbnail']['$t'] );
-
-				//check to see if image is empty (no broken images)
-				if ( empty( $avatar_img ) ) {
+				// Check to see if image is empty (no broken images).
+				if ( ! empty( $review['profile_photo_url'] ) ) {
+					$avatar_img = $review['profile_photo_url'] . '?sz=100';
+				} else {
 					$avatar_img = GPR_PLUGIN_URL . '/assets/images/mystery-man.png';
 				}
 
-				//add array image to review array
+				// Add array image to review array.
 				$review = array_merge( $review, array( 'avatar' => $avatar_img ) );
-				//add full review to $gpr_views
+				// Add full review to $gpr_views.
 				array_push( $gpr_reviews, $review );
-
 			}
 
-			//merge custom reviews array with response
+			// Merge custom reviews array with response.
 			$response = array_merge( $response, array( 'gpr_reviews' => $gpr_reviews ) );
 		}
 
 		return $response;
-
 	}
 
 	/**
