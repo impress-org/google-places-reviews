@@ -3,7 +3,7 @@
  * Plugin Name: Google Places Reviews
  * Plugin URI: http://wordimpress.com/plugins/google-places-reviews-pro/
  * Description: Display Google Places Reviews for one or many businesses anywhere on your WordPress site using an easy to use and intuitive widget.
- * Version: 1.4.2
+ * Version: 1.4.3
  * Author: WordImpress
  * Author URI: https://wordimpress.com/
  * Text Domain: google-places-reviews
