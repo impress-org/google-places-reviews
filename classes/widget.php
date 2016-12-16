@@ -5,7 +5,7 @@
  *
  * Class Google_Places_Reviews
  *
- * @description: The Google Places Reviews
+ * The Google Places Reviews
  * @since      : 1.0
  */
 class Google_Places_Reviews extends WP_Widget {
@@ -127,13 +127,8 @@ class Google_Places_Reviews extends WP_Widget {
 	function frontend_widget_scripts() {
 
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-
 		$gpr_css = plugins_url( 'assets/css/google-places-reviews' . $suffix . '.css', dirname( __FILE__ ) );
-
-		if ( $this->options['disable_css'] !== 'on' ) {
-			wp_register_style( 'gpr_widget', $gpr_css );
-			wp_enqueue_style( 'gpr_widget' );
-		}
+		wp_register_style( 'gpr_widget', $gpr_css );
 
 	}
 
@@ -142,10 +137,16 @@ class Google_Places_Reviews extends WP_Widget {
 	 *
 	 * @see WP_Widget::widget()
 	 *
-	 * @param array $args Widget arguments.
-	 * @param array $instance Saved values from database.
+	 * @param array $args
+	 * @param array $instance
+	 *
+	 * @return bool
 	 */
 	function widget( $args, $instance ) {
+
+		if ( $this->options['disable_css'] !== 'on' ) {
+			wp_enqueue_style( 'gpr_widget' );
+		}
 
 		//@TODO: Remove usage
 		extract( $args );
