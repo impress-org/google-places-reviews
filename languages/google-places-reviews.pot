@@ -47,19 +47,19 @@ msgstr ""
 msgid "<p><strong>Notice: </strong>No Google Places API key detected. You will need to create an API key to use Google Places Reviews. API keys are manage through the <a href=\"%1$s\" class=\"new-window\" target=\"_blank\">Google API Console</a>. For more information please see <a href=\"%2$s\"  target=\"_blank\"  class=\"new-window\" title=\"Google Places API Introduction\">this article</a>.</p> <p>Once you have obtained your API key enter it in the <a href=\"%3$s\" title=\"Google Places Reviews Plugin Settings\">plugin settings page</a>.</p>"
 msgstr ""
 
-#: classes/widget.php:1195
+#: classes/widget.php:1163
 msgid " out of 5 stars"
 msgstr ""
 
-#: classes/widget.php:1203, classes/widget.php:1203
+#: classes/widget.php:1171, classes/widget.php:1171
 msgid "Reviewed from Google"
 msgstr ""
 
-#: classes/widget.php:1371
+#: classes/widget.php:1339
 msgid "Cache cleared"
 msgstr ""
 
-#: classes/widget.php:1377
+#: classes/widget.php:1345
 msgid "Error: Transient ID not set. Cache not cleared."
 msgstr ""
 
