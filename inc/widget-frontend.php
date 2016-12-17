@@ -18,7 +18,8 @@ $name = isset( $response['result']['name'] ) ? $response['result']['name'] : __(
 
 $ratings_count = isset( $response['result']['user_ratings_total'] ) ? intval( $response['result']['user_ratings_total'] ) : 0;
 
-$place_avatar = isset( $response['place_avatar'] ) ? $response['place_avatar'] : GPR_PLUGIN_URL . '/assets/images/default-img.png';
+$place_avatar = isset( $response['place_avatar'] ) ? $response['place_avatar'] : "url('" . GPR_PLUGIN_URL . '/dist/images/default-img.png' . "')";
+
 ?>
 
 	<div class="gpr-<?php echo sanitize_title( $widget_style ); ?> gpr-widget-inner">
@@ -30,8 +31,7 @@ $place_avatar = isset( $response['place_avatar'] ) ? $response['place_avatar'] :
 			?>
 
 			<div class="gpr-business-header gpr-clearfix">
-
-				<div class="gpr-business-avatar" style="background-image: url('<?php echo $place_avatar; ?>');"></div>
+				<div class="gpr-business-avatar" style="background-image: <?php echo $place_avatar; ?>;"></div>
 
 				<div class="gpr-header-content-wrap gpr-clearfix">
 					<span class="gpr-business-name"><a href="<?php echo $website; ?>" title="<?php echo $name; ?>" <?php echo $target_blank . $no_follow; ?>><span><?php echo $name; ?></span></a></span>

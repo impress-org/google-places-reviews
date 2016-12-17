@@ -104,7 +104,8 @@ Yes, there are three basic themes included in the free version of the plugin. Th
 * New: Scripts and styles are now enqueued conditionally so that they are only loaded when the widget or shortcode is used.
 * Fix: Reviewers with actual avatars appearing incorrectly as the default placeholder icon.
 * Fix: Character Limit setting applied to all widgets on the page instead of individually.
-* Various JS fixes and code cleanup.
+* Tweak: Various JS fixes and code cleanup.
+* Tweak: CSS compatibility with TwentySeventeen.
 
 = 1.4.2 =
 * Fix: Enqueue Maps JS due to new Google API Key requirement

@@ -64,6 +64,8 @@ Global Header
     line-height: 18px;
     border: none;
     border-bottom: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
 }
 
 [id*='gpr_widget'] p.gpr-rating-value {
@@ -159,9 +161,11 @@ Global Reviews
     line-height: 16px;
 }
 
-[id*='gpr_widget'] span.grp-reviewer-name > a {
+[id*='gpr_widget'] span.grp-reviewer-name > a, [id*='gpr_widget'] span.grp-reviewer-name > a:hover {
     text-decoration: none;
     border: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
 }
 
 [id*='gpr_widget'] div.gpr-review-content {
