@@ -31,7 +31,7 @@ $place_avatar = isset( $response['place_avatar'] ) ? $response['place_avatar'] :
 			?>
 
 			<div class="gpr-business-header gpr-clearfix">
-				<div class="gpr-business-avatar" style="background-image: <?php echo $place_avatar; ?>;"></div>
+				<div class="gpr-business-avatar" style="background-image: url('<?php echo $place_avatar; ?>');"></div>
 
 				<div class="gpr-header-content-wrap gpr-clearfix">
 					<span class="gpr-business-name"><a href="<?php echo $website; ?>" title="<?php echo $name; ?>" <?php echo $target_blank . $no_follow; ?>><span><?php echo $name; ?></span></a></span>
