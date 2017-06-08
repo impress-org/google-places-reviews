@@ -1,9 +1,9 @@
 === Google Places Reviews ===
 Contributors: wordimpress, dlocc, webdevmattcrom, shawnhooper
-Donate link: http://wordimpress.com/
+Donate link: https://wordimpress.com/plugins/google-places-reviews-pro/
 Tags: google, reviews, google reviews, google places, google places reviews, google review widget, google business reviews, google review, review, google place review
 Requires at least: 4.2
-Tested up to: 4.7
+Tested up to: 4.8
 Stable tag: 1.4.3
 License: GPL2
 
