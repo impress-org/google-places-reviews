@@ -114,8 +114,6 @@ if ( ! class_exists( 'WP_Google_Places_Reviews_Free' ) ) {
 		 */
 		public function setup_widget() {
 
-
-
 			// Include the widget
 			if ( ! class_exists( 'Google_Places_Reviews' ) ) {
 				require GPR_PLUGIN_PATH . '/includes/widget.php';
@@ -125,7 +123,7 @@ if ( ! class_exists( 'WP_Google_Places_Reviews_Free' ) ) {
 			if ( is_admin() ) {
 
 				// Options page.
-				require_once YELP_WIDGET_PRO_PATH . '/includes/admin-settings.php';
+				require_once GPR_PLUGIN_PATH . '/includes/admin-settings.php';
 
 				// Deactivating normal activation banner for upgrade to Place ID banner
 				require_once GPR_PLUGIN_PATH . '/includes/plugin-listing-page.php';
@@ -135,7 +133,6 @@ if ( ! class_exists( 'WP_Google_Places_Reviews_Free' ) ) {
 				require_once GPR_PLUGIN_PATH . '/includes/upgrades/upgrades.php';
 
 			}
-
 
 
 		}
@@ -157,7 +154,6 @@ if ( ! class_exists( 'WP_Google_Places_Reviews_Free' ) ) {
 			}
 
 		}
-
 
 
 	} //end class

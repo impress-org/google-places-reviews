@@ -24,7 +24,7 @@ function gpr_show_upgrade_notices() {
 	//delete_option( 'gpr_refid_upgraded' );
 
 	// Don't show notices on the upgrades page
-	if ( isset( $_GET['page'] ) && $_GET['page'] == 'gpr-upgrades' ) {
+	if ( isset( $_GET['page'] ) && 'gpr-upgrades' === $_GET['page'] ) {
 		return;
 	}
 
