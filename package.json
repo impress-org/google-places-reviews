@@ -1,5 +1,5 @@
 {
-  "name": "yelp-widget-pro",
+  "name": "google-places-reviews",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/WordImpress/Yelp-Widget-Pro.git"
+    "url": "git+https://github.com/WordImpress/Google-Places-Reviews.git"
   },
   "author": "Impress.org",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/WordImpress/Yelp-Widget-Pro/issues"
+    "url": "https://github.com/WordImpress/Google-Places-Reviews/issues"
   },
-  "homepage": "https://github.com/WordImpress/Yelp-Widget-Pro#readme",
+  "homepage": "https://github.com/WordImpress/Google-Places-Reviews#readme",
   "quokka": {
     "babel": true
   },

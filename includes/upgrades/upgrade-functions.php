@@ -86,7 +86,7 @@ add_action( 'admin_menu', 'gpr_add_upgrade_submenu_page', 10 );
  * @return void
  */
 function gpr_trigger_upgrades() {
-	
+
 	if ( ! current_user_can( 'activate_plugins' ) ) {
 		wp_die( __( 'You do not have permission to do plugin upgrades', 'google-places-reviews' ), __( 'Error', 'google-places-reviews' ), array( 'response' => 403 ) );
 	}

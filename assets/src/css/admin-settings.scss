@@ -1,90 +1,79 @@
+/**
+ * Styles for the Yelp Widget Pro options panel
+ */
 
-/*----------------------------------------
-Toggle Tips
--------------------------------------------*/
+#icon-yelp {
+	background: url('../images/platform-icon-wpbr.png') no-repeat 0 0 transparent;
+	background-size: 60px;
+	float: left;
+	width: 80px;
+	height: 60px;
+}
 
-.tooltip {
-	position: absolute;
-	z-index: 1030;
+#icon-yelp + h2 {
+	line-height: 55px;
+	margin-bottom: 6px;
+	font-size: 23px;
+}
+
+.control-group {
+	margin-bottom: 10px;
+}
+
+.control-group:last-of-type {
+	margin-bottom: 0;
+}
+
+.control-label {
+	clear: left;
+	width: 200px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.controls {
+	display: inline-block;
+}
+
+.settings_page_yelp_widget #api-options input[type="text"] {
+	width: 280px;
+}
+
+.settings_page_yelp_widget input.button-primary {
+	clear: left;
+	width: auto;
 	display: block;
-	visibility: visible;
-	padding: 5px;
-	font-size: 11px;
-	opacity: 0;
-	filter: alpha(opacity=0);
 }
 
-.tooltip.in {
-	opacity: 0.8;
-	filter: alpha(opacity=80);
+.help-block {
+	color: #999;
+	font-size: 85%;
+	margin-top: 2px;
 }
 
-.tooltip.top {
-	margin-top: -3px;
+/* Sidebar Sortables */
+#sidebar-sortables .postbox {
+	min-width: auto;
 }
-
-.tooltip.right {
-	margin-left: 3px;
-}
-
-.tooltip.bottom {
-	margin-top: 3px;
-}
-
-.tooltip.left {
-	margin-left: -3px;
-}
-
-.tooltip-inner {
-	max-width: 200px;
-	padding: 3px 8px;
-	color: #ffffff;
-	text-align: center;
-	text-decoration: none;
-	background-color: #000000;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-}
-
-.tooltip-arrow {
+a.wpbr-option-page-upsell {
+	color: #ee4835;
+	font-weight: bold;
+	font-size: 15px;
 	position: absolute;
-	width: 0;
-	height: 0;
-	border-color: transparent;
-	border-style: solid;
+	top: 37px;
+	left: 380px;
+	outline: none;
+	box-shadow: none;
+	text-decoration: underline;
 }
 
-.tooltip.top .tooltip-arrow {
-	bottom: 0;
-	left: 50%;
-	margin-left: -5px;
-	border-width: 5px 5px 0;
-	border-top-color: #000000;
-}
-
-.tooltip.right .tooltip-arrow {
-	top: 50%;
-	left: 0;
-	margin-top: -5px;
-	border-width: 5px 5px 5px 0;
-	border-right-color: #000000;
-}
-
-.tooltip.left .tooltip-arrow {
-	top: 50%;
-	right: 0;
-	margin-top: -5px;
-	border-width: 5px 0 5px 5px;
-	border-left-color: #000000;
-}
-
-.tooltip.bottom .tooltip-arrow {
-	top: 0;
-	left: 50%;
-	margin-left: -5px;
-	border-width: 0 5px 5px;
-	border-bottom-color: #000000;
+a.wpbr-option-page-upsell svg {
+	fill: #ee4835;
+	height:20px;
+	width:20px;
+	position: relative;
+	top: 3px;
+	left: -4px;
 }
 
 /*----------------------------------------
@@ -222,4 +211,13 @@ Tipsy
 	border-left: none;
 	border-top-color: transparent;
 	border-bottom-color: transparent;
+}
+
+/* Metaboxes */
+.js .postbox .hndle {
+	cursor: default;
+}
+
+.handlediv {
+	display: none;
 }

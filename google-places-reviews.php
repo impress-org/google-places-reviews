@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: Google Places Reviews
- * Plugin URI: http://wordimpress.com/plugins/google-places-reviews-pro/
+ * Plugin URI: http://wpbusinessreviews.com/
  * Description: Display Google Places Reviews for one or many businesses anywhere on your WordPress site using an easy to use and intuitive widget.
  * Version: 1.5.0
  * Author: WordImpress
- * Author URI: https://wordimpress.com/
+ * Author URI: https://impress.org/
  * Text Domain: google-places-reviews
  * License: GPL2
  */
@@ -141,7 +141,7 @@ if ( ! class_exists( 'WP_Google_Places_Reviews_Free' ) ) {
 		/**
 		 * Options Scripts
 		 *
-		 * @description: Custom JS/CSS for Options Page
+		 * Custom JS/CSS for Options Page
 		 *
 		 * @param $hook
 		 */
@@ -149,7 +149,7 @@ if ( ! class_exists( 'WP_Google_Places_Reviews_Free' ) ) {
 
 			// Only on settings page
 			if ( 'settings_page_googleplacesreviews' === $hook ) {
-				wp_register_style( 'gpr_custom_options_styles', plugin_dir_url( __FILE__ ) . '/assets/css/options.css' );
+				wp_register_style( 'gpr_custom_options_styles', plugin_dir_url( __FILE__ ) . '/assets/dist/css/options.css' );
 				wp_enqueue_style( 'gpr_custom_options_styles' );
 			}
 
