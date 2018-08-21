@@ -197,11 +197,11 @@ var gpr_ajax_object;
 		// Tooltips for admins
 		$( '.tooltip-info' ).tipsy(
 			{
-				fade: true,
+				fade: false,
 				html: true,
 				gravity: 's',
-				delayOut: 1000,
-				delayIn: 500
+				delayOut: 0,
+				delayIn: 0
 			}
 		);
 	}

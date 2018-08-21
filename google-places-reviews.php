@@ -148,8 +148,8 @@ if ( ! class_exists( 'WP_Google_Places_Reviews_Free' ) ) {
 		function options_scripts( $hook ) {
 
 			// Only on settings page
-			if ( 'settings_page_googleplacesreviews' === $hook ) {
-				wp_register_style( 'gpr_custom_options_styles', plugin_dir_url( __FILE__ ) . '/assets/dist/css/options.css' );
+			if ( 'settings_page_google_places_reviews' === $hook ) {
+				wp_register_style( 'gpr_custom_options_styles', plugin_dir_url( __FILE__ ) . '/assets/dist/css/admin-main.css' );
 				wp_enqueue_style( 'gpr_custom_options_styles' );
 			}
 
