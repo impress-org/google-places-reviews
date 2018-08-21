@@ -123,6 +123,10 @@ if ( ! class_exists( 'WP_Google_Places_Reviews_Free' ) ) {
 
 			// Admin only
 			if ( is_admin() ) {
+
+				// Options page.
+				require_once YELP_WIDGET_PRO_PATH . '/includes/admin-settings.php';
+
 				// Deactivating normal activation banner for upgrade to Place ID banner
 				require_once GPR_PLUGIN_PATH . '/includes/plugin-listing-page.php';
 
@@ -131,6 +135,8 @@ if ( ! class_exists( 'WP_Google_Places_Reviews_Free' ) ) {
 				require_once GPR_PLUGIN_PATH . '/includes/upgrades/upgrades.php';
 
 			}
+
+
 
 		}
 
