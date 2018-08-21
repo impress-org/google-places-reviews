@@ -2,7 +2,8 @@
 /**
  * Google Places Reviews Widget Form
  *
- * @description: Widget form options in WP-Admin
+ * Widget form options in WP-Admin
+ *
  * @since 1.0
  */
 ?>
@@ -11,7 +12,7 @@
 <p>
 	<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Widget Title', 'google-places-reviews' ); ?></label>
 	<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>"
-	       name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>"/>
+		   name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>"/>
 </p>
 
 
@@ -20,47 +21,67 @@
 	<p class="gpr-autocomplete">
 		<label for="<?php echo $this->get_field_id( 'autocomplete' ); ?>"><?php _e( 'Location Lookup', 'google-places-reviews' ); ?>: <?php echo gpr_admin_tooltip( 'autocomplete' ); ?></label>
 		<input class="widefat gpr-autocomplete" id="<?php echo $this->get_field_id( 'autocomplete' ); ?>"
-		       name="<?php echo $this->get_field_name( 'autocomplete' ); ?>" type="text"
-		       value="<?php echo( empty( $autocomplete ) ? '' : $autocomplete ) ?>"/>
+			   name="<?php echo $this->get_field_name( 'autocomplete' ); ?>" type="text"
+			   value="<?php echo( empty( $autocomplete ) ? '' : $autocomplete ); ?>"/>
 	</p>
 	<!-- Google Maps Autocomplete Label -->
 	<p class="gpr-place-type">
 		<label for="<?php echo $this->get_field_id( 'place_type' ); ?>"><?php _e( 'Place Type', 'google-places-reviews' ); ?>: <?php echo gpr_admin_tooltip( 'place_type' ); ?></label>
 
 		<select name="<?php echo $this->get_field_name( 'place_type' ); ?>" id="<?php echo $this->get_field_id( 'place_type' ); ?>" class="widefat gpr-types">
-			<option value="all" <?php if ( $place_type == 'all' ) {
+			<option value="all" 
+			<?php
+			if ( $place_type == 'all' ) {
 				echo "selected='selected'";
-			} ?>><?php _e( 'All', 'google-places-reviews' ); ?>
+			}
+			?>
+			><?php _e( 'All', 'google-places-reviews' ); ?>
 			</option>
-			<option value="address" <?php if ( $place_type == 'address' ) {
+			<option value="address" 
+			<?php
+			if ( $place_type == 'address' ) {
 				echo "selected='selected'";
-			} ?>><?php _e( 'Addresses', 'google-places-reviews' ); ?>
+			}
+			?>
+			><?php _e( 'Addresses', 'google-places-reviews' ); ?>
 			</option>
-			<option value="establishment" <?php if ( empty( $place_type ) || $place_type == 'establishment' ) {
+			<option value="establishment" 
+			<?php
+			if ( empty( $place_type ) || $place_type == 'establishment' ) {
 				echo "selected='selected'";
-			} ?>><?php _e( 'Establishments', 'google-places-reviews' ); ?>
+			}
+			?>
+			><?php _e( 'Establishments', 'google-places-reviews' ); ?>
 			</option>
-			<option value="(regions)" <?php if ( $place_type == '(regions)' ) {
+			<option value="(regions)" 
+			<?php
+			if ( $place_type == '(regions)' ) {
 				echo "selected='selected'";
-			} ?>><?php _e( 'Regions', 'google-places-reviews' ); ?>
+			}
+			?>
+			><?php _e( 'Regions', 'google-places-reviews' ); ?>
 			</option>
 		</select>
 
 	</p>
 </div>
 <!-- Google Maps Reference Field -->
-<div class="set-business" <?php if ( empty( $location ) ) {
+<div class="set-business" 
+<?php
+if ( empty( $location ) ) {
 	echo "style='display:none;'";
-} ?>>
+}
+?>
+>
 	<p><?php _e( '<strong>Place Set:</strong> You have successfully set the place for this widget. To switch the place use the Location Lookup field above.', 'google-places-reviews' ); ?></p>
 
 	<p>
 		<label for="<?php echo $this->get_field_id( 'location' ); ?>"><?php _e( 'Location', 'google-places-reviews' ); ?>: <?php echo gpr_admin_tooltip( 'location' ); ?></label>
 		<input class="widefat location" onClick="this.setSelectionRange(0, this.value.length)" readonly
-		       id="<?php echo $this->get_field_id( 'location' ); ?>"
-		       name="<?php echo $this->get_field_name( 'location' ); ?>" type="text"
-		       placeholder="<?php echo( empty( $location ) ? 'No location set' : '' ); ?>"
-		       value="<?php echo $location; ?>"/>
+			   id="<?php echo $this->get_field_id( 'location' ); ?>"
+			   name="<?php echo $this->get_field_name( 'location' ); ?>" type="text"
+			   placeholder="<?php echo( empty( $location ) ? 'No location set' : '' ); ?>"
+			   value="<?php echo $location; ?>"/>
 	</p>
 
 	<p style="display:none;">
@@ -85,31 +106,55 @@
 		<label for="<?php echo $this->get_field_id( 'review_filter' ); ?>"><?php _e( 'Minimum Review Rating:', 'google-places-reviews' ); ?><?php echo gpr_admin_tooltip( 'review_filter' ); ?></label>
 
 		<select id="<?php echo $this->get_field_id( 'review_filter' ); ?>" class="widefat"
-		        name="<?php echo $this->get_field_name( 'review_filter' ); ?>" disabled>
+				name="<?php echo $this->get_field_name( 'review_filter' ); ?>" disabled>
 
-			<option value="none" <?php if ( empty( $review_filter ) || $review_filter == 'No filter' ) {
+			<option value="none" 
+			<?php
+			if ( empty( $review_filter ) || $review_filter == 'No filter' ) {
 				echo "selected='selected'";
-			} ?>><?php _e( 'No filter', 'google-places-reviews' ); ?>
+			}
+			?>
+			><?php _e( 'No filter', 'google-places-reviews' ); ?>
 			</option>
-			<option value="5" <?php if ( $review_filter == '5' ) {
+			<option value="5" 
+			<?php
+			if ( $review_filter == '5' ) {
 				echo "selected='selected'";
-			} ?>><?php _e( '5 Stars', 'google-places-reviews' ); ?>
+			}
+			?>
+			><?php _e( '5 Stars', 'google-places-reviews' ); ?>
 			</option>
-			<option value="4" <?php if ( $review_filter == '4' ) {
+			<option value="4" 
+			<?php
+			if ( $review_filter == '4' ) {
 				echo "selected='selected'";
-			} ?>><?php _e( '4 Stars', 'google-places-reviews' ); ?>
+			}
+			?>
+			><?php _e( '4 Stars', 'google-places-reviews' ); ?>
 			</option>
-			<option value="3" <?php if ( $review_filter == '3' ) {
+			<option value="3" 
+			<?php
+			if ( $review_filter == '3' ) {
 				echo "selected='selected'";
-			} ?>><?php _e( '3 Stars', 'google-places-reviews' ); ?>
+			}
+			?>
+			><?php _e( '3 Stars', 'google-places-reviews' ); ?>
 			</option>
-			<option value="2" <?php if ( $review_filter == '2' ) {
+			<option value="2" 
+			<?php
+			if ( $review_filter == '2' ) {
 				echo "selected='selected'";
-			} ?>><?php _e( '2 Stars', 'google-places-reviews' ); ?>
+			}
+			?>
+			><?php _e( '2 Stars', 'google-places-reviews' ); ?>
 			</option>
-			<option value="1" <?php if ( $review_filter == '1' ) {
+			<option value="1" 
+			<?php
+			if ( $review_filter == '1' ) {
 				echo "selected='selected'";
-			} ?>><?php _e( '1 Star', 'google-places-reviews' ); ?>
+			}
+			?>
+			><?php _e( '1 Star', 'google-places-reviews' ); ?>
 			</option>
 
 		</select>
@@ -120,16 +165,20 @@
 	<p>
 		<label for="<?php echo $this->get_field_id( 'review_limit' ); ?>"><?php _e( 'Limit Number of Reviews:', 'google-places-reviews' ); ?><?php echo gpr_admin_tooltip( 'review_limit' ); ?></label>
 		<select name="<?php echo $this->get_field_name( 'review_limit' ); ?>" id="<?php echo $this->get_field_id( 'review_limit' ); ?>"
-		        class="widefat">
+				class="widefat">
 			<?php
 			$options = array( '3', '2', '1' );
 			foreach ( $options as $option ) {
 				?>
 
 				<option value="<?php echo $option; ?>"
-				        id="<?php echo $option; ?>" <?php if ( $review_limit == $option || empty( $review_limit ) && $option == '4' ) {
-					echo 'selected="selected"';
-				} ?>><?php echo $option; ?></option>
+						id="<?php echo $option; ?>" 
+										<?php
+										if ( $review_limit == $option || empty( $review_limit ) && $option == '4' ) {
+											echo 'selected="selected"';
+										}
+				?>
+				><?php echo $option; ?></option>
 
 			<?php } ?>
 		</select>
@@ -151,9 +200,9 @@
 				__( 'Minimal Light', 'google-places-reviews' ),
 				__( 'Minimal Dark', 'google-places-reviews' ),
 				__( 'Shadow Light', 'google-places-reviews' ),
-				__( 'Shadow Dark', 'google-places-reviews' )
+				__( 'Shadow Dark', 'google-places-reviews' ),
 			);
-			//Counter for Option Values
+			// Counter for Option Values
 			$counter = 0;
 
 			foreach ( $options as $option ) {
@@ -167,8 +216,8 @@
 	<!-- Hide Places Header -->
 	<p>
 		<input id="<?php echo $this->get_field_id( 'hide_header' ); ?>"
-		       name="<?php echo $this->get_field_name( 'hide_header' ); ?>" type="checkbox"
-		       value="1" <?php checked( '1', $hide_header ); ?> />
+			   name="<?php echo $this->get_field_name( 'hide_header' ); ?>" type="checkbox"
+			   value="1" <?php checked( '1', $hide_header ); ?> />
 		<label for="<?php echo $this->get_field_id( 'hide_header' ); ?>"><?php _e( 'Hide Business Information', 'google-places-reviews' ); ?><?php echo gpr_admin_tooltip( 'hide_header' ); ?></label>
 	</p>
 
@@ -182,8 +231,8 @@
 	<!-- Show Google Image -->
 	<p>
 		<input id="<?php echo $this->get_field_id( 'hide_google_image' ); ?>"
-		       name="<?php echo $this->get_field_name( 'hide_google_image' ); ?>" type="checkbox"
-		       value="1" <?php checked( '1', $hide_google_image ); ?> />
+			   name="<?php echo $this->get_field_name( 'hide_google_image' ); ?>" type="checkbox"
+			   value="1" <?php checked( '1', $hide_google_image ); ?> />
 		<label for="<?php echo $this->get_field_id( 'hide_google_image' ); ?>"><?php _e( 'Hide Google logo', 'google-places-reviews' ); ?><?php echo gpr_admin_tooltip( 'google_image' ); ?> </label>
 	</p>
 
@@ -201,8 +250,9 @@
 		<label for="<?php echo $this->get_field_id( 'cache' ); ?>"><?php _e( 'Cache Data:', 'google-places-reviews' ); ?><?php echo gpr_admin_tooltip( 'cache' ); ?></label>
 
 		<select name="<?php echo $this->get_field_name( 'cache' ); ?>" id="<?php echo $this->get_field_id( 'cache' ); ?>"
-		        class="widefat">
-			<?php $options = array(
+				class="widefat">
+			<?php
+			$options = array(
 				__( 'None', 'google-places-reviews' ),
 				__( '1 Hour', 'google-places-reviews' ),
 				__( '3 Hours', 'google-places-reviews' ),
@@ -210,7 +260,7 @@
 				__( '12 Hours', 'google-places-reviews' ),
 				__( '1 Day', 'google-places-reviews' ),
 				__( '2 Days', 'google-places-reviews' ),
-				__( '1 Week', 'google-places-reviews' )
+				__( '1 Week', 'google-places-reviews' ),
 			);
 			/**
 			 * Output Cache Options (set 2 Days as default for new widgets)
@@ -218,13 +268,19 @@
 			foreach ( $options as $option ) {
 				?>
 				<option value="<?php echo $option; ?>"
-				        id="<?php echo $option; ?>" <?php if ( $cache == $option || empty( $cache ) && $option == '1 Day' ) {
-					echo ' selected="selected" ';
-				} ?>>
+			id="<?php echo $option; ?>" 
+							<?php
+							if ( $cache == $option || empty( $cache ) && $option == '1 Day' ) {
+								echo ' selected="selected" ';
+							}
+				?>
+				>
 					<?php echo $option; ?>
 				</option>
-				<?php $counter ++;
-			} ?>
+				<?php
+				$counter ++;
+			}
+			?>
 		</select>
 
 

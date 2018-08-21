@@ -59,15 +59,15 @@ class Google_Places_Reviews extends WP_Widget {
 			'Google Places Reviews', // Name
 			array(
 				'classname'   => 'google-places-reviews',
-				'description' => __( 'Display user reviews for any location found on Google Places.', 'google-places-reviews' )
+				'description' => __( 'Display user reviews for any location found on Google Places.', 'google-places-reviews' ),
 			)
 		);
 
 		$this->options = get_option( 'googleplacesreviews_options' );
-		//API key (muy importante!)
+		// API key (muy importante!)
 		$this->api_key = $this->options['google_places_api_key'];
 
-		//Hooks
+		// Hooks
 		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_widget_scripts' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_widget_scripts' ) );
 		add_action( 'wp_ajax_gpr_free_clear_widget_cache', array( $this, 'clear_widget_cache' ) );
@@ -77,7 +77,7 @@ class Google_Places_Reviews extends WP_Widget {
 	/**
 	 * Admin Widget Scripts
 	 *
-	 * @description: Load Widget JS Script ONLY on Widget page
+	 * Load Widget JS Script ONLY on Widget page
 	 *
 	 * @param $hook
 	 */
@@ -97,19 +97,20 @@ class Google_Places_Reviews extends WP_Widget {
 			wp_register_script( 'gpr_widget_admin_scripts', plugins_url( 'assets/js/admin-widget' . $suffix . '.js', dirname( __FILE__ ) ), array( 'jquery' ) );
 			wp_enqueue_script( 'gpr_widget_admin_scripts' );
 
-			wp_localize_script( 'gpr_widget_admin_scripts', 'gpr_ajax_object', array(
-				'ajax_url' => admin_url( 'admin-ajax.php' ),
-				'i18n'     => array(
-					'google_auth_error' => sprintf( __( '%1$sGoogle API Error:%2$s Due to recent changes by Google you must now add the Maps API to your existing API key in order to use the Location Lookup feature of the Google Places Widget. %3$sView documentation here%4$s', 'google-maps-pro' ), '<strong>', '</strong>', '<br><a href="https://wordimpress.com/documentation/google-places-reviews/creating-your-google-places-api-key/" target="_blank" class="new-window">', '</a>' ) )
-			) );
+			wp_localize_script(
+				'gpr_widget_admin_scripts', 'gpr_ajax_object', array(
+					'ajax_url' => admin_url( 'admin-ajax.php' ),
+					'i18n'     => array(
+						'google_auth_error' => sprintf( __( '%1$sGoogle API Error:%2$s Due to recent changes by Google you must now add the Maps API to your existing API key in order to use the Location Lookup feature of the Google Places Widget. %3$sView documentation here%4$s', 'google-maps-pro' ), '<strong>', '</strong>', '<br><a href="https://wordimpress.com/documentation/google-places-reviews/creating-your-google-places-api-key/" target="_blank" class="new-window">', '</a>' ),
+					),
+				)
+			);
 
 			wp_register_style( 'gpr_widget_admin_tipsy', plugins_url( 'assets/css/gpr-tipsy' . $suffix . '.css', dirname( __FILE__ ) ) );
 			wp_enqueue_style( 'gpr_widget_admin_tipsy' );
 
-
 			wp_register_style( 'gpr_widget_admin_css', plugins_url( 'assets/css/admin-widget' . $suffix . '.css', dirname( __FILE__ ) ) );
 			wp_enqueue_style( 'gpr_widget_admin_css' );
-
 
 		}
 
@@ -119,11 +120,11 @@ class Google_Places_Reviews extends WP_Widget {
 	/**
 	 * Frontend Scripts
 	 *
-	 * @description: Adds Google Places Reviews Stylesheets
+	 * Adds Google Places Reviews Stylesheets
 	 */
 	function frontend_widget_scripts() {
 
-		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+		$suffix  = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 		$gpr_css = plugins_url( 'assets/css/google-places-reviews' . $suffix . '.css', dirname( __FILE__ ) );
 		wp_register_style( 'gpr_widget', $gpr_css );
 
@@ -145,32 +146,30 @@ class Google_Places_Reviews extends WP_Widget {
 			wp_enqueue_style( 'gpr_widget' );
 		}
 
-		//@TODO: Remove usage
+		// @TODO: Remove usage
 		extract( $args );
 
-		//loop through options array and save variables for usage within function
+		// loop through options array and save variables for usage within function
 		foreach ( $instance as $variable => $value ) {
 			${$variable} = ! isset( $instance[ $variable ] ) ? $this->widget_fields[ $variable ] : esc_attr( $instance[ $variable ] );
 		}
 
-		//Enqueue individual CSS if debug is on; otherwise plugin uses min version
+		// Enqueue individual CSS if debug is on; otherwise plugin uses min version
 		if ( defined( 'SCRIPT_DEBUG' ) === true ) {
 			$this->enqueue_widget_theme_scripts( $widget_style );
 		}
 
-		//Check for a reference. If none, output error
+		// Check for a reference. If none, output error
 		if ( $reference === 'No location set' && empty( $place_id ) || empty( $reference ) && $place_id === 'No location set' ) {
 			$this->output_error_message( __( 'There is no location set for this widget yet.', 'google-places-reviews' ), 'error' );
 
 			return false;
 		}
 
-
-		//Title filter
+		// Title filter
 		if ( isset( $title ) ) {
 			$title = apply_filters( 'widget_title', $instance['title'] );
 		}
-
 
 		// Open link in new window if set
 		if ( $target_blank == '1' ) {
@@ -193,21 +192,21 @@ class Google_Places_Reviews extends WP_Widget {
 			$google_places_url = add_query_arg(
 				array(
 					'placeid' => $place_id,
-					'key'     => $this->api_key
+					'key'     => $this->api_key,
 				),
 				'https://maps.googleapis.com/maps/api/place/details/json'
 			);
 		} else {
-			//User is on old Google's reference ID
+			// User is on old Google's reference ID
 			$google_places_url = add_query_arg(
 				array(
 					'reference' => $reference,
-					'key'       => $this->api_key
+					'key'       => $this->api_key,
 				),
 				'https://maps.googleapis.com/maps/api/place/details/json'
 			);
 		}
-		//serialize($instance) sets the transient cache from the $instance variable which can easily bust the cache once options are changed
+		// serialize($instance) sets the transient cache from the $instance variable which can easily bust the cache once options are changed
 		$transient_unique_id = substr( $place_id, 0, 25 );
 		$response            = get_transient( 'gpr_widget_api_' . $transient_unique_id );
 		$widget_options      = get_transient( 'gpr_widget_options_' . $transient_unique_id );
@@ -222,10 +221,10 @@ class Google_Places_Reviews extends WP_Widget {
 			if ( $response === false || $serialized_instance !== $widget_options ) {
 
 				// It wasn't there, so regenerate the data and save the transient
-				//Get Time to Cache Data
+				// Get Time to Cache Data
 				$expiration = $cache;
 
-				//Assign Time to appropriate Math
+				// Assign Time to appropriate Math
 				switch ( $expiration ) {
 					case '1 hour':
 						$expiration = 3600;
@@ -256,16 +255,14 @@ class Google_Places_Reviews extends WP_Widget {
 				set_transient( 'gpr_widget_options_' . $transient_unique_id, $serialized_instance, $expiration );
 
 			} //end response
-
-
 		} else {
 
-			//No Cache option enabled;
+			// No Cache option enabled;
 			$response = $this->get_reviews( $google_places_url );
 
 		}
 
-		//Error message
+		// Error message
 		if ( ! empty( $response->error_message ) ) {
 
 			$this->output_error_message( $response->error_message, 'error' );
@@ -291,11 +288,10 @@ class Google_Places_Reviews extends WP_Widget {
 
 		}
 
-
-		//Widget Style
-		$style = "gpr-" . sanitize_title( $widget_style ) . "-style";
+		// Widget Style
+		$style = 'gpr-' . sanitize_title( $widget_style ) . '-style';
 		// no 'class' attribute - add one with the value of width
-		//@see http://wordpress.stackexchange.com/questions/18942/add-class-to-before-widget-from-within-a-custom-widget
+		// @see http://wordpress.stackexchange.com/questions/18942/add-class-to-before-widget-from-within-a-custom-widget
 		if ( ! empty( $before_widget ) && strpos( $before_widget, 'class' ) === false ) {
 			$before_widget = str_replace( '>', 'class="' . $style . '"', $before_widget );
 		} // there is 'class' attribute - append width value to it
@@ -312,9 +308,10 @@ class Google_Places_Reviews extends WP_Widget {
 
 		// if the title is set & the user hasn't disabled title output
 		if ( ! empty( $title ) && isset( $disable_title_output ) && $disable_title_output !== '1' ) {
-			/* Add class to before_widget from within a custom widget
-		 http://wordpress.stackexchange.com/questions/18942/add-class-to-before-widget-from-within-a-custom-widget
-		 */
+			/*
+			 Add class to before_widget from within a custom widget
+			http://wordpress.stackexchange.com/questions/18942/add-class-to-before-widget-from-within-a-custom-widget
+			*/
 			// no 'class' attribute - add one with the value of width
 			if ( ! empty( $before_title ) && strpos( $before_title, 'class' ) === false ) {
 				$before_title = str_replace( '>', ' class="gpr-widget-title">', $before_title );
@@ -331,9 +328,7 @@ class Google_Places_Reviews extends WP_Widget {
 			echo $before_title . $title . $after_title;
 		}
 
-
-		include( GPR_PLUGIN_PATH . '/inc/widget-frontend.php' );
-
+		include GPR_PLUGIN_PATH . '/includes/widget-frontend.php';
 
 	}
 
@@ -341,15 +336,14 @@ class Google_Places_Reviews extends WP_Widget {
 	/**
 	 * Update Widget
 	 *
-	 * @description: Saves the widget options
+	 * Saves the widget options
 	 */
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
-		//loop through options array and save to new instance
+		// loop through options array and save to new instance
 		foreach ( $this->widget_fields as $field => $value ) {
 			$instance[ $field ] = strip_tags( stripslashes( $new_instance[ $field ] ) );
 		}
-
 
 		return $instance;
 	}
@@ -358,13 +352,13 @@ class Google_Places_Reviews extends WP_Widget {
 	/**
 	 * Widget Form
 	 *
-	 * @description: Responsible for outputting the backend widget form.
+	 * Responsible for outputting the backend widget form.
 	 *
 	 * @see WP_Widget::form()
 	 */
 	function form( $instance ) {
 
-		//API Key Check:
+		// API Key Check:
 		if ( ! isset( $this->options['google_places_api_key'] ) || empty( $this->options['google_places_api_key'] ) ) {
 			$api_key_error = sprintf( __( '<p><strong>Notice: </strong>No Google Places API key detected. You will need to create an API key to use Google Places Reviews. API keys are manage through the <a href="%1$s" class="new-window" target="_blank">Google API Console</a>. For more information please see <a href="%2$s"  target="_blank"  class="new-window" title="Google Places API Introduction">this article</a>.</p> <p>Once you have obtained your API key enter it in the <a href="%3$s" title="Google Places Reviews Plugin Settings">plugin settings page</a>.</p>', 'google-places-reviews' ), esc_url( 'https://code.google.com/apis/console/?noredirect' ), esc_url( 'https://developers.google.com/places/documentation/#Authentication' ), admin_url( '/options-general.php?page=googleplacesreviews' ) );
 			$this->output_error_message( $api_key_error, 'error' );
@@ -372,13 +366,12 @@ class Google_Places_Reviews extends WP_Widget {
 			return;
 		}
 
-		//loop through options array and save options to new instance
+		// loop through options array and save options to new instance
 		foreach ( $this->widget_fields as $field => $value ) {
 			${$field} = ! isset( $instance[ $field ] ) ? $value : esc_attr( $instance[ $field ] );
 		}
-		//Get the widget form
-		include( GPR_PLUGIN_PATH . '/inc/widget-form.php' );
-
+		// Get the widget form
+		include GPR_PLUGIN_PATH . '/includes/widget-form.php';
 
 	}
 
@@ -386,7 +379,7 @@ class Google_Places_Reviews extends WP_Widget {
 	/**
 	 * cURL (wp_remote_get) the Google Places API
 	 *
-	 * @description: CURLs the Google Places API with our url parameters and returns JSON response
+	 * CURLs the Google Places API with our url parameters and returns JSON response
 	 *
 	 * @param $url
 	 *
@@ -394,7 +387,7 @@ class Google_Places_Reviews extends WP_Widget {
 	 */
 	function get_reviews( $url ) {
 
-		//Sanitize the URL
+		// Sanitize the URL
 		$url = esc_url_raw( $url );
 
 		// Send API Call using WP's HTTP API
@@ -405,7 +398,7 @@ class Google_Places_Reviews extends WP_Widget {
 			$this->output_error_message( "Something went wrong: $error_message", 'error' );
 		}
 
-		//Use curl only if necessary
+		// Use curl only if necessary
 		if ( empty( $data['body'] ) ) {
 
 			$ch = curl_init( $url );
@@ -419,14 +412,13 @@ class Google_Places_Reviews extends WP_Widget {
 			$response = json_decode( $data['body'], true );
 		}
 
-		//Get Reviewers Avatars
+		// Get Reviewers Avatars
 		$response = $this->get_reviewers_avatars( $response );
 
-		//Get Business Avatar
+		// Get Business Avatar
 		$response = $this->get_business_avatar( $response );
 
-
-		//Google response data in JSON format
+		// Google response data in JSON format
 		return $response;
 
 	}
@@ -470,13 +462,13 @@ class Google_Places_Reviews extends WP_Widget {
 	/**
 	 * Get Business Avatar
 	 *
-	 * @description: Gets the business Avatar and
+	 * Gets the business Avatar and
 	 *
 	 * @return array
 	 */
 	function get_business_avatar( $response ) {
 
-		//Business Avatar
+		// Business Avatar
 		if ( isset( $response['result']['photos'] ) ) {
 
 			$request_url = add_query_arg(
@@ -508,14 +500,14 @@ class Google_Places_Reviews extends WP_Widget {
 
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		//Determine which CSS to pull
+		// Determine which CSS to pull
 		$css_raised  = GPR_PLUGIN_URL . '/assets/css/gpr-theme-raised' . $suffix . '.css';
 		$css_minimal = GPR_PLUGIN_URL . '/assets/css/gpr-theme-minimal' . $suffix . '.css';
 		$css_shadow  = GPR_PLUGIN_URL . '/assets/css/gpr-theme-shadow' . $suffix . '.css';
 		$css_inset   = GPR_PLUGIN_URL . '/assets/css/gpr-theme-inset' . $suffix . '.css';
 
 		if ( $widget_style === 'Minimal Light' || $widget_style === 'Minimal Dark' ) {
-			//enqueue theme style
+			// enqueue theme style
 			wp_register_style( 'grp_widget_style_minimal', $css_minimal );
 			wp_enqueue_style( 'grp_widget_style_minimal' );
 		}
@@ -544,17 +536,17 @@ class Google_Places_Reviews extends WP_Widget {
 	function output_error_message( $message, $style ) {
 
 		switch ( $style ) {
-			case 'error' :
+			case 'error':
 				$style = 'gpr-error';
 				break;
-			case 'warning' :
+			case 'warning':
 				$style = 'gpr-warning';
 				break;
-			default :
+			default:
 				$style = 'gpr-warning';
 		}
 
-		$output = '<div class="gpr-alert ' . $style . '">';
+		$output  = '<div class="gpr-alert ' . $style . '">';
 		$output .= $message;
 		$output .= '</div>';
 
@@ -580,35 +572,33 @@ class Google_Places_Reviews extends WP_Widget {
 		$rating_value  = '<p class="gpr-rating-value" ' . ( ( $hide_out_of_rating === '1' ) ? ' style="display:none;"' : '' ) . '><span>' . $rating . '</span>' . __( ' out of 5 stars', 'google-places-reviews' ) . '</p>';
 		$is_gpr_header = true;
 
-		//AVATAR
+		// AVATAR
 		$google_img = '<div class="gpr-google-logo-wrap"' . ( ( $hide_google_image === '1' ) ? ' style="display:none;"' : '' ) . '><img src="' . GPR_PLUGIN_URL . '/assets/images/google-logo-small.png' . '" class="gpr-google-logo-header" title=" ' . __( 'Reviewed from Google', 'google-places-reviews' ) . '" alt="' . __( 'Reviewed from Google', 'google-places-reviews' ) . '" /></div>';
 
-
-		//Header doesn't have a timestamp
+		// Header doesn't have a timestamp
 		if ( $unix_timestamp ) {
 			$is_gpr_header = false;
 		}
 
-		//continue with output
-
+		// continue with output
 		$output .= '<div class="star-rating-wrap">';
 		$output .= '<div class="star-rating-size" style="width:' . ( 65 * $rating / 5 ) . 'px;"></div>';
 		$output .= '</div>';
 
-		//Output rating next to stars for individual reviews
+		// Output rating next to stars for individual reviews
 		if ( $is_gpr_header === false ) {
 			$output .= $rating_value;
 		}
 
-		//Show timestamp for reviews
+		// Show timestamp for reviews
 		if ( $unix_timestamp ) {
 			$output .= '<span class="gpr-rating-time">' . $this->get_time_since( $unix_timestamp ) . '</span>';
 		}
 
-		//Show overall rating value of review
+		// Show overall rating value of review
 		if ( $is_gpr_header === true ) {
 
-			//Google logo
+			// Google logo
 			if ( isset( $hide_google_image ) && $hide_google_image !== 1 ) {
 
 				$output .= $google_img;
@@ -616,7 +606,6 @@ class Google_Places_Reviews extends WP_Widget {
 			}
 			$output .= $rating_value;
 		}
-
 
 		return $output;
 
@@ -626,7 +615,7 @@ class Google_Places_Reviews extends WP_Widget {
 	 * Time Since
 	 * Works out the time since the entry post, takes a an argument in unix time (seconds)
 	 */
-	static public function get_time_since( $date, $granularity = 1 ) {
+	public static function get_time_since( $date, $granularity = 1 ) {
 		$difference = time() - $date;
 		$retval     = '';
 		$periods    = array(
@@ -637,15 +626,15 @@ class Google_Places_Reviews extends WP_Widget {
 			'day'    => 86400,
 			'hour'   => 3600,
 			'minute' => 60,
-			'second' => 1
+			'second' => 1,
 		);
 
 		foreach ( $periods as $key => $value ) {
 			if ( $difference >= $value ) {
-				$time = floor( $difference / $value );
+				$time        = floor( $difference / $value );
 				$difference %= $value;
-				$retval .= ( $retval ? ' ' : '' ) . $time . ' ';
-				$retval .= ( ( $time > 1 ) ? $key . 's' : $key );
+				$retval     .= ( $retval ? ' ' : '' ) . $time . ' ';
+				$retval     .= ( ( $time > 1 ) ? $key . 's' : $key );
 				$granularity --;
 			}
 			if ( $granularity == '0' ) {
@@ -685,4 +674,4 @@ class Google_Places_Reviews extends WP_Widget {
 		delete_transient( 'gpr_widget_options_' . $transient_unique_id );
 	}
 
-} 
+}

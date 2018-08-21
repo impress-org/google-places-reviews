@@ -117,6 +117,7 @@ if ( ! class_exists( 'WP_Google_Places_Reviews_Free' ) ) {
 			// Include the widget
 			if ( ! class_exists( 'Google_Places_Reviews' ) ) {
 				require GPR_PLUGIN_PATH . '/includes/widget.php';
+				register_widget( 'Google_Places_Reviews' );
 			}
 
 			// Admin only
