@@ -4,9 +4,6 @@
  * Google Places Reviews
  *
  * Class Google_Places_Reviews
- *
- * The Google Places Reviews
- * @since      : 1.0
  */
 class Google_Places_Reviews extends WP_Widget {
 
