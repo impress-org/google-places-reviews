@@ -327,12 +327,17 @@ class Google_Places_Reviews extends WP_Widget {
 	 * Update Widget
 	 *
 	 * Saves the widget options
+	 *
+	 * @param array $new_instance
+	 * @param array $old_instance
+	 *
+	 * @return array
 	 */
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 		// loop through options array and save to new instance
 		foreach ( $this->widget_fields as $field => $value ) {
-			$instance[ $field ] = strip_tags( stripslashes( $new_instance[ $field ] ) );
+			$instance[ $field ] = isset( $new_instance[ $field ] ) ? strip_tags( stripslashes( $new_instance[ $field ] ) ) : '';
 		}
 
 		return $instance;
