@@ -115,91 +115,91 @@ msgstr ""
 msgid "Useful to style your own widget and for theme integration and optimization."
 msgstr ""
 
-#: includes/options.php:57, includes/widget.php:652
+#: includes/options.php:57, includes/widget.php:657
 msgid "The title text appears at the very top of the widget above all other elements."
 msgstr ""
 
-#: includes/options.php:60, includes/widget.php:655
+#: includes/options.php:60, includes/widget.php:660
 msgid "Enter the name of your Google Place in this field to retrieve it's Google Place ID. If no information is returned there you may have a conflict with another plugin or theme using Google Maps API."
 msgstr ""
 
-#: includes/options.php:63, includes/widget.php:658
+#: includes/options.php:63, includes/widget.php:663
 msgid "Specify how you would like to lookup your Google Places. Address instructs the Place Autocomplete service to return only geocoding results with a precise address. Establishment instructs the Place Autocomplete service to return only business results. The Regions type collection instructs the Places service to return any result matching the following types: locality, sublocality, postal_code, country, administrative_area_level_1, administrative_area_level_2."
 msgstr ""
 
-#: includes/options.php:66, includes/widget.php:661
+#: includes/options.php:66, includes/widget.php:666
 msgid "This is the name of the place returned by Google's Places API."
 msgstr ""
 
-#: includes/options.php:69, includes/widget.php:664
+#: includes/options.php:69, includes/widget.php:669
 msgid "The Google Place ID is a textual identifier that uniquely identifies a place and can be used to retrieve information about the place. This option is set using the \"Location Lookup\" field above."
 msgstr ""
 
-#: includes/options.php:72, includes/widget.php:667
+#: includes/options.php:72, includes/widget.php:672
 msgid "PRO FEATURE: Filter bad reviews to prevent them from displaying. Please note that the Google Places API only allows for up to 5 total reviews displayed per location. This option may limit the total number further."
 msgstr ""
 
-#: includes/options.php:75, includes/widget.php:670
+#: includes/options.php:75, includes/widget.php:675
 msgid "Limit the number of reviews displayed for this location to a set number."
 msgstr ""
 
-#: includes/options.php:78, includes/widget.php:673
+#: includes/options.php:78, includes/widget.php:678
 msgid "Toggle on or off the link on the reviews name to their Google+ page."
 msgstr ""
 
-#: includes/options.php:81, includes/widget.php:676
+#: includes/options.php:81, includes/widget.php:681
 msgid "Some reviews may be very long and cause the widget to have a very large height. This option uses JavaScript to expand and collapse the text."
 msgstr ""
 
-#: includes/options.php:84, includes/widget.php:679
+#: includes/options.php:84, includes/widget.php:684
 msgid "Set the character limit for this review widget. Values are in pixels."
 msgstr ""
 
-#: includes/options.php:87, includes/widget.php:682
+#: includes/options.php:87, includes/widget.php:687
 msgid "Choose from a set of predefined widget styles. Want to style your own? Set it to 'Bare Bones' for easy CSS styling."
 msgstr ""
 
-#: includes/options.php:90, includes/widget.php:685
+#: includes/options.php:90, includes/widget.php:690
 msgid "Disable the main business information profile image, name, overall rating. Useful for displaying only ratings in the widget."
 msgstr ""
 
-#: includes/options.php:93, includes/widget.php:688
+#: includes/options.php:93, includes/widget.php:693
 msgid "Hide the text the appears after the star image displaying 'x out of 5 stars'. The text will still be output because it is important for SEO but it will be hidden with CSS."
 msgstr ""
 
-#: includes/options.php:96, includes/widget.php:691
+#: includes/options.php:96, includes/widget.php:696
 msgid "Prevent the Google logo from displaying in the reviews widget."
 msgstr ""
 
-#: includes/options.php:99, includes/widget.php:694
+#: includes/options.php:99, includes/widget.php:699
 msgid "Caching data will save Google Place data to your database in order to speed up response times and conserve API requests. The suggested settings is 1 Day."
 msgstr ""
 
-#: includes/options.php:102, includes/widget.php:697
+#: includes/options.php:102, includes/widget.php:702
 msgid "The title output is content within the 'Widget Title' field above. Disabling the title output may be useful for some themes."
 msgstr ""
 
-#: includes/options.php:105, includes/widget.php:700
+#: includes/options.php:105, includes/widget.php:705
 msgid "This option will add target='_blank' to the widget's links. This is useful to keep users on your website."
 msgstr ""
 
-#: includes/options.php:108, includes/widget.php:703
+#: includes/options.php:108, includes/widget.php:708
 msgid "This option will add rel='nofollow' to the widget's outgoing links. This option may be useful for SEO."
 msgstr ""
 
-#: includes/options.php:111, includes/widget.php:706
+#: includes/options.php:111, includes/widget.php:711
 msgid "Choose whether to float the widget to the right or left, or not at all. This is helpful for integrating within post content so text wraps around the widget if wanted. Default value is 'none'."
 msgstr ""
 
-#: includes/options.php:114, includes/widget.php:709
+#: includes/options.php:114, includes/widget.php:714
 msgid "Define a max-width property for the widget. Dimension value can be in pixel or percentage. Default value is '250px'."
 msgstr ""
 
-#: includes/options.php:117, includes/widget.php:712
+#: includes/options.php:117, includes/widget.php:717
 msgid "Output content before the main widget content. Useful to provide introductory text."
 msgstr ""
 
-#: includes/options.php:120, includes/widget.php:715
+#: includes/options.php:120, includes/widget.php:720
 msgid "Output content after the main widget content. Useful to provide a button or custom text inviting the user to perform an action or read a message."
 msgstr ""
 
@@ -455,23 +455,23 @@ msgstr ""
 msgid "<strong>INVALID REQUEST</strong>: Please check that this widget has a Google Place ID set."
 msgstr ""
 
-#: includes/widget.php:353
+#: includes/widget.php:358
 msgid "<p><strong>Notice: </strong>No Google Places API key detected. You will need to create an API key to use Google Places Reviews. API keys are manage through the <a href=\"%1$s\" class=\"new-window\" target=\"_blank\">Google API Console</a>. For more information please see <a href=\"%2$s\"  target=\"_blank\"  class=\"new-window\" title=\"Google Places API Introduction\">this article</a>.</p> <p>Once you have obtained your API key enter it in the <a href=\"%3$s\" title=\"Google Places Reviews Plugin Settings\">plugin settings page</a>.</p>"
 msgstr ""
 
-#: includes/widget.php:524
+#: includes/widget.php:529
 msgid " out of 5 stars"
 msgstr ""
 
-#: includes/widget.php:528, includes/widget.php:528
+#: includes/widget.php:533, includes/widget.php:533
 msgid "Reviewed from Google"
 msgstr ""
 
-#: includes/widget.php:609
+#: includes/widget.php:614
 msgid "Cache cleared"
 msgstr ""
 
-#: includes/widget.php:612
+#: includes/widget.php:617
 msgid "Error: Transient ID not set. Cache not cleared."
 msgstr ""
 
