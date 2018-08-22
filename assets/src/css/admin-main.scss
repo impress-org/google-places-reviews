@@ -1,0 +1,12 @@
+/**
+ * Main stylesheet for admin-facing styles.
+ *
+ * Plugin styles follow http://cssguidelin.es/ and are organized according to
+ * Inverted Triangle CSS (ITCSS) principles put forth by Harry Roberts. In
+ * short, each layer of CSS gets more specific as you move down this file.
+ */
+
+
+@import "admin-settings";
+@import "admin-widget";
+@import "admin-tipsy";

@@ -1,5 +1,5 @@
-#Grunt
+.idea/*
 node_modules
+assets/dist/
 .jshintrc
-.zip
-*.zip
+.DS_Store

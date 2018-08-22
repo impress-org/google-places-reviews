@@ -1,16 +1,55 @@
 {
-  "name": "GooglePlacesReviews",
+  "name": "google-places-reviews",
   "version": "1.0.0",
-  "private": true,
-  "description": "Google Places Reviews Pro. A WordPress plugin from WordImpress.",
-  "main": "gulpfile.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack",
+    "production": "cross-env NODE_ENV=production webpack",
+    "watch": "webpack --watch",
+    "lint": "npm run lint:js & npm run lint:scss",
+    "lint:js": "eslint assets/src/**/*.js",
+    "lint:scss": "stylelint assets/src/**/*.scss"
   },
-  "author": "Quench",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WordImpress/Google-Places-Reviews.git"
+  },
+  "author": "Impress.org",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WordImpress/Google-Places-Reviews/issues"
+  },
+  "homepage": "https://github.com/WordImpress/Google-Places-Reviews#readme",
+  "quokka": {
+    "babel": true
+  },
   "devDependencies": {
-    "gulp": "3.9.*",
-    "gulp-wp-pot": "^1.1.1"
-  }
+    "autoprefixer": "^7.1.2",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "browser-sync": "^2.24.6",
+    "browser-sync-webpack-plugin": "^1.2.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.5.2",
+    "cross-env": "^5.2.0",
+    "css-loader": "^0.28.11",
+    "cssnano": "^3.10.0",
+    "eslint": "^4.19.1",
+    "eslint-config-wordpress": "^2.0.0",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "file-loader": "^1.1.11",
+    "imagemin-webpack-plugin": "^1.5.2",
+    "node-sass": "^4.9.2",
+    "postcss-loader": "^2.1.6",
+    "sass-loader": "^6.0.7",
+    "style-loader": "^0.18.2",
+    "stylelint-config-wordpress": "^12.0.0",
+    "uglifyjs-webpack-plugin": "^1.2.7",
+    "url-loader": "^0.5.9",
+    "webpack": "^3.12.0",
+    "wp-pot": "latest"
+  },
+  "dependencies": {}
 }
