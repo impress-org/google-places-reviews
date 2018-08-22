@@ -1,18 +1,16 @@
 /**
  *  Google Places Reviews JS: WP Admin
  *
- *  @description: JavaScripts for the admin side of the widget
+ *  JavaScripts for the admin side of the widget.
  */
 
 var gpr_ajax_object;
 
-
-
-(function ($) {
-	"use strict";
+(function( $ ) {
+	'use strict';
 
 	$( window ).load(
-		function () {
+		function() {
 			// loadAPI( init )
 			init();
 		}
@@ -21,10 +19,9 @@ var gpr_ajax_object;
 	/**
 	 * Initialize
 	 *
-	 * @description: Initialize the API Request Method widget radio input toggles
+	 * Initialize the API Request Method widget radio input toggles
 	 */
 	function init() {
-		console.log(gpr_ajax_object);
 		gpr_widget_toggles();
 		gpr_initialize_autocomplete();
 		gpr_tipsy();
@@ -34,7 +31,7 @@ var gpr_ajax_object;
 	/**
 	 * Detect Google Maps API Authentication Error
 	 *
-	 * @description:   Google Authentication Callback in case there was an error
+	 * Google Authentication Callback in case there was an error
 	 *
 	 * @see: https://developers.google.com/maps/documentation/javascript/events#auth-errors
 	 * @see: https://developers.google.com/maps/documentation/javascript/events#auth-errors
@@ -49,10 +46,10 @@ var gpr_ajax_object;
 	/**
 	 * Clear Cache Button
 	 *
-	 * @description: When clicked it clears the transients for this specific business
+	 * When clicked it clears the transients for this specific business
 	 */
 	$( document ).on(
-		'click', '.gpr-clear-cache', function (e) {
+		'click', '.gpr-clear-cache', function( e ) {
 
 			e.preventDefault();
 			var $this = $( this );
@@ -65,7 +62,7 @@ var gpr_ajax_object;
 			};
 
 			$.post(
-				ajaxurl, data, function (response) {
+				ajaxurl, data, function( response ) {
 					console.log( response );
 					$( '.cache-clearing-loading' ).hide();
 					$this.prev( '.cache-message' ).text( response ).fadeIn( 'fast' ).delay( 2000 ).fadeOut();
@@ -78,10 +75,10 @@ var gpr_ajax_object;
 	/**
 	 * AJAX Success
 	 *
-	 * @description: Function to Refresh jQuery toggles for Google Places Reviews upon saving specific widget
+	 * Function to Refresh jQuery toggles for Google Places Reviews upon saving specific widget
 	 */
 	$( document ).ajaxSuccess(
-		function (e, xhr, settings) {
+		function( e, xhr, settings ) {
 			gpr_widget_toggles();
 			gpr_initialize_autocomplete();
 			gpr_tipsy();
@@ -95,21 +92,21 @@ var gpr_ajax_object;
 
 		// Advanced Options Toggle (Bottom-gray panels)
 		$( '.gpr-widget-toggler:not("clickable")' ).each(
-			function () {
+			function() {
 
-				$( this ).addClass( "clickable" ).unbind( "click" ).click(
-					function () {
+				$( this ).addClass( 'clickable' ).unbind( 'click' ).click(
+					function() {
 						$( this ).toggleClass( 'toggled' );
 						$( this ).next().slideToggle();
 					}
-				)
+				);
 
 			}
 		);
 
 		// Review character limit toggle
 		$( '.limit-reviews-option' ).each(
-			function () {
+			function() {
 
 				var review_char_option       = $( this ).find( 'input' );
 				var review_char_option_value = review_char_option.prop( 'checked' );
@@ -117,7 +114,7 @@ var gpr_ajax_object;
 
 				// if clicked now
 				review_char_option.on(
-					'click', function () {
+					'click', function() {
 						review_char_set_wrap.slideToggle();
 					}
 				);
@@ -131,30 +128,30 @@ var gpr_ajax_object;
 	 * Initialize Google Places Autocomplete Field
 	 */
 	function gpr_initialize_autocomplete() {
-		var input = $( '.gpr-autocomplete' );
-		var types = $( '.gpr-types' );
+		var input = $( '.gpr-autocomplete' ),
+			types = $( '.gpr-types' );
 
 		input.each(
-			function (index, value) {
+			function( index, value ) {
 
-				var autocomplete = new google.maps.places.Autocomplete( input[index] );
+				var autocomplete = new google.maps.places.Autocomplete( input[ index ] );
 
 				// Handle type select field
 				$( types ).on(
-					'change', function () {
+					'change', function() {
 						// Set type
 						var type = $( this ).val();
-						autocomplete.setTypes( [type] );
+						autocomplete.setTypes( [ type ] );
 						$( input ).val( '' );
 					}
 				);
 
-				add_autocomplete_listener( autocomplete, input[index] );
+				add_autocomplete_listener( autocomplete, input[ index ] );
 
 				// Tame the enter key to not save the widget while using the autocomplete input
 				$( input ).keydown(
-					function (e) {
-						if (e.which == 13) {
+					function( e ) {
+						if ( e.which == 13 ) {
 							return false;
 						}
 					}
@@ -171,14 +168,14 @@ var gpr_ajax_object;
 	 * @param autocomplete
 	 * @param input
 	 */
-	function add_autocomplete_listener(autocomplete, input) {
+	function add_autocomplete_listener( autocomplete, input ) {
 
 		google.maps.event.addListener(
-			autocomplete, 'place_changed', function () {
+			autocomplete, 'place_changed', function() {
 
 				var place = autocomplete.getPlace();
 
-				if ( ! place.place_id) {
+				if ( ! place.place_id ) {
 					alert( 'No place reference found for this location.' );
 					return false;
 				}
@@ -192,9 +189,9 @@ var gpr_ajax_object;
 		);
 	}
 
-    /**
-     * Tipsy
-     */
+	/**
+	 * Tipsy
+	 */
 	function gpr_tipsy() {
 		// Tooltips for admins
 		$( '.tooltip-info' ).tipsy(

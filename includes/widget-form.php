@@ -18,7 +18,7 @@
 
 <div class="gpr-place-search-wrap clearfix">
 	<!-- Google Maps Autocomplete Label -->
-	<p class="gpr-autocomplete">
+	<p class="gpr-autocomplete-wrap">
 		<label for="<?php echo $this->get_field_id( 'autocomplete' ); ?>"><?php _e( 'Location Lookup', 'google-places-reviews' ); ?>: <?php echo gpr_admin_tooltip( 'autocomplete' ); ?></label>
 		<input class="widefat gpr-autocomplete" id="<?php echo $this->get_field_id( 'autocomplete' ); ?>"
 			   name="<?php echo $this->get_field_name( 'autocomplete' ); ?>" type="text"
