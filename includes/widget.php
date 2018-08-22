@@ -83,33 +83,28 @@ class Google_Places_Reviews extends WP_Widget {
 	 */
 	function admin_widget_scripts( $hook ) {
 
-		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 		$apikey = $this->options['google_places_api_key'];
 
-		if ( $hook == 'widgets.php' || ( $hook == 'customize.php' && defined( 'SITEORIGIN_PANELS_VERSION' ) ) ) {
+		if (
+			$hook == 'widgets.php'
+			|| ( $hook == 'customize.php' && defined( 'SITEORIGIN_PANELS_VERSION' ) )
+		) {
 
 			wp_register_script( 'gpr_google_places_gmaps', 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=' . $apikey, array( 'jquery' ) );
 			wp_enqueue_script( 'gpr_google_places_gmaps' );
 
-			wp_register_script( 'gpr_widget_admin_tipsy', plugins_url( 'assets/js/gpr-tipsy' . $suffix . '.js', dirname( __FILE__ ) ), array( 'jquery' ) );
-			wp_enqueue_script( 'gpr_widget_admin_tipsy' );
-
-			wp_register_script( 'gpr_widget_admin_scripts', plugins_url( 'assets/js/admin-widget' . $suffix . '.js', dirname( __FILE__ ) ), array( 'jquery' ) );
-			wp_enqueue_script( 'gpr_widget_admin_scripts' );
-
+			wp_register_script( 'gpr_widget_admin_scripts', GPR_PLUGIN_URL . '/assets/dist/js/admin-main.js', array( 'jquery' ) );
 			wp_localize_script(
 				'gpr_widget_admin_scripts', 'gpr_ajax_object', array(
 					'ajax_url' => admin_url( 'admin-ajax.php' ),
 					'i18n'     => array(
-						'google_auth_error' => sprintf( __( '%1$sGoogle API Error:%2$s Due to recent changes by Google you must now add the Maps API to your existing API key in order to use the Location Lookup feature of the Google Places Widget. %3$sView documentation here%4$s', 'google-maps-pro' ), '<strong>', '</strong>', '<br><a href="https://wordimpress.com/documentation/google-places-reviews/creating-your-google-places-api-key/" target="_blank" class="new-window">', '</a>' ),
+						'google_auth_error' => sprintf( __( '%1$sGoogle API Error:%2$s Due to recent changes by Google you must now add the Maps API to your existing API key in order to use the Location Lookup feature of the Google Places Widget. %3$sView documentation here%4$s', 'google-places-reviews' ), '<strong>', '</strong>', '<br><a href="" target="_blank" class="new-window">', '</a>' ),
 					),
 				)
 			);
+			wp_enqueue_script( 'gpr_widget_admin_scripts' );
 
-			wp_register_style( 'gpr_widget_admin_tipsy', plugins_url( 'assets/css/gpr-tipsy' . $suffix . '.css', dirname( __FILE__ ) ) );
-			wp_enqueue_style( 'gpr_widget_admin_tipsy' );
-
-			wp_register_style( 'gpr_widget_admin_css', plugins_url( 'assets/css/admin-widget' . $suffix . '.css', dirname( __FILE__ ) ) );
+			wp_register_style( 'gpr_widget_admin_css', GPR_PLUGIN_URL . '/assets/dist/css/admin-main.css' );
 			wp_enqueue_style( 'gpr_widget_admin_css' );
 
 		}
@@ -124,9 +119,12 @@ class Google_Places_Reviews extends WP_Widget {
 	 */
 	function frontend_widget_scripts() {
 
-		$suffix  = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-		$gpr_css = plugins_url( 'assets/css/google-places-reviews' . $suffix . '.css', dirname( __FILE__ ) );
-		wp_register_style( 'gpr_widget', $gpr_css );
+		if ( isset( $this->options['disable_css'] ) ) {
+			return;
+		}
+
+		wp_register_style( 'gpr_widget', GPR_PLUGIN_URL . '/assets/dist/css/public-main.css' );
+		wp_enqueue_style( 'gpr_widget' );
 
 	}
 
@@ -142,9 +140,6 @@ class Google_Places_Reviews extends WP_Widget {
 	 */
 	function widget( $args, $instance ) {
 
-		if ( $this->options['disable_css'] !== 'on' ) {
-			wp_enqueue_style( 'gpr_widget' );
-		}
 
 		// @TODO: Remove usage
 		extract( $args );
@@ -154,13 +149,8 @@ class Google_Places_Reviews extends WP_Widget {
 			${$variable} = ! isset( $instance[ $variable ] ) ? $this->widget_fields[ $variable ] : esc_attr( $instance[ $variable ] );
 		}
 
-		// Enqueue individual CSS if debug is on; otherwise plugin uses min version
-		if ( defined( 'SCRIPT_DEBUG' ) === true ) {
-			$this->enqueue_widget_theme_scripts( $widget_style );
-		}
-
 		// Check for a reference. If none, output error
-		if ( $reference === 'No location set' && empty( $place_id ) || empty( $reference ) && $place_id === 'No location set' ) {
+		if ( 'No location set' === $reference && empty( $place_id ) || empty( $reference ) && $place_id === 'No location set' ) {
 			$this->output_error_message( __( 'There is no location set for this widget yet.', 'google-places-reviews' ), 'error' );
 
 			return false;
@@ -462,7 +452,7 @@ class Google_Places_Reviews extends WP_Widget {
 	/**
 	 * Get Business Avatar
 	 *
-	 * Gets the business Avatar and
+	 * @param $response
 	 *
 	 * @return array
 	 */
@@ -490,44 +480,6 @@ class Google_Places_Reviews extends WP_Widget {
 	}
 
 	/**
-	 * Enqueue Widget Theme Scripts
-	 *
-	 * Outputs the necessary scripts for the widget themes
-	 *
-	 * @param $widget_style
-	 */
-	function enqueue_widget_theme_scripts( $widget_style ) {
-
-		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-
-		// Determine which CSS to pull
-		$css_raised  = GPR_PLUGIN_URL . '/assets/css/gpr-theme-raised' . $suffix . '.css';
-		$css_minimal = GPR_PLUGIN_URL . '/assets/css/gpr-theme-minimal' . $suffix . '.css';
-		$css_shadow  = GPR_PLUGIN_URL . '/assets/css/gpr-theme-shadow' . $suffix . '.css';
-		$css_inset   = GPR_PLUGIN_URL . '/assets/css/gpr-theme-inset' . $suffix . '.css';
-
-		if ( $widget_style === 'Minimal Light' || $widget_style === 'Minimal Dark' ) {
-			// enqueue theme style
-			wp_register_style( 'grp_widget_style_minimal', $css_minimal );
-			wp_enqueue_style( 'grp_widget_style_minimal' );
-		}
-		if ( $widget_style === 'Shadow Light' || $widget_style === 'Shadow Dark' ) {
-			wp_register_style( 'grp_widget_style_shadow', $css_shadow );
-			wp_enqueue_style( 'grp_widget_style_shadow' );
-		}
-		if ( $widget_style === 'Inset Light' || $widget_style === 'Inset Dark' ) {
-			wp_register_style( 'grp_widget_style_inset', $css_inset );
-			wp_enqueue_style( 'grp_widget_style_inset' );
-		}
-		if ( $widget_style === 'Raised Light' || $widget_style === 'Raised Dark' ) {
-			wp_register_style( 'grp_widget_style_raised', $css_raised );
-			wp_enqueue_style( 'grp_widget_style_raised' );
-		}
-
-	}
-
-
-	/**
 	 * Output Error Message
 	 *
 	 * @param $message
@@ -546,7 +498,7 @@ class Google_Places_Reviews extends WP_Widget {
 				$style = 'gpr-warning';
 		}
 
-		$output  = '<div class="gpr-alert ' . $style . '">';
+		$output = '<div class="gpr-alert ' . $style . '">';
 		$output .= $message;
 		$output .= '</div>';
 
@@ -573,7 +525,7 @@ class Google_Places_Reviews extends WP_Widget {
 		$is_gpr_header = true;
 
 		// AVATAR
-		$google_img = '<div class="gpr-google-logo-wrap"' . ( ( $hide_google_image === '1' ) ? ' style="display:none;"' : '' ) . '><img src="' . GPR_PLUGIN_URL . '/assets/images/google-logo-small.png' . '" class="gpr-google-logo-header" title=" ' . __( 'Reviewed from Google', 'google-places-reviews' ) . '" alt="' . __( 'Reviewed from Google', 'google-places-reviews' ) . '" /></div>';
+		$google_img = '<div class="gpr-google-logo-wrap"' . ( ( $hide_google_image === '1' ) ? ' style="display:none;"' : '' ) . '><img src="' . GPR_PLUGIN_URL . '/assets/dist/images/google-logo-small.png' . '" class="gpr-google-logo-header" title=" ' . __( 'Reviewed from Google', 'google-places-reviews' ) . '" alt="' . __( 'Reviewed from Google', 'google-places-reviews' ) . '" /></div>';
 
 		// Header doesn't have a timestamp
 		if ( $unix_timestamp ) {
@@ -631,7 +583,7 @@ class Google_Places_Reviews extends WP_Widget {
 
 		foreach ( $periods as $key => $value ) {
 			if ( $difference >= $value ) {
-				$time        = floor( $difference / $value );
+				$time       = floor( $difference / $value );
 				$difference %= $value;
 				$retval     .= ( $retval ? ' ' : '' ) . $time . ' ';
 				$retval     .= ( ( $time > 1 ) ? $key . 's' : $key );
@@ -668,10 +620,102 @@ class Google_Places_Reviews extends WP_Widget {
 	 * Delete Transient Cache
 	 *
 	 * Removes the transient cache when an error is displayed as to not cache error results
+	 *
+	 * @param $transient_unique_id
 	 */
 	function delete_transient_cache( $transient_unique_id ) {
 		delete_transient( 'gpr_widget_api_' . $transient_unique_id );
 		delete_transient( 'gpr_widget_options_' . $transient_unique_id );
 	}
+
+}
+
+
+/**
+ * Google Places Reviews Admin Tooltips
+ *
+ * @param $tip_name
+ *
+ * @return bool|string
+ */
+function gpr_admin_tooltip( $tip_name ) {
+
+	$tip_text = '';
+
+	//Ensure there's a tip requested
+	if ( empty( $tip_name ) ) {
+		return false;
+	}
+
+	switch ( $tip_name ) {
+		case 'title':
+			$tip_text = __( 'The title text appears at the very top of the widget above all other elements.', 'google-places-reviews' );
+			break;
+		case 'autocomplete':
+			$tip_text = __( 'Enter the name of your Google Place in this field to retrieve it\'s Google Place ID. If no information is returned there you may have a conflict with another plugin or theme using Google Maps API.', 'google-places-reviews' );
+			break;
+		case 'place_type':
+			$tip_text = __( 'Specify how you would like to lookup your Google Places. Address instructs the Place Autocomplete service to return only geocoding results with a precise address. Establishment instructs the Place Autocomplete service to return only business results. The Regions type collection instructs the Places service to return any result matching the following types: locality, sublocality, postal_code, country, administrative_area_level_1, administrative_area_level_2.', 'google-places-reviews' );
+			break;
+		case 'location':
+			$tip_text = __( 'This is the name of the place returned by Google\'s Places API.', 'google-places-reviews' );
+			break;
+		case 'place_id':
+			$tip_text = __( 'The Google Place ID is a textual identifier that uniquely identifies a place and can be used to retrieve information about the place. This option is set using the "Location Lookup" field above.', 'google-places-reviews' );
+			break;
+		case 'review_filter':
+			$tip_text = __( 'PRO FEATURE: Filter bad reviews to prevent them from displaying. Please note that the Google Places API only allows for up to 5 total reviews displayed per location. This option may limit the total number further.', 'google-places-reviews' );
+			break;
+		case 'review_limit':
+			$tip_text = __( 'Limit the number of reviews displayed for this location to a set number.', 'google-places-reviews' );
+			break;
+		case 'reviewers_link':
+			$tip_text = __( 'Toggle on or off the link on the reviews name to their Google+ page.', 'google-places-reviews' );
+			break;
+		case 'review_characters':
+			$tip_text = __( 'Some reviews may be very long and cause the widget to have a very large height. This option uses JavaScript to expand and collapse the text.', 'google-places-reviews' );
+			break;
+		case 'review_char_limit':
+			$tip_text = __( 'Set the character limit for this review widget. Values are in pixels.', 'google-places-reviews' );
+			break;
+		case 'widget_style':
+			$tip_text = __( 'Choose from a set of predefined widget styles. Want to style your own? Set it to \'Bare Bones\' for easy CSS styling.', 'google-places-reviews' );
+			break;
+		case 'hide_header':
+			$tip_text = __( 'Disable the main business information profile image, name, overall rating. Useful for displaying only ratings in the widget.', 'google-places-reviews' );
+			break;
+		case 'hide_out_of_rating':
+			$tip_text = __( 'Hide the text the appears after the star image displaying \'x out of 5 stars\'. The text will still be output because it is important for SEO but it will be hidden with CSS.', 'google-places-reviews' );
+			break;
+		case 'google_image':
+			$tip_text = __( 'Prevent the Google logo from displaying in the reviews widget.', 'google-places-reviews' );
+			break;
+		case 'cache':
+			$tip_text = __( 'Caching data will save Google Place data to your database in order to speed up response times and conserve API requests. The suggested settings is 1 Day.', 'google-places-reviews' );
+			break;
+		case 'disable_title_output':
+			$tip_text = __( 'The title output is content within the \'Widget Title\' field above. Disabling the title output may be useful for some themes.', 'google-places-reviews' );
+			break;
+		case 'target_blank':
+			$tip_text = __( 'This option will add target=\'_blank\' to the widget\'s links. This is useful to keep users on your website.', 'google-places-reviews' );
+			break;
+		case 'no_follow':
+			$tip_text = __( 'This option will add rel=\'nofollow\' to the widget\'s outgoing links. This option may be useful for SEO.', 'google-places-reviews' );
+			break;
+		case 'alignment':
+			$tip_text = __( 'Choose whether to float the widget to the right or left, or not at all. This is helpful for integrating within post content so text wraps around the widget if wanted. Default value is \'none\'.', 'google-places-reviews' );
+			break;
+		case 'max_width':
+			$tip_text = __( 'Define a max-width property for the widget. Dimension value can be in pixel or percentage. Default value is \'250px\'.', 'google-places-reviews' );
+			break;
+		case 'pre_content':
+			$tip_text = __( 'Output content before the main widget content. Useful to provide introductory text.', 'google-places-reviews' );
+			break;
+		case 'post_content':
+			$tip_text = __( 'Output content after the main widget content. Useful to provide a button or custom text inviting the user to perform an action or read a message.', 'google-places-reviews' );
+			break;
+	}
+
+	return '<img src="' . GPR_PLUGIN_URL . '/assets/dist/images/help.png" title="' . $tip_text . '" class="tooltip-info" width="16" height="16" />';
 
 }

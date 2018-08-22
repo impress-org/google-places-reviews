@@ -29,7 +29,7 @@
 		<label for="<?php echo $this->get_field_id( 'place_type' ); ?>"><?php _e( 'Place Type', 'google-places-reviews' ); ?>: <?php echo gpr_admin_tooltip( 'place_type' ); ?></label>
 
 		<select name="<?php echo $this->get_field_name( 'place_type' ); ?>" id="<?php echo $this->get_field_id( 'place_type' ); ?>" class="widefat gpr-types">
-			<option value="all" 
+			<option value="all"
 			<?php
 			if ( $place_type == 'all' ) {
 				echo "selected='selected'";
@@ -37,7 +37,7 @@
 			?>
 			><?php _e( 'All', 'google-places-reviews' ); ?>
 			</option>
-			<option value="address" 
+			<option value="address"
 			<?php
 			if ( $place_type == 'address' ) {
 				echo "selected='selected'";
@@ -45,7 +45,7 @@
 			?>
 			><?php _e( 'Addresses', 'google-places-reviews' ); ?>
 			</option>
-			<option value="establishment" 
+			<option value="establishment"
 			<?php
 			if ( empty( $place_type ) || $place_type == 'establishment' ) {
 				echo "selected='selected'";
@@ -53,7 +53,7 @@
 			?>
 			><?php _e( 'Establishments', 'google-places-reviews' ); ?>
 			</option>
-			<option value="(regions)" 
+			<option value="(regions)"
 			<?php
 			if ( $place_type == '(regions)' ) {
 				echo "selected='selected'";
@@ -66,7 +66,7 @@
 	</p>
 </div>
 <!-- Google Maps Reference Field -->
-<div class="set-business" 
+<div class="set-business"
 <?php
 if ( empty( $location ) ) {
 	echo "style='display:none;'";
@@ -108,7 +108,7 @@ if ( empty( $location ) ) {
 		<select id="<?php echo $this->get_field_id( 'review_filter' ); ?>" class="widefat"
 				name="<?php echo $this->get_field_name( 'review_filter' ); ?>" disabled>
 
-			<option value="none" 
+			<option value="none"
 			<?php
 			if ( empty( $review_filter ) || $review_filter == 'No filter' ) {
 				echo "selected='selected'";
@@ -116,7 +116,7 @@ if ( empty( $location ) ) {
 			?>
 			><?php _e( 'No filter', 'google-places-reviews' ); ?>
 			</option>
-			<option value="5" 
+			<option value="5"
 			<?php
 			if ( $review_filter == '5' ) {
 				echo "selected='selected'";
@@ -124,7 +124,7 @@ if ( empty( $location ) ) {
 			?>
 			><?php _e( '5 Stars', 'google-places-reviews' ); ?>
 			</option>
-			<option value="4" 
+			<option value="4"
 			<?php
 			if ( $review_filter == '4' ) {
 				echo "selected='selected'";
@@ -132,7 +132,7 @@ if ( empty( $location ) ) {
 			?>
 			><?php _e( '4 Stars', 'google-places-reviews' ); ?>
 			</option>
-			<option value="3" 
+			<option value="3"
 			<?php
 			if ( $review_filter == '3' ) {
 				echo "selected='selected'";
@@ -140,7 +140,7 @@ if ( empty( $location ) ) {
 			?>
 			><?php _e( '3 Stars', 'google-places-reviews' ); ?>
 			</option>
-			<option value="2" 
+			<option value="2"
 			<?php
 			if ( $review_filter == '2' ) {
 				echo "selected='selected'";
@@ -148,7 +148,7 @@ if ( empty( $location ) ) {
 			?>
 			><?php _e( '2 Stars', 'google-places-reviews' ); ?>
 			</option>
-			<option value="1" 
+			<option value="1"
 			<?php
 			if ( $review_filter == '1' ) {
 				echo "selected='selected'";
@@ -172,7 +172,7 @@ if ( empty( $location ) ) {
 				?>
 
 				<option value="<?php echo $option; ?>"
-						id="<?php echo $option; ?>" 
+						id="<?php echo $option; ?>"
 										<?php
 										if ( $review_limit == $option || empty( $review_limit ) && $option == '4' ) {
 											echo 'selected="selected"';
@@ -268,7 +268,7 @@ if ( empty( $location ) ) {
 			foreach ( $options as $option ) {
 				?>
 				<option value="<?php echo $option; ?>"
-			id="<?php echo $option; ?>" 
+			id="<?php echo $option; ?>"
 							<?php
 							if ( $cache == $option || empty( $cache ) && $option == '1 Day' ) {
 								echo ' selected="selected" ';
@@ -315,12 +315,11 @@ if ( empty( $location ) ) {
 </div>
 
 <div class="gpr-widget-alert">
-	<a href="https://wordimpress.com/plugins/google-places-reviews-pro/" target="_blank"><?php _e( 'Upgrade to Pro', 'google-places-reviews' ); ?>
+	<a href="https://wpbusinessreviews.com/" target="_blank"><?php _e( 'Upgrade to WP Business Reviews', 'google-places-reviews' ); ?>
 		<span></span></a>
 </div>
 
 <p class="gpr-widget-footer-links clearfix">
 	<span class="google-power"></span>
-	<a href="https://wordimpress.com/documentation/google-places-reviews/" target="_blank" class="new-window"><?php _e( 'Plugin Documentation', 'google-places-reviews' ); ?></a>
 </p>
 

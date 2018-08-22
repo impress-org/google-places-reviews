@@ -85,6 +85,19 @@ function gpr_widget_clean( $value ) {
 	}
 }
 
+/**
+ * Initiate the Google Places Reviews Widget
+ *
+ * @param $file
+ */
+function gpr_widget_settings( $file ) {
+
+	register_setting( 'googleplacesreviews_options', 'googleplacesreviews_options', array( 'sanitize_callback' => 'gpr_widget_clean' ) );
+
+}
+
+add_action( 'admin_init', 'gpr_widget_settings' );
+
 
 /**
  * Admin Options.
@@ -109,7 +122,7 @@ function google_places_reviews() { ?>
 				</svg><?php _e( 'Upgrade to WP Business Reviews', 'google-places-reviews' ); ?></a>
 		</div>
 
-		<form id="yelp-settings" method="post" action="options.php">
+		<form id="gpr-settings" method="post" action="options.php">
 
 			<?php
 			/**
@@ -126,7 +139,7 @@ function google_places_reviews() { ?>
 				<div class="postbox-container" style="width:75%">
 
 					<div id="main-sortables" class="meta-box-sortables ui-sortable">
-						<div class="postbox" id="yelp-widget-intro">
+						<div class="postbox" id="gpr-widget-intro">
 							<div class="handlediv" title="Click to toggle"><br></div>
 							<h3 class="hndle">
 								<span><?php _e( 'Google Places Reviews Introduction', 'google-places-reviews' ); ?></span>
@@ -142,14 +155,15 @@ function google_places_reviews() { ?>
 									<li><?php _e( 'In order for the plugin to access your Google reviews, you must <a href="https://wpbusinessreviews.com/documentation/platforms/google/" target="_blank">create a Google Places API key</a>.', 'google-places-reviews'
 										); ?></li>
 									<li><?php _e( 'Once you have an API key copy save it in the Google Places API Key field below.', 'google-places-reviews' ); ?></li>
-									<li><?php _e( 'Head over to your <a href="' . esc_url( admin_url( 'widgets.php' ) ) . '">Widgets screen</a> to integrate your Google reviews.', 'google-places-reviews' ); ?></li>
+									<li><?php printf( __( 'Head over to your <a href="%s">Widgets screen</a> to integrate your Google reviews.', 'google-places-reviews' ), esc_url( admin_url( 'widgets.php' ) ) );
+										?></li>
 								</ol>
 							</div>
 							<!-- /.inside -->
 						</div>
-						<!-- /#yelp-widget-intro -->
+						<!-- /#gpr-widget-intro -->
 
-						<div class="postbox" id="yelp-widget-options">
+						<div class="postbox" id="gpr-widget-options">
 
 							<h3 class="hndle">
 								<span><?php esc_html_e( 'Google Places Reviews Settings', 'google-places-reviews' ); ?></span>
@@ -171,7 +185,8 @@ function google_places_reviews() { ?>
 										       name="googleplacesreviews_options[google_places_api_key]"
 										       value="<?php echo $api_key; ?>"
 										       size="45" /><br />
-										<small><a href="https://wpbusinessreviews.com/documentation/platforms/google/" target="_blank"><?php esc_html_e('Learn how to create a Google Places API key', 'google-places-reviews'); ?></a>
+										<small><a href="https://wpbusinessreviews.com/documentation/platforms/google/"
+										          target="_blank"><?php esc_html_e( 'Learn how to create a Google Places API key', 'google-places-reviews' ); ?></a>
 										</small>
 									</div>
 								</div>
@@ -189,7 +204,7 @@ function google_places_reviews() { ?>
 											$css_option = ! empty( $options['disable_css'] ) ? $options['disable_css'] : '';
 
 											// >1.5.0 b/w compat.
-											if('on' === $css_option) {
+											if ( 'on' === $css_option ) {
 												$css_option = 1;
 											}
 
@@ -203,7 +218,7 @@ function google_places_reviews() { ?>
 							</div>
 							<!-- /.inside -->
 						</div>
-						<!-- /#yelp-widget-options -->
+						<!-- /#gpr-widget-options -->
 
 						<div class="control-group">
 							<div class="controls">

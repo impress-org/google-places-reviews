@@ -172,3 +172,5 @@ function WP_Google_Places_Reviews_Free() {
 }
 
 WP_Google_Places_Reviews_Free();
+
+

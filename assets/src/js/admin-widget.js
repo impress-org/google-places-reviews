@@ -6,6 +6,8 @@
 
 var gpr_ajax_object;
 
+
+
 (function ($) {
 	"use strict";
 
@@ -22,7 +24,7 @@ var gpr_ajax_object;
 	 * @description: Initialize the API Request Method widget radio input toggles
 	 */
 	function init() {
-
+		console.log(gpr_ajax_object);
 		gpr_widget_toggles();
 		gpr_initialize_autocomplete();
 		gpr_tipsy();
@@ -76,7 +78,7 @@ var gpr_ajax_object;
 	/**
 	 * AJAX Success
 	 *
-	 * @description: Function to Refresh jQuery toggles for Yelp Widget Pro upon saving specific widget
+	 * @description: Function to Refresh jQuery toggles for Google Places Reviews upon saving specific widget
 	 */
 	$( document ).ajaxSuccess(
 		function (e, xhr, settings) {

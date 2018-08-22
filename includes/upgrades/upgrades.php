@@ -4,7 +4,7 @@
  *
  * @package     GPR
  * @subpackage  Inc/Upgrades
- * @copyright   Copyright (c) 2016, WordImpress
+ * @copyright   Copyright (c) 2018, Impress.org
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.3
  */

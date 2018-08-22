@@ -1,6 +1,6 @@
 === Google Places Reviews ===
 Contributors: wordimpress, dlocc, webdevmattcrom, shawnhooper
-Donate link: https://wordimpress.com/plugins/google-places-reviews-pro/
+Donate link: https://wpbusinessreviews.com/
 Tags: google, reviews, google reviews, google places, google places reviews, google review widget, google business reviews, google review, review, google place review
 Requires at least: 4.2
 Tested up to: 4.8
@@ -48,15 +48,6 @@ Google Places Reviews Pro is a significant upgrade to Google Places Reviews that
 * Review concatenation - Some reviews returned by Google may be very long which could result in a very long widget. The Pro version includes a customizable feature for collapsing and expanding long reviews with "Read more" and "Close" links.
 * Fast loading - Optimized widget caching included within the plugin ensure you save on load time and API calls
 * Priority Support - Get fast and responsive support from WordPress experts in the USA for the lifetime of your license.
-
-= Additional Business Reviews Plugins =
-
-Why limit your reviews to just Google Places Reviews? Check out our other free business reviews plugins to add to your site as well:
-
-* [Facebook Reviews Pro](https://wordimpress.org/plugins/facebook-reviews-pro "Facebook Reviews Pro")
-* [Yelp Widget Pro](https://wordpress.org/plugins/yelp-widget-pro "Yelp Widget Pro")
-* [Yellow Pages Reviews](https://wordpress.org/plugins/yellow-pages-reviews/ "Google Places Reviews")
-* Get all **FOUR** of our Premium Business Reviews plugins for one low price. [Premium Business Reviews Bundle](https://wordimpress.com/plugins/business-reviews-bundle/?utm_source=WordPress.org&utm_medium=readme&utm_campaign=Google%20Places%20Repo "Premium Business Reviews Bundle")
 
 == Installation ==
 

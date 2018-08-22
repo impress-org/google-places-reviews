@@ -186,7 +186,7 @@ function gpr_activation_admin_notice() {
 					</div>
 
 					<div class="wpbr-action">
-						<a href="<?php echo admin_url( 'options-general.php?page=googleplacesreviews' ); ?>">
+						<a href="<?php echo admin_url( 'options-general.php?page=google_places_reviews' ); ?>">
 							<svg class="wpbr-settings-icon wpbr-banner-icon" xmlns="http://www.w3.org/2000/svg"
 							     viewBox="0 0 20 20">
 								<rect x="0" fill="none" width="20" height="20" />
