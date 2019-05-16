@@ -1,4 +1,4 @@
-# Copyright (C) 2018 Google Places Reviews
+# Copyright (C) 2019 Google Places Reviews
 # This file is distributed under the same license as the Google Places Reviews package.
 msgid ""
 msgstr ""

@@ -1,10 +1,10 @@
 === Google Places Reviews ===
-Contributors: wordimpress, dlocc, webdevmattcrom, shawnhooper
+Contributors: impressorg, dlocc, webdevmattcrom, shawnhooper
 Donate link: https://wpbusinessreviews.com/
 Tags: google, reviews, google reviews, google places, google places reviews, testimonials, google review widget, google business reviews, google review, review, google place review, google map reviews, google reviews pro, facebook reviews, facebook page reviews, yelp reviews, yelp business reviews
 Requires at least: 4.2
-Tested up to: 4.9
-Stable tag: 1.5.0
+Tested up to: 5.2
+Stable tag: 1.5.1
 License: GPL2
 
 Display Google Places Reviews on your WordPress website and help boost consumer confidence and search engine optimization.
@@ -82,6 +82,9 @@ Yes, there are three basic themes included in the free version of the plugin.
 5. The plugins settings page found under Settings > Google Reviews
 
 == Changelog ==
+
+= 1.5.1: May 16th, 2019 =
+* Maintenance: Reviewed plugin compatibility with WordPress 5.2 for compatibility and updated the plugin tested up to version.
 
 = 1.5.0 =
 * We have recently launched a new premium plugin for reviews called [WP Business Reviews](https://wpbusinessreviews.com/?plugin=google-places-reviews). You can use this new WordPress review plugin to display your best reviews from platforms like Google, Yelp, and Facebook right on your website.

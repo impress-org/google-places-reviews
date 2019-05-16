@@ -1,6 +1,6 @@
 {
   "name": "google-places-reviews",
-  "version": "1.0.0",
+  "version": "1.5.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/WordImpress/Google-Places-Reviews.git"
+    "url": "git+https://github.com/impress-org/google-places-reviews.git"
   },
   "author": "Impress.org",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/WordImpress/Google-Places-Reviews/issues"
+    "url": "https://github.com/impress-org/google-places-reviews/issues"
   },
-  "homepage": "https://github.com/WordImpress/Google-Places-Reviews#readme",
+  "homepage": "https://github.com/impress-org/google-places-reviews#readme",
   "quokka": {
     "babel": true
   },
