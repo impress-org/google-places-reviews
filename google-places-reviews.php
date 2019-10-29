@@ -3,7 +3,7 @@
  * Plugin Name: Google Places Reviews
  * Plugin URI: https://wpbusinessreviews.com/
  * Description: Display Google Places Reviews for one or many businesses anywhere on your WordPress site using an easy to use and intuitive widget.
- * Version: 1.5.1
+ * Version: 1.5.2
  * Author: Impress.org
  * Author URI: https://impress.org/
  * Text Domain: google-places-reviews
