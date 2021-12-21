@@ -63,7 +63,7 @@ class Google_Places_Reviews extends WP_Widget {
 			)
 		);
 
-		$this->options = get_option( 'googleplacesreviews_options' );
+		$this->options = get_option( 'googleplacesreviews_options', ['google_places_api_key' => null] );
 		// API key (muy importante!)
 		$this->api_key = $this->options['google_places_api_key'];
 
