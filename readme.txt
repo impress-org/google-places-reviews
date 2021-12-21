@@ -3,7 +3,7 @@ Contributors: impressorg, dlocc, webdevmattcrom, shawnhooper
 Donate link: https://wpbusinessreviews.com/
 Tags: google, reviews, google reviews, google places, google places reviews, testimonials, google review widget, google business reviews, google review, review, google place review, google map reviews, google reviews pro, facebook reviews, facebook page reviews, yelp reviews, yelp business reviews
 Requires at least: 4.2
-Tested up to: 5.3
+Tested up to: 5.8
 Stable tag: 1.5.2
 License: GPL2
 
