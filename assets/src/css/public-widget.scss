@@ -261,12 +261,12 @@ Inset Theme
   padding: 15px 20px;
   border-radius: 10px;
   background-color: #f8f8f8;
-  background: linear-gradient(top, #f9f9f9, #F5F5F5);
-  background: -o-linear-gradient(top, #f9f9f9, #F5F5F5);
-  background: -moz-linear-gradient(top, #f9f9f9, #F5F5F5);
-  background: -webkit-linear-gradient(top, #F9F9F9, #F5F5F5);
+  background: linear-gradient(to bottom, #f9f9f9, #F5F5F5);
+  background: -o-linear-gradient(to bottom, #f9f9f9, #F5F5F5);
+  background: -moz-linear-gradient(to bottom, #f9f9f9, #F5F5F5);
+  background: -webkit-linear-gradient(to bottom, #F9F9F9, #F5F5F5);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#F5F5F5', GradientType=0);
-  background: -ms-linear-gradient(top, #FFFFFF, #F5F5F5);
+  background: -ms-linear-gradient(to bottom, #FFFFFF, #F5F5F5);
   -moz-box-shadow: inset 0px 1px 6px rgba(0, 0, 0, 0.20);
   -webkit-box-shadow: inset 0px 1px 6px rgba(0, 0, 0, 0.2);
   box-shadow: inset 0px 1px 6px rgba(0, 0, 0, 0.2);
@@ -284,12 +284,12 @@ Inset Theme
 [id*='gpr_widget'].gpr-inset-dark-style, [id*='gpr_widget'] .gpr-inset-dark-style {
   color: #FFF;
   background-color: #333;
-  background: linear-gradient(top, #333, #525252);
-  background: -o-linear-gradient(top, #333, #525252);
-  background: -moz-linear-gradient(top, #333, #525252);
-  background: -webkit-linear-gradient(top, #333, #525252);
+  background: linear-gradient(to bottom, #333, #525252);
+  background: -o-linear-gradient(to bottom, #333, #525252);
+  background: -moz-linear-gradient(to bottom, #333, #525252);
+  background: -webkit-linear-gradient(to bottom, #333, #525252);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333', endColorstr='#525252', GradientType=0);
-  background: -ms-linear-gradient(top, #333, #525252);
+  background: -ms-linear-gradient(to bottom, #333, #525252);
   -moz-box-shadow: inset 0px 1px 6px rgba(0, 0, 0, 0.50);
   -webkit-box-shadow: inset 0px 1px 6px rgba(0, 0, 0, 0.5);
   box-shadow: inset 0px 1px 6px rgba(0, 0, 0, 0.5);
