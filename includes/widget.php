@@ -148,7 +148,11 @@ class Google_Places_Reviews extends WP_Widget {
 		}
 
 		// Check for a reference. If none, output error
-		if ( 'No location set' === $reference && empty( $place_id ) || empty( $reference ) && $place_id === 'No location set' ) {
+		if (
+			! isset( $reference, $place_id )
+			|| ( 'No location set' === $reference && empty( $place_id ) )
+			|| ( empty( $reference ) && $place_id === 'No location set' ) )
+		{
 			$this->output_error_message( __( 'There is no location set for this widget yet.', 'google-places-reviews' ), 'error' );
 
 			return false;
@@ -160,14 +164,14 @@ class Google_Places_Reviews extends WP_Widget {
 		}
 
 		// Open link in new window if set
-		if ( $target_blank == '1' ) {
+		if ( isset( $target_blank ) && $target_blank == '1' ) {
 			$target_blank = 'target="_blank" ';
 		} else {
 			$target_blank = '';
 		}
 
 		// Add nofollow relation if set
-		if ( $no_follow == '1' ) {
+		if ( isset( $no_follow ) && $no_follow == '1' ) {
 			$no_follow = 'rel="nofollow" ';
 		} else {
 			$no_follow = '';
