@@ -132,7 +132,9 @@ class WP_Google_Places_Reviews_Free {
 			wp_enqueue_style( 'gpr_custom_options_styles' );
 		}
 
-		if ( get_current_screen()->is_block_editor ) {
+		$screen = get_current_screen();
+
+		if ( $screen->is_block_editor && $screen->base !== 'widgets' ) {
 			wp_enqueue_script(
 				'gbr_block',
 				GPR_PLUGIN_URL . '/assets/dist/js/block.js',
@@ -156,11 +158,68 @@ class WP_Google_Places_Reviews_Free {
 			[
 				'editor_script' => 'gbr_block',
 				'editor_style'  => 'gpr_widget_admin_css',
-				'render_callback' => function () {
+				'render_callback' => function ( $attributes ) {
 					ob_start();
-					the_widget('Google_Places_Reviews');
+					the_widget('Google_Places_Reviews', null, $attributes );
 					return ob_get_clean();
-				}
+				},
+				'attributes' => [
+					'title' => [
+						'type' => 'string'
+					],
+					'location' => [
+						'type' => 'string'
+					],
+					'reference' => [
+						'type' => 'string'
+					],
+					'place_id' => [
+						'type' => 'string'
+					],
+					'place_type' => [
+						'type' => 'string'
+					],
+					'cache' => [
+						'type' => 'string'
+					],
+					'disable_title_output' => [
+						'type' => 'boolean',
+						'default' => false,
+					],
+					'widget_style' => [
+						'type' => 'string'
+					],
+					'review_filter' => [
+						'type' => 'string'
+					],
+					'review_limit' => [
+						'type' => 'number',
+						'default' => 3,
+					],
+					'review_characters' => [
+						'type' => 'string'
+					],
+					'hide_header' => [
+						'type' => 'boolean',
+						'default' => false,
+					],
+					'hide_out_of_rating' => [
+						'type' => 'boolean',
+						'default' => false,
+					],
+					'hide_google_image' => [
+						'type' => 'boolean',
+						'default' => false,
+					],
+					'target_blank' => [
+						'type' => 'boolean',
+						'default' => true,
+					],
+					'no_follow' => [
+						'type' => 'boolean',
+						'default' => true,
+					]
+				]
 			]
 		);
 	}
