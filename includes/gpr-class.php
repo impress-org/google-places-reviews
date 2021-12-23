@@ -137,6 +137,10 @@ class WP_Google_Places_Reviews_Free {
 		$screen = get_current_screen();
 
 		if ( $screen->is_block_editor && $screen->base !== 'widgets' ) {
+
+			wp_register_style( 'gpr_widget', GPR_PLUGIN_URL . '/assets/dist/css/public-main.css' );
+			wp_enqueue_style( 'gpr_widget' );
+
 			wp_enqueue_script(
 				'gbr_block',
 				GPR_PLUGIN_URL . '/assets/dist/js/block.js',
@@ -145,6 +149,7 @@ class WP_Google_Places_Reviews_Free {
 					'wp-element',
 					'wp-blocks',
 					'wp-editor',
+					'gpr_google_places_gmaps'
 				],
 				GPR_VERSION
 			);
