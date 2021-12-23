@@ -93,7 +93,7 @@ registerBlockType( 'google-places-reviews/reviews', {
 			error: null,
 		} );
 
-		const isPlaceIdSet = () => attributes.place_id.trim().length === 0;
+		const isPlaceIdSet = () => attributes.place_id.trim().length !== 0;
 
 		const handleCache = () => {
 			setState( { isClearingCache: true } );
@@ -126,14 +126,11 @@ registerBlockType( 'google-places-reviews/reviews', {
 				return;
 			}
 
-			const autocomplete = new google.maps.places.Autocomplete( locationRef.current );
-
-			autocomplete.setTypes( [ attributes.place_type ] );
+			const autocomplete = new google.maps.places.Autocomplete( locationRef.current, [ attributes.place_type ] );
 
 			setState( { isLoadingPlace: true } );
 
-			google.maps.event.addListener( autocomplete, 'place_changed', () => {
-
+			autocomplete.addListener( 'place_changed', () => {
 					const { place_id, name } = autocomplete.getPlace();
 
 					if ( ! place_id ) {
@@ -149,6 +146,7 @@ registerBlockType( 'google-places-reviews/reviews', {
 
 					setAttributes( {
 						place_id,
+						reference: place_id,
 						location: name,
 					} );
 				},
@@ -205,6 +203,34 @@ registerBlockType( 'google-places-reviews/reviews', {
 							onChange={ place_type => setAttributes( { place_type } ) }
 							help={ __( 'Specify how you would like to lookup your Google Places. Address instructs the Place Autocomplete service to return only geocoding results with a precise address. Establishment instructs the Place Autocomplete service to return only business results. The Regions type collection instructs the Places service to return any result matching the following types: locality, sublocality, postal_code, country, administrative_area_level_1, administrative_area_level_2.', 'google-places-reviews' ) }
 						/>
+
+
+						{ isPlaceIdSet() && (
+							<div className="set-business">
+
+								<p>
+									<strong>{ __('Place Set', 'google-places-reviews')}:</strong>
+									{ __('You have successfully set the place for this widget. To switch the place use the Location Lookup field above.', 'google-places-reviews')}
+								</p>
+
+								<TextControl
+									disabled
+									name="place_id"
+									label={ __( 'Location', 'google-places-reviews' ) }
+									value={ attributes.location }
+									help={ __( 'This is the name of the place returned by Google\'s Places API.', 'google-places-reviews' ) }
+								/>
+
+								<TextControl
+									disabled
+									name="place_id"
+									label={ __( 'Location Place ID', 'google-places-reviews' ) }
+									value={ attributes.place_id }
+									help={ __( 'This is the name of the place returned by Google\'s Places API.', 'google-places-reviews' ) }
+								/>
+							</div>
+						)}
+
 					</PanelBody>
 
 					{ isPlaceIdSet() && (
