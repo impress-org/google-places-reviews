@@ -70,8 +70,6 @@ class Google_Places_Reviews extends WP_Widget {
 		// Hooks
 		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_widget_scripts' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_widget_scripts' ) );
-		add_action( 'wp_ajax_gpr_free_clear_widget_cache', array( $this, 'clear_widget_cache' ) );
-
 	}
 
 	/**
@@ -602,25 +600,6 @@ class Google_Places_Reviews extends WP_Widget {
 		}
 
 		return ' posted ' . $retval . ' ago';
-	}
-
-	/**
-	 * AJAX Clear Widget Cache
-	 */
-	public function clear_widget_cache() {
-
-		if ( isset( $_POST['transient_id_1'] ) && isset( $_POST['transient_id_2'] ) ) {
-
-			delete_transient( $_POST['transient_id_1'] );
-			delete_transient( $_POST['transient_id_2'] );
-			echo __( 'Cache cleared', 'google-places-reviews' );
-
-		} else {
-			echo __( 'Error: Transient ID not set. Cache not cleared.', 'google-places-reviews' );
-		}
-
-		wp_die();
-
 	}
 
 	/**
