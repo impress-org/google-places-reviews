@@ -27,7 +27,7 @@ $place_avatar = isset( $response['place_avatar'] ) ? $response['place_avatar'] :
 		<?php
 
 		//Business Information
-		if ( $hide_header !== '1' ) {
+		if ( ! boolval( $hide_header ) ) {
 			?>
 
 			<div class="gpr-business-header gpr-clearfix">
