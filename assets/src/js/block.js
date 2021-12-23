@@ -2,7 +2,7 @@ const { __ } = wp.i18n;
 const { Fragment } = wp.element;
 const { registerBlockType } = wp.blocks;
 const { InspectorControls } = wp.blockEditor;
-const { PanelBody, ToggleControl, TextControl, SelectControl, FontSizePicker } = wp.components;
+const { PanelBody, ToggleControl, TextControl, SelectControl } = wp.components;
 const ServerSideRender = wp.serverSideRender;
 
 import icon from './icon';
@@ -35,16 +35,19 @@ registerBlockType( 'google-places-reviews/reviews', {
 		},
 		place_type: {
 			type: 'string',
+			default: 'all',
 		},
 		cache: {
 			type: 'string',
+			default: '1 Day',
 		},
 		disable_title_output: {
 			type: 'boolean',
-			default: false
+			default: false,
 		},
 		widget_style: {
 			type: 'string',
+			default: 'Minimal Light',
 		},
 		review_filter: {
 			type: 'string',
@@ -58,23 +61,23 @@ registerBlockType( 'google-places-reviews/reviews', {
 		},
 		hide_header: {
 			type: 'boolean',
-			default: false
+			default: false,
 		},
 		hide_out_of_rating: {
 			type: 'boolean',
-			default: false
+			default: false,
 		},
 		hide_google_image: {
 			type: 'boolean',
-			default: false
+			default: false,
 		},
 		target_blank: {
 			type: 'boolean',
-			default: true
+			default: true,
 		},
 		no_follow: {
 			type: 'boolean',
-			default: true
+			default: true,
 		},
 	},
 	edit: ( { attributes, setAttributes } ) => (
