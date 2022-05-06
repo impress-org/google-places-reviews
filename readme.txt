@@ -1,5 +1,5 @@
 === Google Places Reviews ===
-Contributors: impressorg, dlocc, webdevmattcrom, shawnhooper
+Contributors: impressorg, dlocc, webdevmattcrom, shawnhooper, jason_the_adams, alaca
 Donate link: https://wpbusinessreviews.com/
 Tags: google, reviews, google reviews, google places, google places reviews, testimonials, google review widget, google business reviews, google review, review, google place review, google map reviews, google reviews pro, facebook reviews, facebook page reviews, yelp reviews, yelp business reviews
 Requires at least: 5.0
