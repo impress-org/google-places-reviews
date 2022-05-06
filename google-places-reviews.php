@@ -23,7 +23,7 @@
  */
 
 // Define Constants
-define('GPR_VERSION', '1.5.2');
+define('GPR_VERSION', '2.0.0');
 define('GPR_PLUGIN_FILE', __FILE__);
 define('GPR_PLUGIN_NAME', plugin_basename(GPR_PLUGIN_FILE));
 define('GPR_PLUGIN_PATH', plugin_dir_path(GPR_PLUGIN_FILE));

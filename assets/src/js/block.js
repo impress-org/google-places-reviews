@@ -253,6 +253,8 @@ registerBlockType( 'google-places-reviews/reviews', {
 										{ label: 1, value: 1 },
 										{ label: 2, value: 2 },
 										{ label: 3, value: 3 },
+										{ label: 4, value: 4 },
+										{ label: 5, value: 5 },
 									] }
 									onChange={ review_limit => setAttributes( { review_limit } ) }
 									help={ __( 'Limit the number of reviews displayed for this location to a set number.', 'google-places-reviews' ) }
