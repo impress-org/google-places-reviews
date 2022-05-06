@@ -9,7 +9,7 @@ var gpr_ajax_object;
 (function( $ ) {
 	'use strict';
 
-	$( window ).load(
+	$( document ).ready(
 		function() {
 			// loadAPI( init )
 			init();
@@ -77,13 +77,13 @@ var gpr_ajax_object;
 	 *
 	 * Function to Refresh jQuery toggles for Google Places Reviews upon saving specific widget
 	 */
-	$( document ).ajaxSuccess(
-		function( e, xhr, settings ) {
-			gpr_widget_toggles();
-			gpr_initialize_autocomplete();
-			gpr_tipsy();
-		}
-	);
+	// $( document ).ajaxSuccess(
+	// 	function( e, xhr, settings ) {
+	// 		gpr_widget_toggles();
+	// 		gpr_initialize_autocomplete();
+	// 		gpr_tipsy();
+	// 	}
+	// );
 
 	/**
 	 * Widget Toggles
@@ -91,18 +91,10 @@ var gpr_ajax_object;
 	function gpr_widget_toggles() {
 
 		// Advanced Options Toggle (Bottom-gray panels)
-		$( '.gpr-widget-toggler:not("clickable")' ).each(
-			function() {
-
-				$( this ).addClass( 'clickable' ).unbind( 'click' ).click(
-					function() {
-						$( this ).toggleClass( 'toggled' );
-						$( this ).next().slideToggle();
-					}
-				);
-
-			}
-		);
+		$( document ).on( 'click', '.gpr-widget-toggler', function() {
+				$( this ).toggleClass( 'toggled' );
+				$( this ).next().slideToggle();
+		} );
 
 		// Review character limit toggle
 		$( '.limit-reviews-option' ).each(
@@ -133,25 +125,40 @@ var gpr_ajax_object;
 
 		input.each(
 			function( index, value ) {
-
-				var autocomplete = new google.maps.places.Autocomplete( input[ index ] );
+				var type = 'all';
 
 				// Handle type select field
-				$( types ).on(
+				$( types[index] ).on(
 					'change', function() {
 						// Set type
-						var type = $( this ).val();
-						autocomplete.setTypes( [ type ] );
+						type = $( this ).val();
 						$( input ).val( '' );
 					}
 				);
 
-				add_autocomplete_listener( autocomplete, input[ index ] );
+				var autocomplete = new google.maps.places.Autocomplete( input[ index ], [type] );
+
+				autocomplete.addListener( 'place_changed', function() {
+
+						var place = autocomplete.getPlace();
+
+						if ( ! place.place_id ) {
+							alert( 'No place reference found for this location.' );
+							return false;
+						}
+
+						// set location and Place ID hidden input value
+						$( input ).parents().find( '.location' ).val( place.name );
+						$( input ).parents().find( '.place_id' ).val( place.place_id );
+						$( input ).parents().find( '.set-business' ).slideDown();
+
+					}
+				);
 
 				// Tame the enter key to not save the widget while using the autocomplete input
 				$( input ).keydown(
 					function( e ) {
-						if ( e.which == 13 ) {
+						if ( e.which === 13 ) {
 							return false;
 						}
 					}
@@ -160,33 +167,6 @@ var gpr_ajax_object;
 			}
 		);
 
-	}
-
-	/**
-	 * Google Maps API Autocomplete Listener
-	 *
-	 * @param autocomplete
-	 * @param input
-	 */
-	function add_autocomplete_listener( autocomplete, input ) {
-
-		google.maps.event.addListener(
-			autocomplete, 'place_changed', function() {
-
-				var place = autocomplete.getPlace();
-
-				if ( ! place.place_id ) {
-					alert( 'No place reference found for this location.' );
-					return false;
-				}
-
-				// set location and Place ID hidden input value
-				$( input ).parentsUntil( 'form' ).find( '.location' ).val( place.name );
-				$( input ).parentsUntil( 'form' ).find( '.place_id' ).val( place.place_id );
-				$( input ).parentsUntil( 'form' ).find( '.set-business' ).slideDown();
-
-			}
-		);
 	}
 
 	/**

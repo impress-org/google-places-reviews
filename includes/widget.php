@@ -63,15 +63,13 @@ class Google_Places_Reviews extends WP_Widget {
 			)
 		);
 
-		$this->options = get_option( 'googleplacesreviews_options' );
+		$this->options = get_option( 'googleplacesreviews_options', ['google_places_api_key' => null] );
 		// API key (muy importante!)
 		$this->api_key = $this->options['google_places_api_key'];
 
 		// Hooks
 		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_widget_scripts' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_widget_scripts' ) );
-		add_action( 'wp_ajax_gpr_free_clear_widget_cache', array( $this, 'clear_widget_cache' ) );
-
 	}
 
 	/**
@@ -82,15 +80,13 @@ class Google_Places_Reviews extends WP_Widget {
 	 * @param $hook
 	 */
 	function admin_widget_scripts( $hook ) {
-
-		$apikey = $this->options['google_places_api_key'];
-
 		if (
 			$hook == 'widgets.php'
 			|| ( $hook == 'customize.php' && defined( 'SITEORIGIN_PANELS_VERSION' ) )
+			|| get_current_screen()->is_block_editor
 		) {
 
-			wp_register_script( 'gpr_google_places_gmaps', 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=' . $apikey, array( 'jquery' ) );
+			wp_register_script( 'gpr_google_places_gmaps', 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=' . $this->api_key, array( 'jquery' ) );
 			wp_enqueue_script( 'gpr_google_places_gmaps' );
 
 			wp_register_script( 'gpr_widget_admin_scripts', GPR_PLUGIN_URL . '/assets/dist/js/admin-main.js', array( 'jquery' ) );
@@ -150,7 +146,7 @@ class Google_Places_Reviews extends WP_Widget {
 		}
 
 		// Check for a reference. If none, output error
-		if ( 'No location set' === $reference && empty( $place_id ) || empty( $reference ) && $place_id === 'No location set' ) {
+		if ( isset( $place_id ) && 'No location set' === $place_id || empty( $place_id ) ) {
 			$this->output_error_message( __( 'There is no location set for this widget yet.', 'google-places-reviews' ), 'error' );
 
 			return false;
@@ -158,18 +154,18 @@ class Google_Places_Reviews extends WP_Widget {
 
 		// Title filter
 		if ( isset( $title ) ) {
-			$title = apply_filters( 'widget_title', $instance['title'] );
+			$title = apply_filters( 'widget_title', $title );
 		}
 
 		// Open link in new window if set
-		if ( $target_blank == '1' ) {
+		if ( isset( $target_blank ) && $target_blank ) {
 			$target_blank = 'target="_blank" ';
 		} else {
 			$target_blank = '';
 		}
 
 		// Add nofollow relation if set
-		if ( $no_follow == '1' ) {
+		if (isset( $no_follow ) && $no_follow) {
 			$no_follow = 'rel="nofollow" ';
 		} else {
 			$no_follow = '';
@@ -201,7 +197,7 @@ class Google_Places_Reviews extends WP_Widget {
 		$response            = get_transient( 'gpr_widget_api_' . $transient_unique_id );
 		$widget_options      = get_transient( 'gpr_widget_options_' . $transient_unique_id );
 		$serialized_instance = serialize( $instance );
-		$cache               = strtolower( $cache );
+		$cache               = isset( $cache) ? strtolower( $cache ) : '1 Day';
 
 		// Cache: cache option is enabled
 		if ( $cache !== 'none' ) {
@@ -278,6 +274,8 @@ class Google_Places_Reviews extends WP_Widget {
 
 		}
 
+		$widget_style = ( isset( $widget_style ) && ! empty( $widget_style ) ) ? $widget_style : 'Minimal Light';
+
 		// Widget Style
 		$style = 'gpr-' . sanitize_title( $widget_style ) . '-style';
 		// no 'class' attribute - add one with the value of width
@@ -297,7 +295,7 @@ class Google_Places_Reviews extends WP_Widget {
 		echo $before_widget;
 
 		// if the title is set & the user hasn't disabled title output
-		if ( ! empty( $title ) && isset( $disable_title_output ) && $disable_title_output !== '1' ) {
+		if ( ! empty( $title ) && isset( $disable_title_output ) && ! $disable_title_output ) {
 			/*
 			 Add class to before_widget from within a custom widget
 			http://wordpress.stackexchange.com/questions/18942/add-class-to-before-widget-from-within-a-custom-widget
@@ -526,11 +524,11 @@ class Google_Places_Reviews extends WP_Widget {
 	function get_star_rating( $rating, $unix_timestamp, $hide_out_of_rating, $hide_google_image ) {
 
 		$output        = '';
-		$rating_value  = '<p class="gpr-rating-value" ' . ( ( $hide_out_of_rating === '1' ) ? ' style="display:none;"' : '' ) . '><span>' . $rating . '</span>' . __( ' out of 5 stars', 'google-places-reviews' ) . '</p>';
+		$rating_value  = '<p class="gpr-rating-value" ' . ( ( $hide_out_of_rating ) ? ' style="display:none;"' : '' ) . '><span>' . $rating . '</span>' . __( ' out of 5 stars', 'google-places-reviews' ) . '</p>';
 		$is_gpr_header = true;
 
 		// AVATAR
-		$google_img = '<div class="gpr-google-logo-wrap"' . ( ( $hide_google_image === '1' ) ? ' style="display:none;"' : '' ) . '><img src="' . GPR_PLUGIN_URL . '/assets/dist/images/google-logo-small.png' . '" class="gpr-google-logo-header" title=" ' . __( 'Reviewed from Google', 'google-places-reviews' ) . '" alt="' . __( 'Reviewed from Google', 'google-places-reviews' ) . '" /></div>';
+		$google_img = '<div class="gpr-google-logo-wrap"' . ( ( $hide_google_image ) ? ' style="display:none;"' : '' ) . '><img src="' . GPR_PLUGIN_URL . '/assets/dist/images/google-logo-small.png' . '" class="gpr-google-logo-header" title=" ' . __( 'Reviewed from Google', 'google-places-reviews' ) . '" alt="' . __( 'Reviewed from Google', 'google-places-reviews' ) . '" /></div>';
 
 		// Header doesn't have a timestamp
 		if ( $unix_timestamp ) {
@@ -556,7 +554,7 @@ class Google_Places_Reviews extends WP_Widget {
 		if ( $is_gpr_header === true ) {
 
 			// Google logo
-			if ( isset( $hide_google_image ) && $hide_google_image !== 1 ) {
+			if ( isset( $hide_google_image ) && $hide_google_image ) {
 
 				$output .= $google_img;
 
@@ -600,25 +598,6 @@ class Google_Places_Reviews extends WP_Widget {
 		}
 
 		return ' posted ' . $retval . ' ago';
-	}
-
-	/**
-	 * AJAX Clear Widget Cache
-	 */
-	public function clear_widget_cache() {
-
-		if ( isset( $_POST['transient_id_1'] ) && isset( $_POST['transient_id_2'] ) ) {
-
-			delete_transient( $_POST['transient_id_1'] );
-			delete_transient( $_POST['transient_id_2'] );
-			echo __( 'Cache cleared', 'google-places-reviews' );
-
-		} else {
-			echo __( 'Error: Transient ID not set. Cache not cleared.', 'google-places-reviews' );
-		}
-
-		wp_die();
-
 	}
 
 	/**

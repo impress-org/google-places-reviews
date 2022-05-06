@@ -22,19 +22,20 @@ $place_avatar = isset( $response['place_avatar'] ) ? $response['place_avatar'] :
 
 ?>
 
-	<div class="gpr-<?php echo sanitize_title( $widget_style ); ?> gpr-widget-inner">
+	<div id="gpr_widget" class="gpr-<?php echo sanitize_title( $widget_style ); ?> gpr-widget-inner">
 
 		<?php
 
 		//Business Information
-		if ( $hide_header !== '1' ) {
+		if ( ! boolval( $hide_header ) ) {
 			?>
 
 			<div class="gpr-business-header gpr-clearfix">
 				<div class="gpr-business-avatar" style="background-image: url('<?php echo $place_avatar; ?>');"></div>
 
 				<div class="gpr-header-content-wrap gpr-clearfix">
-					<span class="gpr-business-name"><a href="<?php echo $website; ?>" title="<?php echo $name; ?>" <?php echo $target_blank . $no_follow; ?>><span><?php echo $name; ?></span></a></span>
+					<span class="gpr-business-name"><a href="<?php echo $website; ?>"
+													   title="<?php echo $name; ?>" <?php echo $target_blank . $no_follow; ?>><span><?php echo $name; ?></span></a></span>
 
 					<?php
 					//Overall rating for biz display:
@@ -89,7 +90,8 @@ $place_avatar = isset( $response['place_avatar'] ) ? $response['place_avatar'] :
 
 							<div class="gpr-review-header gpr-clearfix">
 								<div class="gpr-review-avatar">
-									<img src="<?php echo $avatar; ?>" alt="<?php echo $author_name; ?>" title="<?php echo $author_name; ?>"/>
+									<img src="<?php echo $avatar; ?>" alt="<?php echo $author_name; ?>"
+										 title="<?php echo $author_name; ?>"/>
 								</div>
 								<div class="gpr-review-info gpr-clearfix">
 									<span class="grp-reviewer-name">

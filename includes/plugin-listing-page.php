@@ -14,8 +14,8 @@ function gpr_activation_admin_notice() {
 
 	// Check that the user hasn't already clicked to ignore the message
 	if (
-		'plugins.php' === $pagenow
-		&& ! get_user_meta( $current_user->ID, 'gpr_activation_ignore_notice' )
+			'plugins.php' === $pagenow
+			&& ! get_user_meta( $current_user->ID, 'gpr_activation_ignore_notice' )
 	) : ?>
 		<style>
 			div.updated.wpbr {
@@ -82,27 +82,6 @@ function gpr_activation_admin_notice() {
 				width: auto;
 			}
 
-			/* MailChimp Signup */
-			.wpbr-action.mailchimp {
-				margin: 0;
-				padding: 0;
-			}
-
-			.mc-field-group {
-				width: 270px;
-				overflow: hidden;
-			}
-
-			#mc-embedded-subscribe {
-				float: left;
-				margin: 0 0 0 7px;
-				position: relative;
-				top: 1px;
-			}
-
-			#mce-EMAIL {
-				float: left;
-			}
 
 			/* Dismiss button */
 			div.updated.wpbr a {
@@ -152,8 +131,8 @@ function gpr_activation_admin_notice() {
 		</style>
 		<div class="updated wpbr">
 			<header>
-				<img src="<?php echo GPR_PLUGIN_URL; ?>/assets/images/platform-icon-wpbr.png"
-				     class="wpbr-logo" />
+				<img src="<?php echo GPR_PLUGIN_URL; ?>/assets/dist/images/platform-icon-wpbr.png"
+					 class="wpbr-logo"/>
 				<?php printf( __( '<a href="%1$s" class="dismiss"></a>', 'google-places-reviews' ), '?gpr_nag_ignore=0' ); ?>
 
 				<div class="wpbr-actions">
@@ -161,38 +140,14 @@ function gpr_activation_admin_notice() {
 					<h2><?php printf( __( 'Welcome to Google Places Reviews by <a href="%s" target="_blank">WP Business Reviews</a>', 'google-places-reviews' ), 'https://wpbusinessreviews.com' ); ?></h2>
 					<p class="wpbr-intro-text"><?php esc_html_e( 'Display Google Places Reviews for one or many businesses anywhere on your WordPress site using an easy to use and intuitive widget.', 'google-places-reviews' ); ?><?php esc_html_e( 'Subscribe to our mailing list for important update information and more:', 'google-places-reviews' ); ?>
 					</p>
-					<div class="wpbr-action mailchimp">
-						<div id="mc_embed_signup">
-							<form
-								action="https://wpbusinessreviews.us3.list-manage.com/subscribe/post?u=3ccb75d68bda4381e2f45794c&amp;id=08a835d189"
-								method="post"
-								id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
-								target="_blank" novalidate>
-								<div id="mc_embed_signup_scroll">
-
-									<div class="mc-field-group">
-										<input type="email" value="<?php echo $current_user->user_email; ?>"
-										       name="EMAIL" class="required email" id="mce-EMAIL">
-										<input type="submit" value="Subscribe" name="subscribe"
-										       id="mc-embedded-subscribe" class="button button-small">
-									</div>
-
-									<div style="position: absolute; left: -5000px;" aria-hidden="true">
-										<input type="text" name="b_3ccb75d68bda4381e2f45794c_08a835d189"
-										       tabindex="-1" value=""></div>
-								</div>
-							</form>
-						</div>
-					</div>
-
 					<div class="wpbr-action">
 						<a href="<?php echo admin_url( 'options-general.php?page=google_places_reviews' ); ?>">
 							<svg class="wpbr-settings-icon wpbr-banner-icon" xmlns="http://www.w3.org/2000/svg"
-							     viewBox="0 0 20 20">
-								<rect x="0" fill="none" width="20" height="20" />
+								 viewBox="0 0 20 20">
+								<rect x="0" fill="none" width="20" height="20"/>
 								<g>
 									<path
-										d="M18 16V4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h13c.55 0 1-.45 1-1zM8 11h1c.55 0 1 .45 1 1s-.45 1-1 1H8v1.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5V13H6c-.55 0-1-.45-1-1s.45-1 1-1h1V5.5c0-.28.22-.5.5-.5s.5.22.5.5V11zm5-2h-1c-.55 0-1-.45-1-1s.45-1 1-1h1V5.5c0-.28.22-.5.5-.5s.5.22.5.5V7h1c.55 0 1 .45 1 1s-.45 1-1 1h-1v5.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5V9z" />
+											d="M18 16V4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h13c.55 0 1-.45 1-1zM8 11h1c.55 0 1 .45 1 1s-.45 1-1 1H8v1.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5V13H6c-.55 0-1-.45-1-1s.45-1 1-1h1V5.5c0-.28.22-.5.5-.5s.5.22.5.5V11zm5-2h-1c-.55 0-1-.45-1-1s.45-1 1-1h1V5.5c0-.28.22-.5.5-.5s.5.22.5.5V7h1c.55 0 1 .45 1 1s-.45 1-1 1h-1v5.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5V9z"/>
 								</g>
 							</svg>
 							<?php _e( 'Go to Settings', 'google-places-reviews' ); ?>
@@ -202,11 +157,11 @@ function gpr_activation_admin_notice() {
 					<div class="wpbr-action wpbr-upsell-action">
 						<a href="https://wpbusinessreviews.com/" target="_blank">
 							<svg class="wpbr-star-icon wpbr-banner-icon" xmlns="http://www.w3.org/2000/svg"
-							     viewBox="0 0 20 20">
+								 viewBox="0 0 20 20">
 								<rect x="0" fill="none" width="20"
-								      height="20" />
+									  height="20"/>
 								<g>
-									<path d="M10 1l3 6 6 .75-4.12 4.62L16 19l-6-3-6 3 1.13-6.63L1 7.75 7 7z" />
+									<path d="M10 1l3 6 6 .75-4.12 4.62L16 19l-6-3-6 3 1.13-6.63L1 7.75 7 7z"/>
 								</g>
 							</svg><?php _e( 'Upgrade to WP Business Reviews', 'google-places-reviews' ); ?>
 						</a>
