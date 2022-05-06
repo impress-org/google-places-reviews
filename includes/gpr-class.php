@@ -47,9 +47,9 @@ class WP_Google_Places_Reviews_Free {
 		add_action( 'widgets_init', array( $this, 'setup_widget' ) );
 
 		// Gutenberg block
-		if (function_exists('register_block_type')) {
-			add_action('init', [ $this, 'register_block' ], 999);
-			add_action( 'block_categories_all', [ $this, 'register_block_category'] );
+		if ( function_exists( 'register_block_type' ) ) {
+			add_action( 'init', [ $this, 'register_block' ], 999 );
+			add_action( 'block_categories_all', [ $this, 'register_block_category' ] );
 		}
 
 		add_action( 'wp_ajax_gpr_free_clear_widget_cache', [ $this, 'clear_widget_cache' ] );
@@ -59,12 +59,12 @@ class WP_Google_Places_Reviews_Free {
 	 * Loads the plugin language files
 	 *
 	 * @access public
-	 * @since  1.0
 	 * @return void
+	 * @since  1.0
 	 */
 	function load_plugin_textdomain() {
 
-		// Set filter for plugins's languages directory
+		// Set filter for plugins' languages directory
 		$gpr_lang_dir = dirname( plugin_basename( __FILE__ ) ) . '/languages/';
 		$gpr_lang_dir = apply_filters( 'gpr_languages_directory', $gpr_lang_dir );
 
@@ -163,67 +163,68 @@ class WP_Google_Places_Reviews_Free {
 		register_block_type(
 			'google-places-reviews/reviews',
 			[
-				'editor_script' => 'gbr_block',
-				'editor_style'  => 'gpr_widget_admin_css',
+				'editor_script'   => 'gbr_block',
+				'editor_style'    => 'gpr_widget_admin_css',
 				'render_callback' => function ( $attributes ) {
 					ob_start();
-					the_widget('Google_Places_Reviews', null, $attributes );
+					the_widget( 'Google_Places_Reviews', null, $attributes );
+
 					return ob_get_clean();
 				},
-				'attributes' => [
-					'title' => [
+				'attributes'      => [
+					'title'                => [
 						'type' => 'string'
 					],
-					'location' => [
+					'location'             => [
 						'type' => 'string'
 					],
-					'reference' => [
+					'reference'            => [
 						'type' => 'string'
 					],
-					'place_id' => [
+					'place_id'             => [
 						'type' => 'string'
 					],
-					'place_type' => [
+					'place_type'           => [
 						'type' => 'string'
 					],
-					'cache' => [
+					'cache'                => [
 						'type' => 'string'
 					],
 					'disable_title_output' => [
-						'type' => 'boolean',
+						'type'    => 'boolean',
 						'default' => false,
 					],
-					'widget_style' => [
+					'widget_style'         => [
 						'type' => 'string'
 					],
-					'review_filter' => [
+					'review_filter'        => [
 						'type' => 'string'
 					],
-					'review_limit' => [
-						'type' => 'number',
+					'review_limit'         => [
+						'type'    => 'number',
 						'default' => 3,
 					],
-					'review_characters' => [
+					'review_characters'    => [
 						'type' => 'string'
 					],
-					'hide_header' => [
-						'type' => 'boolean',
+					'hide_header'          => [
+						'type'    => 'boolean',
 						'default' => false,
 					],
-					'hide_out_of_rating' => [
-						'type' => 'boolean',
+					'hide_out_of_rating'   => [
+						'type'    => 'boolean',
 						'default' => false,
 					],
-					'hide_google_image' => [
-						'type' => 'boolean',
+					'hide_google_image'    => [
+						'type'    => 'boolean',
 						'default' => false,
 					],
-					'target_blank' => [
-						'type' => 'boolean',
+					'target_blank'         => [
+						'type'    => 'boolean',
 						'default' => true,
 					],
-					'no_follow' => [
-						'type' => 'boolean',
+					'no_follow'            => [
+						'type'    => 'boolean',
 						'default' => true,
 					]
 				]

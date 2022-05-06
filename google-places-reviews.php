@@ -1,13 +1,25 @@
 <?php
 /**
- * Plugin Name: Google Places Reviews
+ * Plugin Name: Google Places Reviews Block
  * Plugin URI: https://wpbusinessreviews.com/
- * Description: Display Google Places Reviews for one or many businesses anywhere on your WordPress site using an easy to use and intuitive widget.
- * Version: 1.5.2
- * Author: Impress.org
- * Author URI: https://impress.org/
+ * Description: Easily display Google business reviews and ratings with a simple and intuitive WordPress block.
+ * Version: 2.0.0
+ * Author: WP Business Reviews
+ * Author URI: https://wpbusinessreviews.com/
  * Text Domain: google-places-reviews
- * License: GPL2
+ * License: GPLv2
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
 // Define Constants
