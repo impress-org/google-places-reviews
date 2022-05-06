@@ -10,12 +10,12 @@
 function gpr_widget_add_options_page() {
 	// Add the menu option under Settings, shows up as "Google API Settings" (second param)
 	$page = add_submenu_page(
-		'options-general.php', // The parent page of this menu
-		__( 'Google Places Reviews Settings', 'google-places-reviews' ), // The Page Title
-		__( 'Google Reviews', 'google-places-reviews' ), // The Menu Title
-		'manage_options', // The capability required for access to this item
-		'google_places_reviews', // the slug to use for the page in the URL
-		'google_places_reviews'
+			'options-general.php', // The parent page of this menu
+			__( 'Google Places Reviews Settings', 'google-places-reviews' ), // The Page Title
+			__( 'Google Reviews', 'google-places-reviews' ), // The Menu Title
+			'manage_options', // The capability required for access to this item
+			'google_places_reviews', // the slug to use for the page in the URL
+			'google_places_reviews'
 	); // The function to call to render the page
 
 }
@@ -32,8 +32,8 @@ add_action( 'admin_menu', 'gpr_widget_add_options_page' );
 function gpr_admin_scripts( $hook ) {
 
 	if (
-		'widgets.php' === $hook
-		|| 'settings_page_google_places_reviews' === $hook
+			'widgets.php' === $hook
+			|| 'settings_page_google_places_reviews' === $hook
 	) {
 		wp_register_script( 'gpr_widget_admin_scripts', GPR_PLUGIN_URL . '/assets/dist/js/admin-main.js' );
 		wp_enqueue_script( 'gpr_widget_admin_scripts' );
@@ -71,11 +71,11 @@ function gpr_widget_option( $setting, $options ) {
 /**
  * Recursively sanitizes a given value.
  *
- * @since 1.5.0
- *
  * @param string|array $value Value to be sanitized.
  *
  * @return string|array Array of clean values or single clean value.
+ * @since 1.5.0
+ *
  */
 function gpr_widget_clean( $value ) {
 	if ( is_array( $value ) ) {
@@ -92,7 +92,7 @@ function gpr_widget_clean( $value ) {
  */
 function gpr_widget_settings( $file ) {
 
-	register_setting( 'googleplacesreviews_options', 'googleplacesreviews_options', array( 'sanitize_callback' => 'gpr_widget_clean' ) );
+	register_setting( 'googleplacesreviews_options', 'googleplacesreviews_options', [ 'sanitize_callback' => 'gpr_widget_clean' ] );
 
 }
 
@@ -115,9 +115,9 @@ function google_places_reviews() { ?>
 			   target="_blank" rel="noopener noreferrer" class="update-link new-window">
 				<svg class="wpbr-star-icon wpbr-banner-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
 					<rect x="0" fill="none" width="20"
-					      height="20" />
+						  height="20"/>
 					<g>
-						<path d="M10 1l3 6 6 .75-4.12 4.62L16 19l-6-3-6 3 1.13-6.63L1 7.75 7 7z" />
+						<path d="M10 1l3 6 6 .75-4.12 4.62L16 19l-6-3-6 3 1.13-6.63L1 7.75 7 7z"/>
 					</g>
 				</svg><?php _e( 'Upgrade to WP Business Reviews', 'google-places-reviews' ); ?></a>
 		</div>
@@ -174,42 +174,44 @@ function google_places_reviews() { ?>
 									<div class="control-label">
 										<label for="gpr_widget_fusion_api"><?php esc_html_e( 'Google Places API Key:', 'google-places-reviews' ); ?>
 											<img
-												src="<?php echo GPR_PLUGIN_URL . '/assets/dist/images/help.png'; ?>"
-												title="<?php
-												_e( 'This is necessary to pull reviews from Google.', 'google-places-reviews' ); ?>"
-												class="tooltip-info" width="16" height="16" /></label>
+													src="<?php echo GPR_PLUGIN_URL . '/assets/dist/images/help.png'; ?>"
+													title="<?php
+													_e( 'This is necessary to pull reviews from Google.', 'google-places-reviews' ); ?>"
+													class="tooltip-info" width="16" height="16"/></label>
 									</div>
 									<div class="controls">
-										<?php $api_key = ! empty( $options['google_places_api_key'] ) ? $options['google_places_api_key'] : ''; ?>
-										<input type="text" id="google_places_api_key"
-										       name="googleplacesreviews_options[google_places_api_key]"
-										       value="<?php echo $api_key; ?>"
-										       size="45" /><br />
+										<?php $api_key = ! empty( $options['google_places_api_key'] ) ? $options['google_places_api_key'] : '';
+										?>
+										<input type="password" id="google_places_api_key"
+											   name="googleplacesreviews_options[google_places_api_key]"
+											   value="<?php echo esc_attr( $api_key ); ?>"
+											   size="45"/><br/>
 										<small><a href="https://wpbusinessreviews.com/documentation/platforms/google/"
-										          target="_blank"><?php esc_html_e( 'Learn how to create a Google Places API key', 'google-places-reviews' ); ?></a>
+												  target="_blank"><?php esc_html_e( 'Learn how to create a Google Places API key', 'google-places-reviews' ); ?></a>
 										</small>
 									</div>
 								</div>
 								<div class="control-group">
 									<div class="control-label">
-										<label for="disable_css"><?php esc_html_e( 'Disable Plugin CSS Output:', 'google-places-reviews' ); ?><img
-												src="<?php echo GPR_PLUGIN_URL . '/assets/dist/images/help.png'; ?>"
-												title="<?php _e( 'Disabling the widget\'s CSS output is useful for more complete control over customizing the widget styles. This can be useful for custom theme designs.', 'google-places-reviews' ); ?>"
-												class="tooltip-info" width="16" height="16" /></label>
+										<label for="disable_css"><?php esc_html_e( 'Disable Plugin CSS Output:', 'google-places-reviews' ); ?>
+											<img
+													src="<?php echo GPR_PLUGIN_URL . '/assets/dist/images/help.png'; ?>"
+													title="<?php _e( 'Disabling the widget\'s CSS output is useful for more complete control over customizing the widget styles. This can be useful for custom theme designs.', 'google-places-reviews' ); ?>"
+													class="tooltip-info" width="16" height="16"/></label>
 									</div>
 									<div class="controls">
 										<input type="checkbox" id="disable_css"
-										       name="googleplacesreviews_options[disable_css]" value="1"
-											<?php
-											$css_option = ! empty( $options['disable_css'] ) ? $options['disable_css'] : '';
+											   name="googleplacesreviews_options[disable_css]" value="1"
+												<?php
+												$css_option = ! empty( $options['disable_css'] ) ? $options['disable_css'] : '';
 
-											// >1.5.0 b/w compat.
-											if ( 'on' === $css_option ) {
-												$css_option = 1;
-											}
+												// >1.5.0 b/w compat.
+												if ( 'on' === $css_option ) {
+													$css_option = 1;
+												}
 
-											checked( 1, $css_option );
-											?>
+												checked( 1, $css_option );
+												?>
 										/>
 									</div>
 								</div>
@@ -223,7 +225,7 @@ function google_places_reviews() { ?>
 						<div class="control-group">
 							<div class="controls">
 								<input class="button-primary" type="submit" name="submit-button"
-								       value="<?php _e( 'Update', 'google-places-reviews' ); ?>" />
+									   value="<?php _e( 'Update', 'google-places-reviews' ); ?>"/>
 							</div>
 						</div>
 					</div>
