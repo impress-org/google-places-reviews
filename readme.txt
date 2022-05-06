@@ -7,7 +7,7 @@ Tested up to: 6.0
 Stable tag: 2.0.0
 License: GPL2
 
-Display Google Places Reviews on your WordPress website and help boost consumer confidence and search engine optimization.
+Easily display Google business reviews and ratings with a simple and intuitive WordPress block.
 
 == Description ==
 

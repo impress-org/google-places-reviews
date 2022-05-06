@@ -1,0 +1,8 @@
+{
+    "name": "impress-org/google-places-reviews",
+    "description": "Easily display Google business reviews and ratings with a simple and intuitive WordPress block.",
+    "type": "project",
+    "license": "GPL2",
+    "minimum-stability": "stable",
+    "require": {}
+}
