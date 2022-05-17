@@ -1,9 +1,11 @@
 {
-  "name": "google-places-reviews/reviews",
-  "title": "Reviews Block for Google",
-  "category": "widgets",
-  "description": "Easily display Google Reviews on your WordPress website using a powerful and intuitive widget.",
-  "textdomain": "google-places-reviews",
-  "editorScript": "file:./assets/dist/js/block.js",
-  "editorStyle": "file:./assets/dist/css/admin-main.css"
+    "$schema": "https://json.schemastore.org/block.json",
+    "apiVersion": 2,
+    "name": "google-places-reviews/reviews",
+    "title": "Reviews Block for Google",
+    "category": "widgets",
+    "description": "Easily display Google Reviews on your WordPress website using a powerful and intuitive widget.",
+    "textdomain": "google-places-reviews",
+    "editorScript": "file:./assets/dist/js/block.js",
+    "editorStyle": "file:./assets/dist/css/admin-main.css"
 }

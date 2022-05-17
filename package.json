@@ -1,42 +1,48 @@
 {
-  "name": "google-places-reviews",
-  "version": "2.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "npm ci && npm run watch",
-    "dev": "mix",
-    "build": "mix --production",
-    "watch": "mix watch"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/impress-org/google-places-reviews.git"
-  },
-  "author": "Impress.org",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/impress-org/google-places-reviews/issues"
-  },
-  "homepage": "https://github.com/impress-org/google-places-reviews#readme",
-  "devDependencies": {
-    "@babel/core": "^7.13.10",
-    "@babel/eslint-parser": "^7.13.10",
-    "@babel/plugin-syntax-jsx": "^7.16.0",
-    "@babel/preset-env": "^7.13.10",
-    "@babel/preset-react": "^7.16.0",
-    "autoprefixer": "^9.8.0",
-    "clean-webpack-plugin": "^4.0.0",
-    "cross-env": "^5.2.1",
-    "imagemin-webpack-plugin": "^2.4.2",
-    "laravel-mix": "^6.0.39",
-    "postcss": "^8.4.4",
-    "prettier": "^2.4.1",
-    "resolve-url-loader": "^4.0.0",
-    "sass": "^1.43.3",
-    "sass-loader": "^12.2.0",
-    "webpack": "^5.60.0",
-    "wp-pot": "latest"
-  },
-  "dependencies": {}
+    "name": "reviews-block-for-google",
+    "version": "2.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "npm ci && npm run watch",
+        "dev": "mix",
+        "build": "mix --production",
+        "watch": "mix watch"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/impress-org/reviews-block-for-google.git"
+    },
+    "author": "WP Business Reviews",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/impress-org/reviews-block-for-google/issues"
+    },
+    "homepage": "https://github.com/impress-org/reviews-block-for-google#readme",
+    "devDependencies": {
+        "@babel/core": "^7.13.10",
+        "@babel/eslint-parser": "^7.13.10",
+        "@babel/plugin-syntax-jsx": "^7.16.0",
+        "@babel/preset-env": "^7.13.10",
+        "@babel/preset-react": "^7.16.0",
+        "@wordpress/block-editor": "^8.0.13",
+        "@wordpress/blocks": "^11.1.5",
+        "@wordpress/data": "^6.1.5",
+        "@wordpress/dom-ready": "^3.8.0",
+        "@wordpress/i18n": "^4.2.4",
+        "autoprefixer": "^9.8.0",
+        "clean-webpack-plugin": "^4.0.0",
+        "cross-env": "^5.2.1",
+        "imagemin-webpack-plugin": "^2.4.2",
+        "laravel-mix": "^6.0.39",
+        "lottie-web": "^5.8.1",
+        "postcss": "^8.4.4",
+        "prettier": "^2.4.1",
+        "resolve-url-loader": "^4.0.0",
+        "sass": "^1.43.3",
+        "sass-loader": "^12.2.0",
+        "webpack": "^5.60.0",
+        "wp-pot": "latest"
+    },
+    "dependencies": {}
 }
