@@ -8,7 +8,7 @@ import { Icon, Spinner } from '@wordpress/components';
 const GoogleBlock = (props) => {
     return (
         <div id={`rbg-wrap`} className={`rbg-wrap`}>
-            Hello
+            Hello123
         </div>
     );
 };

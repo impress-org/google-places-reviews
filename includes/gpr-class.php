@@ -32,12 +32,12 @@ class WP_Google_Places_Reviews_Free {
      */
     public function __construct() {
 
-        add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
+        add_action( 'init', [ $this, 'load_plugin_textdomain' ] );
 
-        add_action( 'admin_enqueue_scripts', array( $this, 'options_scripts' ) );
+        add_action( 'admin_enqueue_scripts', [ $this, 'load_scripts' ] );
 
         // Register the Google Places widget.
-        add_action( 'widgets_init', array( $this, 'setup_widget' ) );
+        add_action( 'widgets_init', [ $this, 'setup_widget' ] );
 
         // Gutenberg block
         if ( function_exists( 'register_block_type' ) ) {
@@ -114,9 +114,9 @@ class WP_Google_Places_Reviews_Free {
      *
      * @param $hook
      */
-    function options_scripts( $hook ) {
+    function load_scripts( $hook ) {
 
-        // Only on settings page
+        // Settings page.
         if ( 'settings_page_google_places_reviews' === $hook ) {
             wp_register_style( 'gpr_custom_options_styles', plugin_dir_url( __FILE__ ) . '/assets/dist/css/admin-main.css' );
             wp_enqueue_style( 'gpr_custom_options_styles' );
@@ -124,23 +124,18 @@ class WP_Google_Places_Reviews_Free {
 
         $screen = get_current_screen();
 
+        // Block Editor.
         if ( $screen->is_block_editor && $screen->base !== 'widgets' ) {
 
-            wp_register_style( 'gpr_widget', GPR_PLUGIN_URL . '/assets/dist/css/public-main.css' );
-            wp_enqueue_style( 'gpr_widget' );
+            $assets = require( GPR_PLUGIN_PATH . '/assets/dist/js/block.asset.php' );
 
             wp_enqueue_script(
-                'gbr_block',
+                'gpr_block',
                 GPR_PLUGIN_URL . '/assets/dist/js/block.js',
-                [
-                    'wp-i18n',
-                    'wp-element',
-                    'wp-blocks',
-                    'wp-editor',
-                    'gpr_google_places_gmaps'
-                ],
-                GPR_VERSION
+                $assets['dependencies'],
+                $assets['version']
             );
+
         }
     }
 
@@ -149,68 +144,11 @@ class WP_Google_Places_Reviews_Free {
      */
     function register_block() {
         register_block_type(
-            'google-places-reviews/reviews',
+            GPR_PLUGIN_PATH,
             [
-                'editor_script'   => 'gbr_block',
+                'editor_script'   => 'gpr_block',
                 'editor_style'    => 'gpr_widget_admin_css',
                 'render_callback' => [ $this, 'render_block' ],
-                'attributes'      => [
-                    'title'                => [
-                        'type' => 'string'
-                    ],
-                    'location'             => [
-                        'type' => 'string'
-                    ],
-                    'reference'            => [
-                        'type' => 'string'
-                    ],
-                    'place_id'             => [
-                        'type' => 'string'
-                    ],
-                    'place_type'           => [
-                        'type' => 'string'
-                    ],
-                    'cache'                => [
-                        'type' => 'string'
-                    ],
-                    'disable_title_output' => [
-                        'type'    => 'boolean',
-                        'default' => false,
-                    ],
-                    'widget_style'         => [
-                        'type' => 'string'
-                    ],
-                    'review_filter'        => [
-                        'type' => 'string'
-                    ],
-                    'review_limit'         => [
-                        'type'    => 'number',
-                        'default' => 3,
-                    ],
-                    'review_characters'    => [
-                        'type' => 'string'
-                    ],
-                    'hide_header'          => [
-                        'type'    => 'boolean',
-                        'default' => false,
-                    ],
-                    'hide_out_of_rating'   => [
-                        'type'    => 'boolean',
-                        'default' => false,
-                    ],
-                    'hide_google_image'    => [
-                        'type'    => 'boolean',
-                        'default' => false,
-                    ],
-                    'target_blank'         => [
-                        'type'    => 'boolean',
-                        'default' => true,
-                    ],
-                    'no_follow'            => [
-                        'type'    => 'boolean',
-                        'default' => true,
-                    ]
-                ]
             ]
         );
     }

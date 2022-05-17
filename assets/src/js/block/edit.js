@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { InspectorControls } from '@wordpress/block-editor';
+import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, TextControl, SelectControl, Spinner } from '@wordpress/components';
 import { Fragment, useState, createRef } from '@wordpress/element';
 
@@ -15,27 +15,27 @@ import './editor.scss';
 export default function Edit({ attributes, setAttributes }) {
     const locationRef = createRef();
 
-    console.log('here');
     const [state, setState] = useState({
         isClearingCache: false,
         isLoadingPlace: false,
         cacheError: null,
         error: null,
     });
+    console.log(attributes);
 
-    const isPlaceIdSet = () => attributes.place_id.trim().length !== 0;
+    const isPlaceIdSet = () => attributes.placeId.trim().length !== 0;
 
     const handleCache = () => {
         setState({ isClearingCache: true });
 
-        const place_id = attributes.place_id.substr(0, 25);
+        const placeId = attributes.placeId.substr(0, 25);
 
         fetch(ajaxurl, {
             method: 'POST',
             body: new URLSearchParams({
                 action: 'gpr_free_clear_widget_cache',
-                transient_id_1: `gpr_widget_api_${place_id}`,
-                transient_id_2: `gpr_widget_options_${place_id}`,
+                transient_id_1: `gpr_widget_api_${placeId}`,
+                transient_id_2: `gpr_widget_options_${placeId}`,
             }),
         })
             .then(() => {
@@ -64,9 +64,9 @@ export default function Edit({ attributes, setAttributes }) {
 
         autocomplete.addListener('place_changed', () => {
             console.log(autocomplete.getPlace());
-            const { place_id, name } = autocomplete.getPlace();
+            const { placeId, name } = autocomplete.getPlace();
 
-            if (!place_id) {
+            if (!placeId) {
                 return setState({
                     isLoadingPlace: false,
                     error: __('No place reference found for this location.', 'google-places-reviews'),
@@ -78,8 +78,8 @@ export default function Edit({ attributes, setAttributes }) {
             });
 
             setAttributes({
-                place_id,
-                reference: place_id,
+                placeId,
+                reference: placeId,
                 location: name,
             });
         });
@@ -168,7 +168,7 @@ export default function Edit({ attributes, setAttributes }) {
                                     disabled
                                     name="place_id"
                                     label={__('Location Place ID', 'google-places-reviews')}
-                                    value={attributes.place_id}
+                                    value={attributes.placeId}
                                     help={__(
                                         "This is the name of the place returned by Google's Places API.",
                                         'google-places-reviews'
