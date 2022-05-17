@@ -13,13 +13,6 @@ class WP_Google_Places_Reviews_Free {
 	protected static $_instance = null;
 
 	/**
-	 * GPR_Plugin_Framework
-	 *
-	 * @var GPR_Plugin_Framework
-	 */
-	public $gpr_framework = null;
-
-	/**
 	 * Main Instance
 	 *
 	 * Ensures only one instance of GPR is loaded or can be loaded.
