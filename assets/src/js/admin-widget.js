@@ -1,6 +1,4 @@
 /**
- *  Google Places Reviews JS: WP Admin
- *
  *  JavaScripts for the admin side of the widget.
  */
 
@@ -75,7 +73,7 @@ var gpr_ajax_object;
 	/**
 	 * AJAX Success
 	 *
-	 * Function to Refresh jQuery toggles for Google Places Reviews upon saving specific widget
+	 * Function to Refresh jQuery toggles upon saving specific widget
 	 */
 	// $( document ).ajaxSuccess(
 	// 	function( e, xhr, settings ) {

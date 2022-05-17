@@ -1,8 +1,6 @@
 <?php
 
 /**
- * Google Places Reviews
- *
  * Class Google_Places_Reviews
  */
 class Google_Places_Reviews extends WP_Widget {
@@ -110,8 +108,6 @@ class Google_Places_Reviews extends WP_Widget {
 
 	/**
 	 * Frontend Scripts
-	 *
-	 * Adds Google Places Reviews Stylesheets
 	 */
 	function frontend_widget_scripts() {
 
@@ -353,7 +349,7 @@ class Google_Places_Reviews extends WP_Widget {
 
 		// API Key Check:
 		if ( ! isset( $this->options['google_places_api_key'] ) || empty( $this->options['google_places_api_key'] ) ) {
-			$api_key_error = sprintf( __( '<p><strong>Notice: </strong>No Google Places API key detected. You will need to create an API key to use Google Places Reviews. API keys are manage through the <a href="%1$s" class="new-window" target="_blank">Google API Console</a>. For more information please see <a href="%2$s"  target="_blank"  class="new-window" title="Google Places API Introduction">this article</a>.</p> <p>Once you have obtained your API key enter it in the <a href="%3$s" title="Google Places Reviews Plugin Settings">plugin settings page</a>.</p>', 'google-places-reviews' ), esc_url( 'https://code.google.com/apis/console/?noredirect' ), esc_url( 'https://developers.google.com/places/documentation/#Authentication' ), admin_url( '/options-general.php?page=googleplacesreviews' ) );
+			$api_key_error = sprintf( __( '<p><strong>Notice: </strong>No Google Places API key detected. You will need to create an API key to use the plugin. API keys are manage through the <a href="%1$s" class="new-window" target="_blank">Google API Console</a>. For more information please see <a href="%2$s"  target="_blank"  class="new-window" title="Google Places API Introduction">this article</a>.</p> <p>Once you have obtained your API key enter it in the <a href="%3$s" title="Visit the plugin settings page">plugin settings page</a>.</p>', 'google-places-reviews' ), esc_url( 'https://code.google.com/apis/console/?noredirect' ), esc_url( 'https://developers.google.com/places/documentation/#Authentication' ), admin_url( '/options-general.php?page=googleplacesreviews' ) );
 			$this->output_error_message( $api_key_error, 'error' );
 
 			return;
@@ -616,7 +612,7 @@ class Google_Places_Reviews extends WP_Widget {
 
 
 /**
- * Google Places Reviews Admin Tooltips
+ * Admin Tooltips
  *
  * @param $tip_name
  *

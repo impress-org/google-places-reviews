@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Google Places Reviews Block
+ * Plugin Name: Reviews Block for Google
  * Plugin URI: https://wpbusinessreviews.com/
  * Description: Easily display Google business reviews and ratings with a simple and intuitive WordPress block.
  * Version: 2.0.0
@@ -32,7 +32,7 @@ define('GPR_PLUGIN_URL', untrailingslashit(plugin_dir_url(GPR_PLUGIN_FILE)));
 require 'includes/gpr-class.php';
 
 /**
- * Returns the main instance of Google Places Reviews.
+ * Returns the main instance.
  *
  * @since  1.4
  * @return WP_Google_Places_Reviews_Free()

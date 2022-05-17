@@ -1,6 +1,6 @@
 <?php
 /**
- * Google Places Reviews Widget Form
+ * Widget Form
  *
  * Widget form options in WP-Admin
  *

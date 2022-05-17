@@ -1,4 +1,4 @@
-=== Google Places Reviews ===
+=== Reviews Block for Google ===
 Contributors: impressorg, dlocc, webdevmattcrom, shawnhooper, jason_the_adams, alaca
 Donate link: https://wpbusinessreviews.com/
 Tags: google, reviews, google reviews, google places, google places reviews, testimonials, google review widget, google business reviews, google review, review, google place review, google map reviews, google reviews pro, facebook reviews, facebook page reviews, yelp reviews, yelp business reviews
@@ -25,13 +25,13 @@ This plugin allows you to display Google reviews on your WordPress website. Why 
 * Google Places Autocomplete - Easily lookup businesses in your area through the widget interface using the power of Google search.
 * Actively Supported and Developed - We are a team of expert developers based in San Diego, California and we stand by our work. Got a problem? Hit us up.
 
-There is significant data that shows how much consumers care about online reviews but very little information about what businesses are doing to respond to this phenomenon. How about displaying reviews on your WordPress website from Google?
+There is significant data that demonstrates consumers care about online reviews but very little information about what businesses are doing to respond to this phenomenon. How about displaying reviews on your WordPress website from Google?
 
-Google Places Reviews allows you to display up to 3 business reviews with the free version and 5 with the Pro version. Setup is quick and easy. Simply install the plugin, insert your Google API (free and documented), and drag the widget into any sidebar to configure the options.
+The Reviews Block for Google allows you to display up to 5 business reviews. Setup is quick and easy. Simply install the plugin, insert your Google API (free and documented), and drag the block into the block editor to configure the options.
 
 = WP Business Reviews =
 
-*WP Business Reviews* is a **significant upgrade** to *Google Places Reviews* that adds many features that will allow you to further customize how you display reviews on your WordPress website.
+*WP Business Reviews* is a **significant upgrade** to the *Reviews Block for Google* that adds many features that will allow you to further customize how you display reviews on your WordPress website.
 
 [Upgrade to WP Business Reviews](https://wpbusinessreviews.com "Upgrade to WP Business Reviews")
 
@@ -43,7 +43,7 @@ Google Places Reviews allows you to display up to 3 business reviews with the fr
 
 1. Log into your WP-Admin
 2. Navigate to 'Plugins' > 'Add New'
-3. Search for "Google Places Reviews" and install it from there.
+3. Search for "Reviews Block for Google" and install it from there.
 
 **Manual Install:**
 
@@ -84,7 +84,7 @@ Yes, there are three basic themes included in the free version of the plugin.
 == Changelog ==
 
 = 2.0.0: May 5th, 2022 =
-* 🎉 Introducing Google Places Reviews Block. This is a huge plugin revamp! In this new version we've added a new block for the WordPress block editor. Don't worry, if you're still using the widget it will still work just fine.
+* 🎉 Introducing the Reviews Block for Google WordPress plugin. This is a huge plugin revamp! In this new version we've added a new block for the WordPress block editor. Don't worry, if you're still using the widget it will still work just fine.
 * What else? The plugin settings have been cleaned up, further secured, and improved.
 * Note: this plugin requires WordPress 5.0 or higher.
 

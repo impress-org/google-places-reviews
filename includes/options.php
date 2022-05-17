@@ -37,7 +37,7 @@ $google_places_reviews_options = array(
 
 
 /**
- *  Google Places Reviews Admin Tooltips
+ * Admin Tooltips
  *
  * @param $tip_name
  *

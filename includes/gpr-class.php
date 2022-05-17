@@ -20,7 +20,7 @@ class WP_Google_Places_Reviews_Free {
 	public $gpr_framework = null;
 
 	/**
-	 * Main Google Places Reviews Instance
+	 * Main Instance
 	 *
 	 * Ensures only one instance of GPR is loaded or can be loaded.
 	 *
@@ -83,7 +83,7 @@ class WP_Google_Places_Reviews_Free {
 			// Look in local location from filter `gpr_languages_directory`
 			load_textdomain( 'google-places-reviews', $mofile_local );
 		} else {
-			// Load the default language files packaged up w/ Google Places Reviews
+			// Load the default language files packaged up w/ plugin
 			load_plugin_textdomain( 'google-places-reviews', false, $gpr_lang_dir );
 		}
 

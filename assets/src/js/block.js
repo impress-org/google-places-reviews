@@ -8,7 +8,7 @@ const ServerSideRender = wp.serverSideRender;
 import icon from './icon';
 
 registerBlockType( 'google-places-reviews/reviews', {
-	title: __( 'Google Places Reviews', 'google-places-reviews' ),
+	title: __( 'Reviews Block for Google', 'google-places-reviews' ),
 	description: __( 'Easily display Google Reviews on your WordPress website using a powerful and intuitive widget.', 'google-places-reviews' ),
 	category: 'widgets',
 	icon,
@@ -168,7 +168,7 @@ registerBlockType( 'google-places-reviews/reviews', {
 		return (
 			<Fragment>
 				<InspectorControls>
-					<PanelBody title={ __( 'Google Places Reviews', 'google-places-reviews' ) } initialOpen={ true }>
+					<PanelBody title={ __( 'Reviews Block for Google', 'google-places-reviews' ) } initialOpen={ true }>
 						<TextControl
 							name="title"
 							label={ __( 'Widget Title', 'google-places-reviews' ) }

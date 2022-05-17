@@ -2,7 +2,7 @@
 /**
  *  Widget Frontend Display
  *
- * @description: Responsible for the frontend display of the Google Places Reviews
+ * Responsible for the frontend display of the legacy widget.
  * @since      : 1.0
  */
 
@@ -59,7 +59,6 @@ $place_avatar = isset( $response['place_avatar'] ) ? $response['place_avatar'] :
 
 
 		<?php
-		//Google Places Reviews
 		if ( isset( $response['gpr_reviews'] ) && ! empty( $response['gpr_reviews'] ) ) {
 			?>
 

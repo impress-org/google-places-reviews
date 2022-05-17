@@ -31,7 +31,7 @@ mix.webpackConfig({
 
 if ( mix.inProduction() ) {
 	wpPot({
-		package: 'Google Places Reviews',
+		package: 'Reviews Block for Google',
 		domain: 'google-places-reviews',
 		destFile: 'languages/google-places-reviews.pot',
 		relativeTo: './',
