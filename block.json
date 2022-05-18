@@ -21,6 +21,46 @@
         "location": {
             "type": "string",
             "default": ""
+        },
+        "showHeader": {
+            "type": "boolean",
+            "default": true
+        },
+        "showBusinessRating": {
+            "type": "boolean",
+            "default": true
+        },
+        "showReviewButton": {
+            "type": "boolean",
+            "default": true
+        },
+        "showBusinessMeta": {
+            "type": "boolean",
+            "default": true
+        },
+        "showBusinessInfo": {
+            "type": "boolean",
+            "default": true
+        },
+        "showPhone": {
+            "type": "boolean",
+            "default": true
+        },
+        "showHours": {
+            "type": "boolean",
+            "default": true
+        },
+        "showLocation": {
+            "type": "boolean",
+            "default": true
+        },
+        "showReviews": {
+            "type": "boolean",
+            "default": true
+        },
+        "preview": {
+            "type": "boolean",
+            "default": false
         }
     }
 }

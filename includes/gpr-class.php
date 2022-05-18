@@ -164,23 +164,32 @@ class WP_Google_Places_Reviews_Free {
         // Get parameters from request
         $params = $request->get_params();
 
+        // Check if a transient exists.
+        $business_details = get_transient( $params['placeId'] );
+        if ( $business_details ) {
+            return $business_details;
+        }
+
+        // No transient found, so get the business details from Google.
         $requestUrl = add_query_arg(
             [
                 'placeid' => $params['placeId'] ?? 'ChIJ37HL3ry3t4kRv3YLbdhpWXE',
-                'key'     => $params['apiKey'],
+                'key'     => $params['apiKey'] ?? $this->api_key,
             ],
             'https://maps.googleapis.com/maps/api/place/details/json'
         );
 
-        $requestRequest = wp_remote_get( $requestUrl );
+        $requestRequest = wp_safe_remote_get( $requestUrl );
         $requestBody    = json_decode( wp_remote_retrieve_body( $requestRequest ) );
 
         if ( $requestBody->error_message ) {
             return new WP_Error( $requestBody->status, $requestBody->error_message, [ 'status' => 400 ] );
         }
 
+        set_transient( $params['placeId'], $requestBody->result, HOUR_IN_SECONDS );
+
         // Create the response object
-        return new WP_REST_Response( wp_json_encode( $requestBody ), 200 );
+        return new WP_REST_Response( $requestBody->result, 200 );
 
     }
 
@@ -228,7 +237,6 @@ class WP_Google_Places_Reviews_Free {
             <?php
             // 🔁 Loop through and set attributes per block.
             foreach ( $attributes as $key => $value ) :
-
                 // Arrays need to be stringified.
                 if ( is_array( $value ) ) {
                     $value = implode( ', ', $value );

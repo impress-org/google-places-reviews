@@ -2,13 +2,479 @@
  * Applied to frontend and editor views.
  */
 
-@import 'styles/variables';
+
+@import './styles/variables';
 
 [id^="rbg-"] {
+
+    //@import 'styles/stars';
+    //@import 'styles/address';
+    //@import 'styles/hours';
+
     position: relative;
-    margin: 50px auto;
+    margin: 30px auto;
     padding: 20px;
     border-radius: $border-radius;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     line-height: 1.6;
+
+    a {
+        text-decoration: none;
+        color: $link-color;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .rbg-google-icon-header {
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        margin-left: -28px;
+        width: 55px;
+        height: 55px;
+        background: #FFFFFF;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+
+        > img {
+            width: 30px;
+            height: 30px;
+            position: relative;
+            left: 1px;
+        }
+    }
+
+    .rbg-image-header {
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        height: 250px;
+        display: inline-flex;
+        flex-wrap: nowrap;
+        border-radius: $border-radius $border-radius 0 0;
+
+        img {
+            flex: 1 0 auto;
+            display: inline;
+            height: 100%;
+        }
+    }
+
+    .rbg-business-name-wrap {
+        width: 100%;
+        border-bottom: 1px solid $border-color;
+        text-align: center;
+        background: #FFF;
+        border-radius: 7px 7px 0 0;
+
+        .rbg-business-name {
+            color: $heading-color;
+            margin: 0;
+            padding: 18px 0;
+            line-height: 1.2;
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+    }
+
+    .rbg-title-header {
+        background: #FBFBFB;
+        position: relative;
+        z-index: 99;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        border: 1px solid $border-color;
+        border-radius: $border-radius;
+        margin: 155px auto 25px;
+        padding: 0;
+        max-width: 800px;
+
+        // Contains the star rating, review button, and other meta.
+        .rbg-business-meta-wrap {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            overflow: hidden;
+            border-radius: 0 0 7px 7px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+
+            // Align blocks evenly across the row.
+            > div {
+
+                &:last-child {
+                    margin-left: auto;
+                }
+            }
+
+        }
+    }
+
+    .rbg-business-status-meta-wrap {
+        flex: 1;
+        text-align: center;
+
+        &__inner {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #F2F2F2;
+            border-radius: 50px;
+            max-width: 270px;
+
+            > span {
+                text-align: center;
+            }
+        }
+    }
+
+    // 🪪 Badges
+    .rbg-badge {
+        background: rgba(2, 122, 151, 0.13);
+        margin: 0;
+        padding: 4px 12px;
+        border-radius: 15px;
+        font-size: 12px;
+        line-height: 16px;
+        color: #24292F;
+        display: inline-block;
+    }
+
+    .rbg-business-claimed {
+        color: #1F8EFF;
+        font-weight: 600;
+        font-size: 13px;
+        margin: 0;
+        padding: 10px 20px 10px 15px;
+        line-height: 1.2;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        &__icon {
+            position: relative;
+            top: -1px;
+        }
+    }
+
+    .rbg-business-open-status {
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding: 0 20px;
+
+        &__open {
+            color: #4CBB30;
+        }
+
+        &__closed {
+            color: red;
+        }
+
+    }
+
+    .rbg-business-price {
+        color: $heading-color;
+        font-weight: 600;
+        font-size: 16px;
+        border-left: 1px solid $border-color;
+        border-right: 1px solid $border-color;
+        padding: 0 20px;
+        margin: 0;
+    }
+
+    // Buttons
+    .rbg-button {
+        background: $google-color;
+        border-radius: 6px;
+        margin: 0;
+        padding: 10px 16px;
+        border: none;
+        font-size: 16px;
+        display: inline-flex;
+        align-content: center;
+        gap: 5px;
+        white-space: nowrap;
+
+        &--red {
+            color: white;
+
+            &:hover {
+                color: white;
+                background: lighten($google-color, 15%);
+            }
+        }
+
+        &--white {
+            background: #FFF;
+            border: 1px solid #C0C4C8;
+            color: $heading-color;
+
+            &:hover {
+                border: 1px solid darken(#C0C4C8, 20%);
+                color: $heading-color;
+            }
+        }
+
+        &--link, a {
+            text-decoration: none !important;
+        }
+    }
+
+    // Additional Info (e.g. phone number, website, etc.)
+    .rbg-additional-info-wrap {
+        display: flex;
+        gap: 20px;
+        max-width: 800px;
+        margin: 0 auto 25px;
+
+        &__inner {
+            border-radius: $border-radius;
+            border: 1px solid $border-color;
+            padding: 20px;
+            flex: 1;
+        }
+    }
+
+    // Pickup, takout, badges, etc.
+    .rbg-business-badges-wrap {
+        display: inline-flex;
+        gap: 5px;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    // Phone
+    .rbg-business-phone-wrap {
+        margin: 0 0 15px;
+        display: flex;
+        align-items: center;
+
+        .dashicon {
+            color: $google-color;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        a {
+            color: $link-color;
+            font-weight: 400;
+            font-size: 15px;
+            padding: 0;
+            margin: 0;
+            display: inline-block;
+            line-height: 1.2;
+        }
+    }
+
+
+    .rbg-directions-link-wrap {
+        margin: 20px 0 0;
+
+        a {
+            display: inline-block;
+            line-height: 1;
+        }
+    }
+
+    h2.rbg-heading,
+    h3.rbg-heading,
+    h4.rbg-heading,
+    h5.rbg-heading {
+        text-transform: uppercase;
+        color: $heading-color;
+        font-size: 13px;
+        margin: 0 0 10px;
+        font-weight: 600;
+    }
+
+    .rbg-business-reviews-wrap .rbg-heading {
+        margin: 0 0 20px 20px;
+    }
+
+    // 💬 Individual Reviews
+    .rbg-business-reviews-wrap {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .rbg-business-review {
+        border-radius: $border-radius;
+        border: 1px solid $border-color;
+        display: flex;
+        position: relative;
+        margin: 0 0 20px;
+        padding: 20px;
+        gap: 20px;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .rbg-business-review-google-icon {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 20px;
+        }
+
+        .rbg-business-review-user-image {
+            width: 80px;
+            overflow: hidden;
+            margin: 0 0 8px;
+
+            img {
+                border-radius: 6px;
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .rbg-business-review-user-name {
+            font-size: 13px;
+            font-weight: 500;
+            color: $heading-color;
+        }
+
+        .rbg-business-review-content-rating {
+            margin: 0 0 15px;
+        }
+
+        .rbg-business-review-content-text {
+            p {
+                font-size: 16px;
+                line-height: 1.4;
+                color: $heading-color;
+                margin: 0 0 10px;
+                padding: 0;
+            }
+        }
+
+        .rbg-business-review-content-readmore-wrap {
+            display: inline-block;
+        }
+
+        .rbg-business-review-content-readmore {
+            font-size: 15px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+
+            .dashicon {
+                margin: 0;
+                padding: 0 0 0 4px;
+                font-size: 15px;
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+            }
+        }
+    }
+
+    // Powered by Yelp
+    .rbg-powered-by-wrap {
+        text-align: center;
+    }
+
+    .rbg-powered-by {
+        background: #FFFFFF;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 50px;
+        padding: 4px 8px;
+        margin: 25px 0 10px;
+
+        display: inline-flex;
+        align-items: center;
+
+        span {
+            font-size: 13px;
+            color: $heading-color;
+            padding: 0 8px 0 6px;
+            margin: 0;
+        }
+
+        img {
+            width: 60px;
+        }
+    }
+}
+
+
+// 📱 Responsive Styles :)
+
+@media(max-width: 850px) {
+    [id^="rbg-"] {
+        .rbg-title-header {
+            .rbg-business-meta-wrap {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+
+                .rbg-business-stars {
+                    margin: 0 auto;
+                }
+
+                > div:last-of-type {
+                    margin-right: auto;
+                }
+            }
+        }
+
+
+        .rbg-additional-info-wrap {
+            flex-direction: column;
+        }
+
+    }
+}
+
+
+// Loading
+[id^=rbg-] {
+    .rbg-loading-content {
+        min-height: 400px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: 250px;
+            margin: 0 0 20px;
+        }
+
+        .rbg-loading-text {
+            display: inline-flex;
+            align-content: center;
+            border-radius: 50px;
+            background: rgba(2, 122, 151, 0.13);
+            padding: 3px 10px 3px 0;
+        }
+    }
+}
+
+@media(max-width: 450px) {
+    [id^=rbg-] .rbg-business-review .rbg-business-review-user-image {
+        width: 60px;
+    }
 }
