@@ -131,7 +131,7 @@ function gpr_activation_admin_notice() {
         </style>
         <div class="updated wpbr">
             <header>
-                <img src="<?php echo GPR_PLUGIN_URL; ?>/build/images/platform-icon-wpbr.png"
+                <img src="<?php echo GPR_PLUGIN_URL; ?>/includes/legacy/assets/images/platform-icon-wpbr.png"
                      class="wpbr-logo"/>
                 <?php printf( __( '<a href="%1$s" class="dismiss"></a>', 'google-places-reviews' ), '?gpr_nag_ignore=0' ); ?>
 

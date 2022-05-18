@@ -8,16 +8,14 @@
  * Google Options Page.
  */
 function gpr_widget_add_options_page() {
-    // Add the menu option under Settings, shows up as "Google API Settings" (second param)
-    $page = add_submenu_page(
+    add_submenu_page(
         'options-general.php', // The parent page of this menu
         __( 'Reviews Block for Google Settings', 'google-places-reviews' ), // The Page Title
         __( 'Google Reviews', 'google-places-reviews' ), // The Menu Title
         'manage_options', // The capability required for access to this item
         'google_places_reviews', // the slug to use for the page in the URL
         'google_places_reviews'
-    ); // The function to call to render the page
-
+    );
 }
 
 add_action( 'admin_menu', 'gpr_widget_add_options_page' );
@@ -84,35 +82,6 @@ function gpr_widget_clean( $value ) {
         return is_scalar( $value ) ? sanitize_text_field( $value ) : '';
     }
 }
-
-/**
- * Initiate the Legacy Widget
- *
- * @param $file
- */
-function gpr_widget_settings( $file ) {
-
-    register_setting(
-        'googleplacesreviews_options',
-        'googleplacesreviews_options',
-        [
-            'default'      => '',
-            'show_in_rest' => [
-                'schema' => [
-                    'type'       => 'object',
-                    'properties' => [
-                        'google_places_api_key' => [
-                            'type' => 'string',
-                        ],
-                    ]
-                ],
-            ]
-        ] );
-
-}
-
-add_action( 'admin_init', 'gpr_widget_settings' );
-
 
 /**
  * Admin Options.
@@ -192,7 +161,7 @@ function google_places_reviews() { ?>
                                         <?php $api_key = ! empty( $options['google_places_api_key'] ) ? $options['google_places_api_key'] : ''; ?>
                                         <input type="password" id="google_places_api_key"
                                                name="googleplacesreviews_options[google_places_api_key]"
-                                               value="<?php echo esc_attr( $api_key ); ?>"
+                                               value="<?php esc_attr_e( $api_key ); ?>"
                                                size="45" /><br />
                                         <small><a href="https://wpbusinessreviews.com/documentation/platforms/google/"
                                                   target="_blank"><?php esc_html_e( 'Learn how to create a Google Places API key', 'google-places-reviews' ); ?></a>

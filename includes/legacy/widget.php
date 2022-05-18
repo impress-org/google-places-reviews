@@ -65,8 +65,9 @@ class Google_Places_Reviews extends WP_Widget {
         $this->api_key = $this->options['google_places_api_key'];
 
         // Hooks
-        add_action( 'wp_enqueue_scripts', array( $this, 'frontend_widget_scripts' ) );
-        add_action( 'admin_enqueue_scripts', array( $this, 'admin_widget_scripts' ) );
+        add_action( 'wp_enqueue_scripts', [ $this, 'frontend_widget_scripts' ] );
+        add_action( 'admin_enqueue_scripts', [ $this, 'admin_widget_scripts' ] );
+
     }
 
     /**
@@ -103,7 +104,6 @@ class Google_Places_Reviews extends WP_Widget {
 
     }
 
-
     /**
      * Frontend Scripts
      */
@@ -126,7 +126,6 @@ class Google_Places_Reviews extends WP_Widget {
      *
      * @return bool
      * @see WP_Widget::widget()
-     *
      */
     function widget( $args, $instance ) {
 
@@ -313,7 +312,6 @@ class Google_Places_Reviews extends WP_Widget {
 
     }
 
-
     /**
      * Update Widget
      *
@@ -333,7 +331,6 @@ class Google_Places_Reviews extends WP_Widget {
 
         return $instance;
     }
-
 
     /**
      * Widget Form

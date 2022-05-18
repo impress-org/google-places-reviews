@@ -33,6 +33,7 @@ class WP_Google_Places_Reviews_Free {
     public function __construct() {
 
         add_action( 'init', [ $this, 'load_plugin_textdomain' ] );
+        add_action( 'init', [ $this, 'register_settings' ] );
 
         add_action( 'rest_api_init', [ $this, 'google_api_rest_endpoint' ] );
 
@@ -86,12 +87,8 @@ class WP_Google_Places_Reviews_Free {
      * Plugin Setup
      */
     public function setup_widget() {
-        // Include the widget
-        if ( ! class_exists( 'Google_Places_Reviews' ) ) {
-            // Include the widget
-            require GPR_PLUGIN_PATH . 'includes/legacy/widget.php';
-            register_widget( 'Google_Places_Reviews' );
-        }
+        require GPR_PLUGIN_PATH . 'includes/legacy/widget.php';
+        register_widget( 'Google_Places_Reviews' );
 
         // Admin only
         if ( is_admin() ) {
@@ -115,34 +112,70 @@ class WP_Google_Places_Reviews_Free {
         register_rest_route( 'google-block/v1', 'profile/',
             [
                 'methods'             => 'GET',
-                'callback'            => [$this, 'google_api_rest_callback'],
+                'callback'            => [ $this, 'google_api_rest_callback' ],
                 'permission_callback' => '__return_true',
             ]
         );
     }
 
 
+    /**
+     * @return void
+     */
+    public function register_settings() {
+        register_setting(
+            'googleplacesreviews_options',
+            'googleplacesreviews_options',
+            [
+                'default'      => '',
+                'show_in_rest' => [
+                    'schema' => [
+                        'type'       => 'object',
+                        'properties' => [
+                            'google_places_api_key' => [
+                                'type' => 'string',
+                            ],
+                        ]
+                    ],
+                ]
+            ] );
+    }
+
 
     /**
-     * Custom REST endpoint callback to output Google API data.
-     *
      * @param WP_REST_Request $request
      *
      * @return WP_Error|WP_REST_Response
      */
-    function google_api_rest_callback( WP_REST_Request $request ) {
+    public function google_api_rest_callback( WP_REST_Request $request ) {
 
         // Get parameters from request
         $params = $request->get_params();
 
+        $requestUrl = add_query_arg(
+            [
+                'placeid' => $params['placeId'] ?? 'ChIJ37HL3ry3t4kRv3YLbdhpWXE',
+                'key'     => $params['apiKey'],
+            ],
+            'https://maps.googleapis.com/maps/api/place/details/json'
+        );
 
+        $requestRequest = wp_remote_get( $requestUrl );
+        $requestBody    = json_decode( wp_remote_retrieve_body( $requestRequest ) );
+
+        if ( $requestBody->error_message ) {
+            return new WP_Error( $requestBody->status, $requestBody->error_message, [ 'status' => 400 ] );
+        }
+
+        // Create the response object
+        return new WP_REST_Response( wp_json_encode( $requestBody ), 200 );
 
     }
 
     /**
      * Register Gutenberg block
      */
-    function register_block() {
+    public function register_block() {
 
         $assets = require( GPR_PLUGIN_PATH . 'build/google-block.asset.php' );
 
