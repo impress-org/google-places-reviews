@@ -1,39 +1,31 @@
 {
     "name": "reviews-block-for-google",
     "version": "2.0.0",
-    "description": "",
+    "description": "Easily display Google business reviews and ratings with a simple and intuitive WordPress block.",
     "main": "index.js",
+    "author": "WP Business Reviews",
+    "license": "ISC",
     "scripts": {
-        "start": "npm ci && npm run watch",
-        "dev": "mix",
-        "build": "mix --production",
-        "watch": "mix watch"
+        "build": "wp-scripts build",
+        "format": "wp-scripts format",
+        "lint:css": "wp-scripts lint-style",
+        "lint:js": "wp-scripts lint-js",
+        "start": "wp-scripts start",
+        "start:hot": "wp-scripts start --hot",
+        "run": "wp-scripts start",
+        "packages-update": "wp-scripts packages-update",
+        "plugin-zip": "wp-scripts plugin-zip"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/impress-org/reviews-block-for-google.git"
     },
-    "author": "WP Business Reviews",
-    "license": "ISC",
     "bugs": {
         "url": "https://github.com/impress-org/reviews-block-for-google/issues"
     },
     "homepage": "https://github.com/impress-org/reviews-block-for-google#readme",
     "devDependencies": {
-        "@tinypixelco/laravel-mix-wp-blocks": "^1.1.0",
-        "@wordpress/babel-preset-default": "^6.10.0",
-        "@wordpress/dependency-extraction-webpack-plugin": "^3.4.1",
-        "autoprefixer": "^9.8.0",
-        "clean-webpack-plugin": "^4.0.0",
-        "cross-env": "^5.2.1",
-        "imagemin-webpack-plugin": "^2.4.2",
-        "laravel-mix": "^6.0.39",
-        "postcss": "^8.4.4",
-        "prettier": "^2.4.1",
-        "resolve-url-loader": "^4.0.0",
-        "sass": "^1.43.3",
-        "sass-loader": "^12.2.0",
-        "webpack": "^5.60.0"
+        "@wordpress/scripts": "^23.0.0"
     },
     "dependencies": {
         "lottie-web": "^5.8.1"

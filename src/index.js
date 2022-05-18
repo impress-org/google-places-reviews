@@ -1,8 +1,11 @@
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
 import domReady from '@wordpress/dom-ready';
-import Edit from './block/edit';
-import GoogleBlock from './block/components/GoogleBlock';
+import {render} from '@wordpress/element';
+import Edit from './edit';
+import GoogleBlock from './components/GoogleBlock';
+
+import './style.scss';
 
 registerBlockType('google-places-reviews/reviews', {
     title: __('Reviews Block for Google', 'google-places-reviews'),

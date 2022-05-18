@@ -35,10 +35,10 @@ function gpr_admin_scripts( $hook ) {
         'widgets.php' === $hook
         || 'settings_page_google_places_reviews' === $hook
     ) {
-        wp_register_script( 'gpr_widget_admin_scripts', GPR_PLUGIN_URL . '/assets/dist/js/admin-main.js' );
+        wp_register_script( 'gpr_widget_admin_scripts', GPR_PLUGIN_URL . '/build/google-widget-admin.js' );
         wp_enqueue_script( 'gpr_widget_admin_scripts' );
 
-        wp_register_style( 'gpr_widget_admin_css', GPR_PLUGIN_URL . '/assets/dist/css/admin-main.css' );
+        wp_register_style( 'gpr_widget_admin_css', GPR_PLUGIN_URL . '/build/google-widget-admin-styles.css' );
         wp_enqueue_style( 'gpr_widget_admin_css' );
     }
 
@@ -92,7 +92,22 @@ function gpr_widget_clean( $value ) {
  */
 function gpr_widget_settings( $file ) {
 
-    register_setting( 'googleplacesreviews_options', 'googleplacesreviews_options', [ 'sanitize_callback' => 'gpr_widget_clean' ] );
+    register_setting(
+        'googleplacesreviews_options',
+        'googleplacesreviews_options',
+        [
+            'default'      => '',
+            'show_in_rest' => [
+                'schema' => [
+                    'type'       => 'object',
+                    'properties' => [
+                        'google_places_api_key' => [
+                            'type' => 'string',
+                        ],
+                    ]
+                ],
+            ]
+        ] );
 
 }
 
@@ -115,9 +130,9 @@ function google_places_reviews() { ?>
                target="_blank" rel="noopener noreferrer" class="update-link new-window">
                 <svg class="wpbr-star-icon wpbr-banner-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <rect x="0" fill="none" width="20"
-                          height="20"/>
+                          height="20" />
                     <g>
-                        <path d="M10 1l3 6 6 .75-4.12 4.62L16 19l-6-3-6 3 1.13-6.63L1 7.75 7 7z"/>
+                        <path d="M10 1l3 6 6 .75-4.12 4.62L16 19l-6-3-6 3 1.13-6.63L1 7.75 7 7z" />
                     </g>
                 </svg><?php _e( 'Upgrade to WP Business Reviews', 'google-places-reviews' ); ?></a>
         </div>
@@ -168,17 +183,17 @@ function google_places_reviews() { ?>
                                         <label
                                             for="gpr_widget_fusion_api"><?php esc_html_e( 'Google Places API Key:', 'google-places-reviews' ); ?>
                                             <img
-                                                src="<?php echo GPR_PLUGIN_URL . '/assets/dist/images/help.png'; ?>"
+                                                src="<?php echo GPR_PLUGIN_URL . '/includes/legacy/assets/images/help.png'; ?>"
                                                 title="<?php
                                                 _e( 'This is necessary to pull reviews from Google.', 'google-places-reviews' ); ?>"
-                                                class="tooltip-info" width="16" height="16"/></label>
+                                                class="tooltip-info" width="16" height="16" /></label>
                                     </div>
                                     <div class="controls">
                                         <?php $api_key = ! empty( $options['google_places_api_key'] ) ? $options['google_places_api_key'] : ''; ?>
                                         <input type="password" id="google_places_api_key"
                                                name="googleplacesreviews_options[google_places_api_key]"
                                                value="<?php echo esc_attr( $api_key ); ?>"
-                                               size="45"/><br/>
+                                               size="45" /><br />
                                         <small><a href="https://wpbusinessreviews.com/documentation/platforms/google/"
                                                   target="_blank"><?php esc_html_e( 'Learn how to create a Google Places API key', 'google-places-reviews' ); ?></a>
                                         </small>
@@ -189,9 +204,9 @@ function google_places_reviews() { ?>
                                         <label
                                             for="disable_css"><?php esc_html_e( 'Disable Plugin CSS Output:', 'google-places-reviews' ); ?>
                                             <img
-                                                src="<?php echo GPR_PLUGIN_URL . '/assets/dist/images/help.png'; ?>"
+                                                src="<?php echo GPR_PLUGIN_URL . '/includes/legacy/assets/images/help.png'; ?>"
                                                 title="<?php esc_html_e( 'Disabling the widget\'s CSS output is useful for more complete control over customizing the widget styles. This can be useful for custom theme designs.', 'google-places-reviews' ); ?>"
-                                                class="tooltip-info" width="16" height="16"/></label>
+                                                class="tooltip-info" width="16" height="16" /></label>
                                     </div>
                                     <div class="controls">
                                         <input type="checkbox" id="disable_css"
@@ -219,7 +234,7 @@ function google_places_reviews() { ?>
                         <div class="control-group">
                             <div class="controls">
                                 <input class="button-primary" type="submit" name="submit-button"
-                                       value="<?php _e( 'Update', 'google-places-reviews' ); ?>"/>
+                                       value="<?php _e( 'Update', 'google-places-reviews' ); ?>" />
                             </div>
                         </div>
                     </div>

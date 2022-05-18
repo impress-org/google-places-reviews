@@ -34,7 +34,7 @@ class WP_Google_Places_Reviews_Free {
 
         add_action( 'init', [ $this, 'load_plugin_textdomain' ] );
 
-        add_action( 'admin_enqueue_scripts', [ $this, 'load_scripts' ] );
+        add_action( 'rest_api_init', [ $this, 'google_api_rest_endpoint' ] );
 
         // Register the Google Places widget.
         add_action( 'widgets_init', [ $this, 'setup_widget' ] );
@@ -88,66 +88,74 @@ class WP_Google_Places_Reviews_Free {
     public function setup_widget() {
         // Include the widget
         if ( ! class_exists( 'Google_Places_Reviews' ) ) {
-            require GPR_PLUGIN_PATH . '/includes/widget.php';
+            // Include the widget
+            require GPR_PLUGIN_PATH . 'includes/legacy/widget.php';
             register_widget( 'Google_Places_Reviews' );
         }
 
         // Admin only
         if ( is_admin() ) {
             // Options page.
-            require_once GPR_PLUGIN_PATH . '/includes/admin-settings.php';
+            require_once GPR_PLUGIN_PATH . 'includes/admin-settings.php';
 
             // Deactivating normal activation banner for upgrade to Place ID banner
-            require_once GPR_PLUGIN_PATH . '/includes/plugin-listing-page.php';
+            require_once GPR_PLUGIN_PATH . 'includes/plugin-listing-page.php';
 
             // Display our upgrade notice
-            require_once GPR_PLUGIN_PATH . '/includes/upgrades/upgrade-functions.php';
-            require_once GPR_PLUGIN_PATH . '/includes/upgrades/upgrades.php';
+            require_once GPR_PLUGIN_PATH . 'includes/legacy/upgrades/upgrade-functions.php';
+            require_once GPR_PLUGIN_PATH . 'includes/legacy/upgrades/upgrades.php';
         }
     }
 
+    /**
+     * Register REST API endpoint
+     * @return void
+     */
+    public function google_api_rest_endpoint() {
+        register_rest_route( 'google-block/v1', 'profile/',
+            [
+                'methods'             => 'GET',
+                'callback'            => [$this, 'google_api_rest_callback'],
+                'permission_callback' => '__return_true',
+            ]
+        );
+    }
+
+
 
     /**
-     * Options Scripts
+     * Custom REST endpoint callback to output Google API data.
      *
-     * Custom JS/CSS for Options Page
+     * @param WP_REST_Request $request
      *
-     * @param $hook
+     * @return WP_Error|WP_REST_Response
      */
-    function load_scripts( $hook ) {
+    function google_api_rest_callback( WP_REST_Request $request ) {
 
-        // Settings page.
-        if ( 'settings_page_google_places_reviews' === $hook ) {
-            wp_register_style( 'gpr_custom_options_styles', plugin_dir_url( __FILE__ ) . '/assets/dist/css/admin-main.css' );
-            wp_enqueue_style( 'gpr_custom_options_styles' );
-        }
+        // Get parameters from request
+        $params = $request->get_params();
 
-        $screen = get_current_screen();
 
-        // Block Editor.
-        if ( $screen->is_block_editor && $screen->base !== 'widgets' ) {
 
-            $assets = require( GPR_PLUGIN_PATH . '/assets/dist/js/block.asset.php' );
-
-            wp_enqueue_script(
-                'gpr_block',
-                GPR_PLUGIN_URL . '/assets/dist/js/block.js',
-                $assets['dependencies'],
-                $assets['version']
-            );
-
-        }
     }
 
     /**
      * Register Gutenberg block
      */
     function register_block() {
+
+        $assets = require( GPR_PLUGIN_PATH . 'build/google-block.asset.php' );
+
+        wp_register_script(
+            'reviews-block-google-script',
+            plugins_url( 'build/google-block.js', GPR_PLUGIN_FILE ),
+            $assets['dependencies'],
+            $assets['version']
+        );
+
         register_block_type(
             GPR_PLUGIN_PATH,
             [
-                'editor_script'   => 'gpr_block',
-                'editor_style'    => 'gpr_widget_admin_css',
                 'render_callback' => [ $this, 'render_block' ],
             ]
         );
@@ -163,7 +171,6 @@ class WP_Google_Places_Reviews_Free {
 
         if ( ! is_admin() ) {
             wp_enqueue_script( 'reviews-block-google-script' );
-            wp_enqueue_style( 'reviews-block-google-style' );
             wp_set_script_translations( 'reviews-block-google-script', 'google-places-reviews' );
         }
 
@@ -218,10 +225,10 @@ class WP_Google_Places_Reviews_Free {
 
             delete_transient( $_POST['transient_id_1'] );
             delete_transient( $_POST['transient_id_2'] );
-            echo __( 'Cache cleared', 'google-places-reviews' );
+            esc_html_e( 'Cache cleared', 'google-places-reviews' );
 
         } else {
-            echo __( 'Error: Transient ID not set. Cache not cleared.', 'google-places-reviews' );
+            esc_html_e( 'Error: Transient ID not set. Cache not cleared.', 'google-places-reviews' );
         }
 
         wp_die();
