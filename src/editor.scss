@@ -8,7 +8,7 @@
     align-items: center;
     text-align: center;
     justify-content: center;
-    padding: 30px 30px 60px;
+    padding: 30px;
 
     .rbg-admin-google-logo {
         margin: 20px auto;
@@ -34,5 +34,9 @@
 
     .rbg-admin-button {
         margin: 20px 0 0;
+    }
+    .rbg-admin-google-welcome-text .dashicon {
+        font-size: 15px;
+        margin-top: 5px;
     }
 }

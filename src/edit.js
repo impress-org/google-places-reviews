@@ -6,6 +6,7 @@ import GoogleLogo from './images/google-logo.svg';
 import { dispatch, useSelect } from '@wordpress/data';
 import apiFetch from '@wordpress/api-fetch';
 import './editor.scss';
+import WelcomeScreen from './components/WelcomeScreen';
 
 /**
  * Edit function.
@@ -17,6 +18,12 @@ import './editor.scss';
 export default function Edit( { attributes, setAttributes } ) {
     const { placeId, preview } = attributes;
 
+    const [googleConnected, setGoogleConnected] = useState( false );
+
+    const handleApiKeyChange = ( value ) => {
+        setGoogleConnected( value );
+    };
+
     const locationRef = createRef();
 
     const [state, setState] = useState( {
@@ -26,62 +33,9 @@ export default function Edit( { attributes, setAttributes } ) {
         error: null,
     } );
 
-    const [googleApiKey, setGoogleApiKey] = useState( '' );
-    const [googleConnected, setGoogleConnected] = useState( false );
-
-    const siteSettings = useSelect( ( select ) => {
-        return select( 'core' ).getEntityRecord( 'root', 'site' );
-    }, [] );
-
-    useEffect( () => {
-        if ( siteSettings ) {
-            const { googleplacesreviews_options } = siteSettings;
-            if ( googleplacesreviews_options.google_places_api_key ) {
-                setGoogleApiKey( true );
-                setGoogleConnected( true );
-            }
-        }
-    }, [siteSettings] );
-
     const userIsAdmin = useSelect( ( select ) => {
         return select( 'core' ).canUser( 'create', 'users' );
     }, [] );
-
-    const testApiKey = ( apiKey ) => {
-        // Fetch REST API to test key.
-        apiFetch( { path: `/google-block/v1/profile?apiKey=${apiKey}&keyValidation=true` } )
-            .then( ( response ) => {
-
-                // 🔑 👍 Key is good. Save it.
-                dispatch( 'core' )
-                    .saveEntityRecord( 'root', 'site', {
-                        googleplacesreviews_options: {
-                            google_places_api_key: apiKey,
-                        },
-                    } )
-                    .then( () => {
-                        dispatch( 'core/notices' ).createErrorNotice(
-                            __( '🎉 Success! You have connected to the Google Places API.', 'google-widget-pro' ),
-                            {
-                                isDismissible: true,
-                                type: 'snackbar',
-                            },
-                        );
-                        setGoogleConnected( true );
-                    } );
-            } )
-            .catch( ( error ) => {
-                // 🔑 👎 Key is bad.
-                const errorMessage = `${__( '🙈️ Google API Error:', 'google-places-reviews' )} ${error.message} ${__(
-                    'Error Code:',
-                    'google-places-reviews',
-                )} ${error.code}`;
-                dispatch( 'core/notices' ).createErrorNotice( errorMessage, {
-                    isDismissible: true,
-                    type: 'snackbar',
-                } );
-            } );
-    };
 
     const isPlaceIdSet = () => attributes.placeId.trim().length !== 0;
 
@@ -386,58 +340,9 @@ export default function Edit( { attributes, setAttributes } ) {
             <Fragment>
                 <div {...useBlockProps()}>
                     {!googleConnected && !placeId && (
-                        <div id={'rbg-admin-welcome-wrap'}>
-                            <div className='rbg-admin-welcome-content-wrap'>
-                                <img
-                                    className={'rbg-admin-google-logo'}
-                                    src={GoogleLogo}
-                                    alt={__( 'Google Logo', 'google-places-reviews' )}
-                                />
-                                <div id={'yelp-block-admin-lottie-api'}></div>
-                                <h2 className={'rbg-admin-google-welcome-heading'}>
-                                    {__(
-                                        'Welcome to the Reviews Block for Google! Let’s get started.',
-                                        'google-places-reviews',
-                                    )}
-                                </h2>
-                                <p className={'rbg-admin-google-welcome-text'}>
-                                    {__(
-                                        'This plugin requires a Google Places API key to get started. Don’t worry! It’s easy to get one.',
-                                        'google-places-reviews',
-                                    )}
-                                </p>
-                                <TextControl
-                                    value={googleApiKey}
-                                    type={'password'}
-                                    help={
-                                        <>
-                                            {__(
-                                                'Please enter your API key to use this block.',
-                                                'google-places-reviews',
-                                            )}{' '}
-                                            <a
-                                                href='https://wpbusinessreviews.com/documentation/platforms/google/'
-                                                target='_blank'
-                                                rel='noopener noreferrer'
-                                            >
-                                                {__(
-                                                    'Learn how to create a Google Places API key',
-                                                    'google-places-reviews',
-                                                )}
-                                            </a>
-                                            {'.'}
-                                        </>
-                                    }
-                                    onChange={( newApiKey ) => {
-                                        setGoogleApiKey( newApiKey );
-                                    }}
-                                />
-                                <Button className={'rbg-admin-button'} isPrimary
-                                        onClick={() => testApiKey( googleApiKey )}>
-                                    {__( 'Save API Key', 'google-places-reviews' )}
-                                </Button>
-                            </div>
-                        </div>
+                        <WelcomeScreen
+                            handleApiKeyChange={handleApiKeyChange}
+                        />
                     )}
                     {googleConnected && !placeId && (
                         <div>
