@@ -17,6 +17,10 @@
         "placeType": {
             "type": "string",
             "default": ""
+        },
+        "location": {
+            "type": "string",
+            "default": ""
         }
     }
 }

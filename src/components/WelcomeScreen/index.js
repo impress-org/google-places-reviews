@@ -14,19 +14,6 @@ const WelcomeScreen = ( props ) => {
 
     const [googleApiKey, setGoogleApiKey] = useState( '' );
 
-    const siteSettings = useSelect( ( select ) => {
-        return select( 'core' ).getEntityRecord( 'root', 'site' );
-    }, [] );
-
-    useEffect( () => {
-        if ( siteSettings ) {
-            const { googleplacesreviews_options } = siteSettings;
-            if ( googleplacesreviews_options.google_places_api_key ) {
-                props.handleApiKeyChange( true );
-            }
-        }
-    }, [siteSettings] );
-
     const testApiKey = ( e ) => {
         e.preventDefault();
         // Fetch REST API to test key.
@@ -40,7 +27,6 @@ const WelcomeScreen = ( props ) => {
                         },
                     } )
                     .then( () => {
-
                         props.handleApiKeyChange( true );
                         dispatch( 'core/notices' ).createErrorNotice(
                             __( '🎉 Success! You have connected to the Google Places API.', 'google-widget-pro' ),

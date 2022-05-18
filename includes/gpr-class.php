@@ -13,6 +13,13 @@ class WP_Google_Places_Reviews_Free {
     protected static $_instance = null;
 
     /**
+     * Google API key
+     *
+     * @var string
+     */
+    public $api_key;
+
+    /**
      * Main Instance
      *
      * Ensures only one instance of GPR is loaded or can be loaded.
@@ -47,6 +54,10 @@ class WP_Google_Places_Reviews_Free {
         }
 
         add_action( 'wp_ajax_gpr_free_clear_widget_cache', [ $this, 'clear_widget_cache' ] );
+
+        $options       = get_option( 'googleplacesreviews_options', [ 'google_places_api_key' => null ] );
+        $this->api_key = $options['google_places_api_key'];
+
     }
 
     /**
@@ -123,6 +134,7 @@ class WP_Google_Places_Reviews_Free {
      * @return void
      */
     public function register_settings() {
+
         register_setting(
             'googleplacesreviews_options',
             'googleplacesreviews_options',
@@ -186,11 +198,14 @@ class WP_Google_Places_Reviews_Free {
             $assets['version']
         );
 
+        if ( ! empty( $this->api_key ) ) {
+            wp_register_script( 'reviews-block-google-autocomplete', 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=' . $this->api_key, [] );
+            wp_enqueue_script( 'reviews-block-google-autocomplete' );
+        }
+
         register_block_type(
             GPR_PLUGIN_PATH,
-            [
-                'render_callback' => [ $this, 'render_block' ],
-            ]
+            [ 'render_callback' => [ $this, 'render_block' ], ]
         );
     }
 
@@ -255,11 +270,9 @@ class WP_Google_Places_Reviews_Free {
     public function clear_widget_cache() {
 
         if ( isset( $_POST['transient_id_1'], $_POST['transient_id_2'] ) ) {
-
             delete_transient( $_POST['transient_id_1'] );
             delete_transient( $_POST['transient_id_2'] );
             esc_html_e( 'Cache cleared', 'google-places-reviews' );
-
         } else {
             esc_html_e( 'Error: Transient ID not set. Cache not cleared.', 'google-places-reviews' );
         }
