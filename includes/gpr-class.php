@@ -165,10 +165,10 @@ class WP_Google_Places_Reviews_Free {
         $params = $request->get_params();
 
         // Check if a transient exists.
-        $business_details = get_transient( $params['placeId'] );
-        if ( $business_details ) {
-            return $business_details;
-        }
+//        $business_details = get_transient( $params['placeId'] );
+//        if ( $business_details ) {
+//            return $business_details;
+//        }
 
         // No transient found, so get the business details from Google.
         $requestUrl = add_query_arg(
@@ -186,7 +186,22 @@ class WP_Google_Places_Reviews_Free {
             return new WP_Error( $requestBody->status, $requestBody->error_message, [ 'status' => 400 ] );
         }
 
-        set_transient( $params['placeId'], $requestBody->result, HOUR_IN_SECONDS );
+        // Get place photos
+        $photoRequestArgs = add_query_arg(
+            [
+                'photo_reference' => $requestBody->result->photos[0]->photo_reference,
+                'maxwidth'     => '400',
+                'key'     => $this->api_key,
+            ],
+            'https://maps.googleapis.com/maps/api/place/photo'
+        );
+
+//        $photoRequest = wp_safe_remote_get( $photoRequestArgs );
+//        $photoRequestBody    =  wp_remote_retrieve_body( $photoRequest );
+
+//        error_log( print_r( $photoRequestBody, true ), 3, __DIR__ . '/debug_custom.log' );
+
+//        set_transient( $params['placeId'], $requestBody->result, HOUR_IN_SECONDS );
 
         // Create the response object
         return new WP_REST_Response( $requestBody->result, 200 );

@@ -1,0 +1,16 @@
+// 📍 Address
+@import 'variables';
+
+.rby-business-hours {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 13px;
+
+    &__day {
+        flex: 0.8;
+    }
+
+    &__today-true {
+        font-weight: 600;
+    }
+}

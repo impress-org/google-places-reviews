@@ -6,10 +6,14 @@ import { Icon, Spinner } from '@wordpress/components';
 
 import GoogleLogo from '../../images/google-logo.svg';
 import IconGoogle from '../../images/google-icon.svg';
+import IconReview from '../../images/review-icon.png';
+import DefaultBg from '../../images/default-bg.png';
+
 import StarRating from '../StarRating';
 import OpenHours from '../OpenHours';
 import Address from '../Address';
 import Review from '../Review';
+import Priciness from '../Priciness';
 
 
 const GoogleBlock = ( props ) => {
@@ -57,14 +61,11 @@ const GoogleBlock = ( props ) => {
                             <div className={'rbg-google-icon-header'}>
                                 <img src={IconGoogle} alt={__( 'Yelp', 'google-places-reviews' )} />
                             </div>
-                            <div className={`rbg-image-header`}>
-                                {businessData.photos && (
-                                    <>
-                                        <img src={businessData.photos[0]} alt='Yelp Business' />
-                                        <img src={businessData.photos[1]} alt='Yelp Business' />
-                                        <img src={businessData.photos[2]} alt='Yelp Business' />
-                                    </>
-                                )}
+                            <div className={`rbg-image-header`}
+                                 style={{
+                                     backgroundImage: `url(${DefaultBg})`,
+                                 }}
+                            >
                             </div>
                             <div className={`rbg-title-header`}>
                                 <div className={`rbg-business-name-wrap`}>
@@ -75,32 +76,25 @@ const GoogleBlock = ( props ) => {
                                     {props.attributes.showBusinessRating && (
                                         <StarRating
                                             overallRating={businessData.rating}
-                                            totalRatings={businessData.total}
+                                            totalRatings={businessData.user_ratings_total}
                                         />
                                     )}
                                     {props.attributes.showBusinessMeta && (
                                         <div className={'rbg-business-status-meta-wrap'}>
                                             <div className={'rbg-business-status-meta-wrap__inner'}>
-                                                {businessData.is_claimed && (
-                                                    <div className={'rbg-business-claimed'}>
-                                                        <img
-                                                            src={IconClaimed}
-                                                            alt={__( 'Claimed', 'google-places-reviews' )}
-                                                            className={'rbg-business-claimed__icon'}
-                                                        />
-                                                        <span className={'rbg-business-claimed__text'}>
-                                                            {__( 'Claimed', 'google-places-reviews' )}
-                                                        </span>
+                                                {businessData.rating && (
+                                                    <div className={'rbg-business-overall-rating'}>
+                                                        {businessData.rating + ' ' + __( 'Rating', 'google-places-reviews' )}
                                                     </div>
                                                 )}
-                                                <span className={'rbg-business-price'}>{businessData.price}</span>
-
+                                                {businessData.price_level && (
+                                                    <Priciness
+                                                        priceLevel={businessData.price_level}
+                                                    />
+                                                )}
                                                 {businessData.opening_hours.open_now && (
                                                     <span
-                                                        className={
-                                                            'rbg-business-open-status rbg-business-open-status__open'
-                                                        }
-                                                    >
+                                                        className={'rbg-business-open-status rbg-business-open-status__open'}>
                                                         {__( 'Open', 'google-places-reviews' )}
                                                     </span>
                                                 )}
@@ -119,12 +113,12 @@ const GoogleBlock = ( props ) => {
                                     {props.attributes.showReviewButton && (
                                         <div className={`rbg-button-wrap`}>
                                             <a
-                                                href={`https://www.yelp.com/writeareview/biz/${businessData.id}`}
+                                                href={`https://search.google.com/local/writereview?placeid=${props.attributes.placeId}`}
                                                 target={'_blank'}
-                                                className={`rbg-button rbg-button--red rbg-button--link`}
+                                                className={`rbg-button rbg-button--link`}
                                             >
                                                 <img
-                                                    src={'../../images/review-icon.png'}
+                                                    src={IconReview}
                                                     alt={__( 'Write a Review', 'google-places-reviews' )}
                                                     className={'rbg-button__icon'}
                                                 />
@@ -143,8 +137,9 @@ const GoogleBlock = ( props ) => {
                                     <h4 className={'rbg-heading'}>{__( 'Phone and More', 'google-places-reviews' )}</h4>
                                     <div className={'rbg-business-phone-wrap'}>
                                         <Icon icon={'phone'} size={16} />
-                                        <a href={`tel:${businessData.phone}`} title={`Call ${businessData.name}`}>
-                                            {businessData.display_phone}
+                                        <a href={`tel:${businessData.formatted_phone_number}`}
+                                           title={`Call ${businessData.name}`}>
+                                            {businessData.formatted_phone_number}
                                         </a>
                                     </div>
                                     <div className={'rbg-business-badges-wrap'}>
