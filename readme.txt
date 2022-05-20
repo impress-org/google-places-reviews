@@ -1,7 +1,7 @@
 === Reviews Block for Google ===
 Contributors: impressorg, dlocc, webdevmattcrom, shawnhooper, jason_the_adams, alaca
 Donate link: https://wpbusinessreviews.com/
-Tags: google, reviews, google reviews, google places, google places reviews, testimonials, google review widget, google business reviews, google review, review, google place review, google map reviews, google reviews pro, facebook reviews, facebook page reviews, yelp reviews, yelp business reviews
+Tags: google, reviews, google reviews, google places
 Requires at least: 5.0
 Tested up to: 6.0
 Stable tag: 2.0.0

@@ -2,7 +2,6 @@
  * Applied to frontend and editor views.
  */
 
-
 @import './styles/variables';
 
 [id^="rbg-"] {
@@ -67,6 +66,11 @@
             display: inline;
             height: 100%;
         }
+
+        &__custom {
+            background-position: center;
+        }
+
     }
 
     .rbg-business-name-wrap {

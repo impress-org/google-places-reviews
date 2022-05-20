@@ -42,7 +42,7 @@ const BusinessLookup = ( { setAttributes } ) => {
         <div id={'rbg-admin-business-lookup-wrap'}>
             <div className='rbg-admin-business-lookup'>
                 <div className={'rbg-admin-business-lookup-content-wrap'}>
-                    <img className={'rbg-admin-google-logo'} src={GoogleLogo} alt={'Yelp Logo'} />
+                    <img className={'rbg-admin-google-logo'} src={GoogleLogo} alt={'Google Logo'} />
                     <div id={'google-block-admin-lottie-search'}></div>
                     <h2 className={'rbg-admin-google-welcome-heading'}>
                         {__( 'Let’s find the place you’re looking for on Google!', 'google-places-reviews' )}

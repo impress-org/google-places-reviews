@@ -28,7 +28,6 @@ const GoogleBlock = ( props ) => {
                 .then( ( response ) => {
                     setBusinessData( response );
                     setIsLoading( false );
-                    console.log( response );
                 } )
                 .catch( ( error ) => {
                     const errorMessage = `${__( '🙈️ Google API Error:', 'google-places-reviews' )} ${error.message} ${__(
@@ -59,14 +58,16 @@ const GoogleBlock = ( props ) => {
                     {props.attributes.showHeader && (
                         <>
                             <div className={'rbg-google-icon-header'}>
-                                <img src={IconGoogle} alt={__( 'Yelp', 'google-places-reviews' )} />
+                                <img src={IconGoogle} alt={__( 'Google', 'google-places-reviews' )} />
                             </div>
-                            <div className={`rbg-image-header`}
-                                 style={{
-                                     backgroundImage: `url(${DefaultBg})`,
-                                 }}
-                            >
-                            </div>
+                            {props.attributes.mediaUrl && (
+                                <div className={`rbg-image-header rbg-image-header__custom`}
+                                     style={{ backgroundImage: `url(${props.attributes.mediaUrl})` }} />
+                            )}
+                            {!props.attributes.mediaUrl && (
+                                <div className={`rbg-image-header`}
+                                     style={{ backgroundImage: `url(${DefaultBg})` }} />
+                            )}
                             <div className={`rbg-title-header`}>
                                 <div className={`rbg-business-name-wrap`}>
                                     <h3 className={`rbg-business-name`}>{businessData.name}</h3>
@@ -147,13 +148,13 @@ const GoogleBlock = ( props ) => {
                                     <div className={'rbg-business-badges-wrap'}>
                                         {businessData.types &&
                                             businessData.types.map( ( type, index ) => {
-                                                const typeFormatted = type.replace(/_/g, ' ');
+                                                const typeFormatted = type.replace( /_/g, ' ' );
                                                 return (
                                                     <span key={index} className={'rbg-badge'}>
                                                     {typeFormatted}
                                                 </span>
                                                 );
-                                        } )}
+                                            } )}
                                     </div>
                                 </div>
                             )}
@@ -196,7 +197,7 @@ const GoogleBlock = ( props ) => {
                     <div className={'rbg-powered-by-wrap'}>
                         <div className={'rbg-powered-by'}>
                             <span>{__( 'Powered by', 'google-places-reviews' )}</span>
-                            <img src={GoogleLogo} alt={__( 'Powered by Yelp', 'google-places-reviews' )} />
+                            <img src={GoogleLogo} alt={__( 'Powered by Google', 'google-places-reviews' )} />
                         </div>
                     </div>
                 </>

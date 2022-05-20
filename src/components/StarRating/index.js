@@ -17,7 +17,7 @@ export default function StarRating( { overallRating, totalRatings = '', date = '
                 className={`rbg-business-stars rbg-business-stars--${starClass( overallRating )}  rbg-business-stars-${size}`}></span>
             {totalRatings && (
                 <span
-                    className={'rbg-business-stars-reviews'}>{totalRatings} {__( 'reviews', 'yelp-widget-pro' )}</span>
+                    className={'rbg-business-stars-reviews'}>{totalRatings} {__( 'reviews', 'google-places-reviews' )}</span>
             )}
             {date && (
                 <span className={'rbg-business-stars-date'}>{date}</span>

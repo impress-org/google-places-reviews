@@ -4,11 +4,15 @@
     "name": "google-places-reviews/reviews",
     "title": "Reviews Block for Google",
     "category": "widgets",
+    "icon": "star-filled",
     "description": "Easily display Google Reviews on your WordPress website using a powerful and intuitive widget.",
     "textdomain": "google-places-reviews",
     "editorScript": "file:./build/google-block.js",
     "editorStyle": "file:./build/google-block.css",
-    "style": ["file:./build/style-google-block.css", "google-block-styles"],
+    "style": [
+        "file:./build/style-google-block.css",
+        "google-block-styles"
+    ],
     "attributes": {
         "placeId": {
             "type": "string",
@@ -25,6 +29,14 @@
         "showHeader": {
             "type": "boolean",
             "default": true
+        },
+        "mediaId": {
+            "type": "integer",
+            "default": 0
+        },
+        "mediaUrl": {
+            "type": "string",
+            "default": ""
         },
         "showBusinessRating": {
             "type": "boolean",
