@@ -1,13 +1,17 @@
 // 📍 Address
 @import 'variables';
 
-.rby-business-hours {
+.rbg-business-hours {
     display: flex;
     flex-wrap: wrap;
     font-size: 13px;
 
     &__day {
-        flex: 0.8;
+        flex: 1;
+    }
+
+    &__time {
+        text-align: right;
     }
 
     &__today-true {

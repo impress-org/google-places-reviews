@@ -202,8 +202,14 @@
         font-size: 16px;
         display: inline-flex;
         align-content: center;
+        align-items: center;
         gap: 5px;
         white-space: nowrap;
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
 
         &--white {
             background: #FFF;
@@ -251,7 +257,7 @@
         align-items: center;
 
         .dashicon {
-            color: $google-color;
+            color: #4E4E4E;
             font-size: 16px;
             display: flex;
             align-items: center;

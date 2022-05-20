@@ -1,8 +1,9 @@
 // 📍 Address
 @import 'variables';
 
-.rby-display-address-wrap {
+.rbg-display-address-wrap {
     display: flex;
+    align-items: start;
 
     address {
         font-style: normal;
@@ -22,7 +23,7 @@
             }
         }
 
-        span {
+       > span {
             display: block;
         }
     }

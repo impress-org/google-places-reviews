@@ -115,12 +115,14 @@ const GoogleBlock = ( props ) => {
                                             <a
                                                 href={`https://search.google.com/local/writereview?placeid=${props.attributes.placeId}`}
                                                 target={'_blank'}
-                                                className={`rbg-button rbg-button--link`}
+                                                className={`rbg-button rbg-button--white rbg-button--link`}
                                             >
                                                 <img
                                                     src={IconReview}
                                                     alt={__( 'Write a Review', 'google-places-reviews' )}
                                                     className={'rbg-button__icon'}
+                                                    width={'100%'}
+                                                    height={'100%'}
                                                 />
                                                 {__( 'Write a Review', 'google-places-reviews' )}
                                             </a>
@@ -143,25 +145,22 @@ const GoogleBlock = ( props ) => {
                                         </a>
                                     </div>
                                     <div className={'rbg-business-badges-wrap'}>
-                                        {businessData.categories &&
-                                            businessData.categories.map( ( category, index ) => (
-                                                <span key={index} className={'rbg-badge'}>
-                                                    {category.title}
+                                        {businessData.types &&
+                                            businessData.types.map( ( type, index ) => {
+                                                const typeFormatted = type.replace(/_/g, ' ');
+                                                return (
+                                                    <span key={index} className={'rbg-badge'}>
+                                                    {typeFormatted}
                                                 </span>
-                                            ) )}
-                                        {businessData.transactions &&
-                                            businessData.transactions.map( ( category, index ) => (
-                                                <span key={index} className={'rbg-badge'}>
-                                                    {category}
-                                                </span>
-                                            ) )}
+                                                );
+                                        } )}
                                     </div>
                                 </div>
                             )}
                             {props.attributes.showHours && (
                                 <div className={'rbg-additional-info-wrap__inner'}>
                                     <h4 className={'rbg-heading'}>{__( 'Hours', 'google-places-reviews' )}</h4>
-                                    <OpenHours hours={businessData.opening_hours.periods} />
+                                    <OpenHours days={businessData.opening_hours.weekday_text} />
                                 </div>
                             )}
                             {props.attributes.showLocation && (
@@ -170,11 +169,11 @@ const GoogleBlock = ( props ) => {
 
                                     <Address
                                         displayAddress={businessData.adr_address}
-                                        alias={businessData.alias}
+                                        mapsUrl={businessData.url}
                                     />
                                     <div className={'rbg-directions-link-wrap'}>
                                         <a
-                                            href={`https://www.yelp.com/map/${businessData.alias}`}
+                                            href={businessData.url}
                                             target={'_blank'}
                                             className={`rbg-button rbg-button--white rbg-button--link`}
                                         >

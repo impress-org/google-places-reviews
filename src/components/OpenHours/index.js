@@ -1,6 +1,6 @@
 import { __ } from "@wordpress/i18n";
 
-export default function OpenHours( { hours = [] } ) {
+export default function OpenHours( { days = [] } ) {
 
     const getDay = ( day ) => {
         switch ( day ) {
@@ -56,11 +56,16 @@ export default function OpenHours( { hours = [] } ) {
 
     return (
         <div className={'rbg-business-hours-wrap'}>
-            {hours.map( ( hour, index ) => {
+            {days.map( ( day, index ) => {
+
+                const dayArray = day.split(':');
+                const dayWordAbbreviated = dayArray[0].substring(0, 3);
+                const hours = day.replace(/^\w+:/, '').trim()
+
                 return (
-                    <div key={index} className={`rbg-business-hours rbg-business-hours__today-${isCurrentDay(hour.open.day)}`}>
-                        <span className={'rbg-business-hours__day'}>{getDay( hour.open.day )}</span>
-                        <span className={'rbg-business-hours__time'}>{convertMilitaryTime( hour.open.time )} - {convertMilitaryTime( hour.open.time )}</span>
+                    <div key={index} className={`rbg-business-hours rbg-business-hours__today-${isCurrentDay(dayWordAbbreviated)}`}>
+                        <span className={'rbg-business-hours__day'}>{dayWordAbbreviated}: </span>
+                        <span className={'rbg-business-hours__time'}>{hours}</span>
                     </div>
                 )
             } )}
