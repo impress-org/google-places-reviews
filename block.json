@@ -70,6 +70,10 @@
             "type": "boolean",
             "default": true
         },
+        "reviewLines": {
+            "type": "integer",
+            "default": 3
+        },
         "preview": {
             "type": "boolean",
             "default": false

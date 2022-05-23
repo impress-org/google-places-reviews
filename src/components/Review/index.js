@@ -1,10 +1,10 @@
 import { __ } from '@wordpress/i18n';
 import StarRating from '../StarRating';
 import BlankAvatar from '../../images/blank-avatar.png';
-import { Icon } from '@wordpress/components';
+import ShowMoreText from 'react-show-more-text';
 
-export default function Review( { index, review = [] } ) {
-
+export default function Review( { index, review = [], reviewLines } ) {
+    console.log( reviewLines );
     return (
         <div className={'rbg-business-review'} key={index}>
             <div className={'rbg-business-review-google-icon'} />
@@ -30,12 +30,11 @@ export default function Review( { index, review = [] } ) {
                     />
                 </div>
                 <div className={'rbg-business-review-content-text'}>
-                    <p>{review.text}</p>
-                    <div className={'rbg-business-review-content-readmore-wrap'}>
-                        <a href={review.author_url} target={'_blank'}
-                           className={'rbg-business-review-content-readmore'}>{__( 'Read more', 'google-places-reviews' )}
-                            <Icon icon={'external'} size={'100'} /></a>
-                    </div>
+                    <ShowMoreText
+                        lines={reviewLines}
+                        more={__( 'Read more', 'review-block-google-places' )}
+                        less={__( 'Read less', 'review-block-google-places' )}
+                    >{review.text}</ShowMoreText>
                 </div>
             </div>
         </div>

@@ -189,7 +189,7 @@ const GoogleBlock = ( props ) => {
                         <div className={'rbg-business-reviews-wrap'}>
                             <h3 className={'rbg-heading'}>{__( 'Highlighted Reviews', 'google-places-reviews' )}</h3>
                             {businessData.reviews.map( ( review, index ) => {
-                                return <Review key={index} review={review} />;
+                                return <Review key={index} review={review} reviewLines={props.attributes.reviewLines} />;
                             } )}
                         </div>
                     )}

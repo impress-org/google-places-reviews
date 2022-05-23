@@ -37,6 +37,7 @@ export default function Edit( { attributes, setAttributes } ) {
         showHours,
         showLocation,
         showReviews,
+        reviewLines,
         preview,
     } = attributes;
 
@@ -49,14 +50,14 @@ export default function Edit( { attributes, setAttributes } ) {
     const removeMedia = () => {
         setAttributes( {
             mediaId: 0,
-            mediaUrl: ''
+            mediaUrl: '',
         } );
     };
 
     const onSelectMedia = ( media ) => {
         setAttributes( {
             mediaId: media.id,
-            mediaUrl: media.url
+            mediaUrl: media.url,
         } );
     };
 
@@ -120,7 +121,7 @@ export default function Edit( { attributes, setAttributes } ) {
                                         {showHeader && (
                                             <div className={'rbg-admin-subfields-wrap'}>
                                                 <PanelRow>
-                                                    <div className="rbg-media-uploader">
+                                                    <div className='rbg-media-uploader'>
                                                         <p className={'rbg-label'}>
                                                             <label>{__( 'Header Image', 'blocks-for-github' )}</label>
                                                         </p>
@@ -147,7 +148,7 @@ export default function Edit( { attributes, setAttributes } ) {
                                                                 )}
                                                             />
                                                         </MediaUploadCheck>
-                                                        <div className="rbg-media-btns">
+                                                        <div className='rbg-media-btns'>
                                                             {attributes.mediaId !== 0 &&
                                                                 <MediaUploadCheck>
                                                                     <MediaUpload
@@ -156,18 +157,21 @@ export default function Edit( { attributes, setAttributes } ) {
                                                                         onSelect={onSelectMedia}
                                                                         allowedTypes={['image']}
                                                                         render={( { open } ) => (
-                                                                            <Button onClick={open} isSmall variant="secondary" className={'rbg-replace-image-btn'}>{__( 'Replace Image', 'blocks-for-github' )}</Button>
+                                                                            <Button onClick={open} isSmall
+                                                                                    variant='secondary'
+                                                                                    className={'rbg-replace-image-btn'}>{__( 'Replace Image', 'blocks-for-github' )}</Button>
                                                                         )}
                                                                     />
                                                                 </MediaUploadCheck>
                                                             }
                                                             {attributes.mediaId !== 0 &&
                                                                 <MediaUploadCheck>
-                                                                    <Button onClick={removeMedia} isSmall variant="secondary">{__( 'Remove Image', 'blocks-for-github' )}</Button>
+                                                                    <Button onClick={removeMedia} isSmall
+                                                                            variant='secondary'>{__( 'Remove Image', 'blocks-for-github' )}</Button>
                                                                 </MediaUploadCheck>
                                                             }
                                                         </div>
-                                                        <p className={'rbg-help-text'}>{__( 'Upload or select an image for the header background.', 'blocks-for-github' )}</p>
+                                                        <p className={'rbg-Zhelp-text'}>{__( 'Upload or select an image for the header background.', 'blocks-for-github' )}</p>
                                                     </div>
                                                 </PanelRow>
                                                 <PanelRow>
@@ -278,7 +282,7 @@ export default function Edit( { attributes, setAttributes } ) {
                                             <ToggleControl
                                                 label={__( 'Display Reviews', 'donation-form-block' )}
                                                 help={__(
-                                                    'Toggle on to display individual reviews (up to 3 total per locale).',
+                                                    'Toggle on to display individual reviews (up to 5 total).',
                                                     'donation-form-block',
                                                 )}
                                                 className={'dfb-stripe-link-toggle'}
@@ -288,15 +292,34 @@ export default function Edit( { attributes, setAttributes } ) {
                                                 }}
                                             />
                                         </PanelRow>
+                                        {showBusinessInfo && (
+                                            <div className={'rbg-admin-subfields-wrap'}>
+                                                <PanelRow>
+                                                    <TextControl
+                                                        type={'number'}
+                                                        name='review_lines'
+                                                        min='0'
+                                                        max='15'
+                                                        label={__( 'Review Content Lines', 'google-places-reviews' )}
+                                                        value={reviewLines}
+                                                        onChange={( value ) => {
+                                                            setAttributes( { reviewLines: parseInt( value ) } );
+                                                        }}
+                                                        help={__(
+                                                            'Adjusts the number of lines of review content displayed.',
+                                                            'google-places-reviews',
+                                                        )}
+                                                    />
+                                                </PanelRow>
+                                            </div>
+                                        )}
                                     </>
                                 </PanelBody>
                             </Fragment>
-
                             <PanelBody
                                 title={__( 'Google Place Settings', 'google-places-reviews' )}
                                 initialOpen={true}
                             >
-
                                 <div className='set-business'>
                                     <p>
                                         <strong>{__( 'Place Set:', 'google-places-reviews' )} </strong>
@@ -337,7 +360,6 @@ export default function Edit( { attributes, setAttributes } ) {
                                         {__( 'Change Place', 'google-places-reviews' )}
                                     </Button>
                                 </div>
-
                             </PanelBody>
                         </Fragment>
                     )}

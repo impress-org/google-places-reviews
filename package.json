@@ -31,6 +31,7 @@
         "@wordpress/scripts": "^23.0.0"
     },
     "dependencies": {
-        "lottie-web": "^5.8.1"
+        "lottie-web": "^5.8.1",
+        "react-show-more-text": "^1.5.2"
     }
 }
