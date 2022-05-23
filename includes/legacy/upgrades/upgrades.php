@@ -58,7 +58,7 @@ function gpr_upgrades_screen() {
 			</div>
 			<script type="text/javascript">
 				setTimeout( function () {
-					document.location.href = "index.php?gpr_action=<?php echo $action; ?>&step=<?php echo $step; ?>&total=<?php echo $total; ?>&custom=<?php echo $custom; ?>";
+					document.location.href = "index.php?gpr_action=<?php echo esc_url($action); ?>&step=<?php echo esc_url($step); ?>&total=<?php echo esc_url($total); ?>&custom=<?php echo esc_url($custom); ?>";
 				}, 250 );
 			</script>
 

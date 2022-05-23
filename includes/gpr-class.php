@@ -44,16 +44,22 @@ class WP_Google_Places_Reviews_Free {
 
         add_action( 'rest_api_init', [ $this, 'google_api_rest_endpoint' ] );
 
-        // Register the Google Places widget.
-        add_action( 'widgets_init', [ $this, 'setup_widget' ] );
+        // Register the widget if using older version of WP or Classic Widgets plugin is installed.
+        if (
+            ! version_compare( $GLOBALS['wp_version'], '5.8', '>=' )
+            || ( in_array( 'classic-widgets/classic-widgets.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) )
+        ) {
+            add_action( 'widgets_init', [ $this, 'setup_widget' ] );
+            add_action( 'wp_ajax_gpr_free_clear_widget_cache', [ $this, 'clear_widget_cache' ] );
+        }
 
         // Gutenberg block
         if ( function_exists( 'register_block_type' ) ) {
             add_action( 'init', [ $this, 'register_block' ], 999 );
             add_action( 'block_categories_all', [ $this, 'register_block_category' ] );
+            add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_admin_assets' ] );
         }
 
-        add_action( 'wp_ajax_gpr_free_clear_widget_cache', [ $this, 'clear_widget_cache' ] );
 
         $options       = get_option( 'googleplacesreviews_options', [ 'google_places_api_key' => null ] );
         $this->api_key = $options['google_places_api_key'];
@@ -209,13 +215,21 @@ class WP_Google_Places_Reviews_Free {
 
         if ( ! empty( $this->api_key ) ) {
             wp_register_script( 'reviews-block-google-autocomplete', 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=' . $this->api_key, [] );
-            wp_enqueue_script( 'reviews-block-google-autocomplete' );
         }
 
         register_block_type(
             GPR_PLUGIN_PATH,
             [ 'render_callback' => [ $this, 'render_block' ], ]
         );
+    }
+
+    /**
+     * Enqueue the block's admin assets.
+     * @return void
+     * @since 3.0.0
+     */
+    public function enqueue_block_admin_assets() {
+        wp_enqueue_script( 'reviews-block-google-autocomplete' );
     }
 
     /**
@@ -277,8 +291,8 @@ class WP_Google_Places_Reviews_Free {
      */
     public function clear_widget_cache() {
 
-        $transient_1 = esc_html($_POST['transient_id_1']);
-        $transient_2 = esc_html($_POST['transient_id_2']);
+        $transient_1 = esc_html( $_POST['transient_id_1'] );
+        $transient_2 = esc_html( $_POST['transient_id_2'] );
 
         if ( isset( $transient_1, $transient_2 ) ) {
             delete_transient( $transient_1 );

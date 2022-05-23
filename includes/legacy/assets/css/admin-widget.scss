@@ -112,6 +112,11 @@ p.pro-field, .toggle-item p.pro-field {
   border: 1px solid #CCC;
   border-radius: 5px;
   background: rgba(255, 255, 0, 0.17);
+
+    select {
+        background-image: none;
+    }
+
 }
 
 /* Ensure highest possible z-index for autocomplete field */
