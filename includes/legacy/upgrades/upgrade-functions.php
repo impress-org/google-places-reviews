@@ -138,7 +138,7 @@ function gpr_v13_upgrades() {
 		// If no place AND there's a ref ID proceed
 		if ( empty( $place_id ) && ! empty( $ref_id ) ) {
 
-			// cURL the Google API for the Google Place ID
+			// Google API for the Google Place ID
 			$google_places_url = add_query_arg(
 				array(
 					'reference' => $ref_id,
@@ -147,7 +147,7 @@ function gpr_v13_upgrades() {
 				'https://maps.googleapis.com/maps/api/place/details/json'
 			);
 
-			$response = wp_remote_get(
+			$response = wp_safe_remote_get(
 				$google_places_url,
 				array(
 					'timeout'   => 15,

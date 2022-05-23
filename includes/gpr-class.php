@@ -165,10 +165,10 @@ class WP_Google_Places_Reviews_Free {
         $params = $request->get_params();
 
         // Check if a transient exists.
-//        $business_details = get_transient( $params['placeId'] );
-//        if ( $business_details ) {
-//            return $business_details;
-//        }
+        $business_details = get_transient( $params['placeId'] );
+        if ( $business_details ) {
+            return $business_details;
+        }
 
         // No transient found, so get the business details from Google.
         $requestUrl = add_query_arg(
@@ -186,22 +186,7 @@ class WP_Google_Places_Reviews_Free {
             return new WP_Error( $requestBody->status, $requestBody->error_message, [ 'status' => 400 ] );
         }
 
-        // Get place photos
-        $photoRequestArgs = add_query_arg(
-            [
-                'photo_reference' => $requestBody->result->photos[0]->photo_reference,
-                'maxwidth'     => '400',
-                'key'     => $this->api_key,
-            ],
-            'https://maps.googleapis.com/maps/api/place/photo'
-        );
-
-//        $photoRequest = wp_safe_remote_get( $photoRequestArgs );
-//        $photoRequestBody    =  wp_remote_retrieve_body( $photoRequest );
-
-//        error_log( print_r( $photoRequestBody, true ), 3, __DIR__ . '/debug_custom.log' );
-
-//        set_transient( $params['placeId'], $requestBody->result, HOUR_IN_SECONDS );
+        set_transient( $params['placeId'], $requestBody->result, HOUR_IN_SECONDS );
 
         // Create the response object
         return new WP_REST_Response( $requestBody->result, 200 );
@@ -259,7 +244,7 @@ class WP_Google_Places_Reviews_Free {
                 data-<?php
                 // output as hyphen-case so that it's changed to camelCase in JS.
                 echo preg_replace( '/([A-Z])/', '-$1', $key ); ?>="<?php
-                echo esc_html( $value ); ?>"
+                echo esc_attr( $value ); ?>"
             <?php
             endforeach; ?>></div>
         <?php
@@ -292,9 +277,12 @@ class WP_Google_Places_Reviews_Free {
      */
     public function clear_widget_cache() {
 
-        if ( isset( $_POST['transient_id_1'], $_POST['transient_id_2'] ) ) {
-            delete_transient( $_POST['transient_id_1'] );
-            delete_transient( $_POST['transient_id_2'] );
+        $transient_1 = esc_html($_POST['transient_id_1']);
+        $transient_2 = esc_html($_POST['transient_id_2']);
+
+        if ( isset( $transient_1, $transient_2 ) ) {
+            delete_transient( $transient_1 );
+            delete_transient( $transient_2 );
             esc_html_e( 'Cache cleared', 'google-places-reviews' );
         } else {
             esc_html_e( 'Error: Transient ID not set. Cache not cleared.', 'google-places-reviews' );
