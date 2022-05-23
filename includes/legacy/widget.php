@@ -284,7 +284,7 @@ class Google_Places_Reviews extends WP_Widget {
         }
 
         /* Before widget */
-        echo wp_kses_post($before_widget);
+        echo wp_kses_post( $before_widget );
 
 
         // if the title is set & the user hasn't disabled title output
@@ -306,7 +306,7 @@ class Google_Places_Reviews extends WP_Widget {
             }
             $after_title = empty( $after_title ) ? '</h3>' : $after_title;
 
-            echo wp_kses_post($before_title . $title . $after_title);
+            echo wp_kses_post( $before_title . $title . $after_title );
         }
 
         include GPR_PLUGIN_PATH . 'includes/legacy/widget-frontend.php';
@@ -478,7 +478,7 @@ class Google_Places_Reviews extends WP_Widget {
         $output .= $message;
         $output .= '</div>';
 
-        echo wp_kses_post($output);
+        echo wp_kses_post( $output );
 
     }
 
@@ -532,7 +532,7 @@ class Google_Places_Reviews extends WP_Widget {
             $output .= $rating_value;
         }
 
-        echo wp_kses_post($output);
+        echo wp_kses_post( $output );
 
     }
 
