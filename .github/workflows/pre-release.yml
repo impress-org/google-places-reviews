@@ -10,3 +10,4 @@ jobs:
         with:
             plugin_slug: google-places-reviews
             zip_name: google-places-reviews
+            install_composer_packages: false
