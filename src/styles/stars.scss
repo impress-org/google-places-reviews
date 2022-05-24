@@ -1,0 +1,73 @@
+// ⭐️ Star ratings.
+@import 'variables';
+
+.rbg-business-stars-wrap {
+    line-height: 1;
+}
+
+.rbg-business-stars {
+    background: url('./images/sprite-google-places.png') no-repeat -100px -10px;
+    background-size: 200px 94px;
+    display: inline-block;
+    height: 18px;
+    width: 90px;
+
+    @media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 2dppx) {
+        background-image: url('./images/sprite-google-places@2x.png');
+    }
+
+    &--1 {
+        background-position: -82px -10px;
+    }
+
+    &--1-half {
+        background-position: -82px -38px;
+    }
+
+    &--2 {
+        background-position: -64px -10px;
+    }
+
+    &--2-half {
+        background-position: -64px -38px;
+    }
+
+    &--3 {
+        background-position: -46px -10px;
+    }
+
+    &--3-half {
+        background-position: -46px -38px;
+    }
+
+    &--4 {
+        background-position: -28px -10px;
+    }
+
+    &--4-half {
+        background-position: -28px -38px;
+    }
+
+    &--5 {
+        background-position: -10px -10px;
+    }
+
+}
+
+.rbg-business-stars-reviews {
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 1;
+    margin: 8px 0 0;
+    display: block;
+    padding: 0;
+    color: #24292F;
+}
+
+.rbg-business-stars-date {
+    font-size: 13px;
+    color: $heading-color;
+    padding: 0;
+    margin: 5px 0 0;
+    display: block;
+}

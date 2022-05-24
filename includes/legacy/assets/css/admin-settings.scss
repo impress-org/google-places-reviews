@@ -1,0 +1,103 @@
+/**
+ * Styles for the Google Places Reviews options panel
+ */
+
+#gpr-settings {
+    .hndle {
+        border-bottom: 1px solid #c3c4c7;
+    }
+
+    .metabox-holder {
+        max-width: 1080px;
+    }
+
+    p, ol li {
+        font-size: 14px;
+    }
+}
+
+#icon-wpbr {
+    background: url('../images/platform-icon-wpbr.png') no-repeat 0 0 transparent;
+    background-size: 45px;
+    float: left;
+    width: 60px;
+    height: 45px;
+
+    + h2 {
+        line-height: 45px;
+        margin-bottom: 6px;
+        font-size: 22px;
+    }
+}
+
+.control-group {
+    margin-bottom: 10px;
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+}
+
+.control-label {
+    clear: left;
+    width: 200px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.controls {
+    display: inline-block;
+}
+
+.settings_page_gpr_widget {
+    #api-options input[type="text"] {
+        width: 280px;
+    }
+
+    input.button-primary {
+        clear: left;
+        width: auto;
+        display: block;
+    }
+}
+
+.help-block {
+    color: #999;
+    font-size: 85%;
+    margin-top: 2px;
+}
+
+// Sidebar Sortables
+#sidebar-sortables .postbox {
+    min-width: auto;
+}
+
+a.wpbr-option-page-upsell {
+    color: #ee4835;
+    font-weight: bold;
+    font-size: 15px;
+    position: absolute;
+    top: 30px;
+    left: 440px;
+    outline: none;
+    box-shadow: none;
+    text-decoration: underline;
+
+    svg {
+        fill: #ee4835;
+        height: 20px;
+        width: 20px;
+        position: relative;
+        top: 3px;
+        left: -4px;
+    }
+}
+
+// Metaboxes
+.js .postbox .hndle {
+    cursor: default;
+}
+
+.handlediv {
+    display: none;
+}

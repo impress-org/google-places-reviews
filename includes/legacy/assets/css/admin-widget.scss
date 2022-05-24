@@ -1,0 +1,276 @@
+/**
+ * Styles specifically for the Google Places Reviews widget in the WP admin interface
+ * Is only loaded on widgets.php
+ */
+
+.clearfix, .widget-liquid-right .widget, .inactive-sidebar .widget, .widget-liquid-right {
+  *zoom: 1;
+}
+
+.clearfix:before, .clearfix:after, .widget-liquid-right .widget:before, .inactive-sidebar .widget:before, .widget-liquid-right:before, .widget-liquid-right .widget:after, .inactive-sidebar .widget:after, .widget-liquid-right:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+
+.clearfix:after, .widget-liquid-right .widget:after, .inactive-sidebar .widget:after, .widget-liquid-right:after {
+  clear: both;
+}
+
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.gpr-small-descption {
+  font-size: 11px;
+  margin-top: 4px;
+  display: block;
+}
+
+/*----------------------------------------
+Toggle Sections
+-------------------------------------------*/
+
+.gpr-widget-toggler {
+  padding: 10px;
+  margin: 0 0 10px;
+  cursor: pointer;
+  background-color: #EBEBEB;
+  border: 1px solid #E5E5E5;
+  display: block;
+}
+
+.gpr-widget-toggler span {
+  background: url('../images/arrows.png') no-repeat 60% -107px;
+  float: right;
+  height: 12px;
+  display: inline-block;
+  width: 12px;
+}
+
+.gpr-widget-toggler.toggled span {
+  background-position: 60% 1px;
+}
+
+.toggle-item {
+  display: none;
+}
+
+.toggle-item p {
+  padding: 0;
+  margin: 0 0 10px;
+}
+
+.toggle-item.toggled {
+  display: block;
+}
+
+.toggle-item select {
+  background: #FFF;
+}
+
+.gpr-method-span:hover, .search-api-option:hover, .business-api-option:hover {
+  cursor: pointer;
+}
+
+.gpr-method-label {
+  padding-left: 4px;
+}
+
+.new-window {
+  background: url('../images/new-window-icon.png') no-repeat right 4px rgba(0, 0, 0, 0);
+  padding-right: 13px;
+}
+
+.gpr-usage-description {
+  font-size: 11px;
+  font-style: italic;
+}
+
+.gpr-usage-description span {
+  display: block;
+  font-weight: bold;
+  font-style: normal;
+}
+
+p.pro-field, .toggle-item p.pro-field {
+  opacity: 0.6;
+  padding: 8px;
+  border: 1px solid #CCC;
+  border-radius: 5px;
+  background: rgba(255, 255, 0, 0.17);
+
+    select {
+        background-image: none;
+    }
+
+}
+
+/* Ensure highest possible z-index for autocomplete field */
+.pac-container {
+  z-index: 2147483647;
+}
+
+/*----------------------------------------
+GPR Location Search
+-------------------------------------------*/
+
+div.gpr-place-search-wrap {
+  border: 1px solid #E4E4E4;
+  background: #F7F7F7;
+  padding: 10px;
+  margin: 0 0 10px;
+}
+
+div.gpr-place-search-wrap > p {
+  margin: 0;
+}
+
+div.gpr-place-search-wrap > p.gpr-autocomplete-wrap {
+  margin: 0 0 10px;
+}
+
+/* Set Business (slide down) */
+
+div.set-business {
+  padding: 10px;
+  color: #3c763d;
+  background-color: #dff0d8;
+  border: 1px solid #d6e9c6;
+  border-radius: 5px;
+}
+
+/*----------------------------------------
+Alerts
+-------------------------------------------*/
+
+.gpr-alert {
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  padding: 8px 14px;
+  color: #c09853;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background-color: #fcf8e3;
+  border: 1px solid #fbeed5;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  font-size: 13px;
+  margin: 20px 0;
+}
+
+.gpr-alert > p {
+  margin: 0 0 10px;
+}
+
+.gpr-alert > p:last-of-type {
+  margin-bottom: 0;
+}
+
+.gpr-error {
+  color: #B94A48;
+  background-color: #F2DEDE;
+  border-color: #EED3D7;
+}
+
+.gpr-error a {
+  color: #B94A48 !important;
+}
+
+.gpr-widget-align-left {
+  float: left;
+  margin: 0 30px 30px 0;
+}
+
+.gpr-widget-align-right {
+  float: right;
+  margin: 0 0 30px 30px;
+}
+
+.set-business {
+  margin: 0 0 15px;
+}
+
+.set-business > p {
+  margin: 0 0 10px;
+}
+
+/* Cache */
+.gpr-clear-cache {
+  float: left;
+}
+
+.cache-clearing-loading.spinner {
+  float: left;
+  visibility: visible;
+  display: none;
+}
+
+.cache-message {
+  float: right;
+  max-width: 160px;
+  font-style: italic;
+  color: green;
+  display: none;
+}
+
+/* Widget Footer Links */
+
+.gpr-widget-footer-links {
+  font-style: italic;
+  font-size: 11px;
+  text-align: center;
+}
+
+.gpr-widget-footer-links a {
+  margin-right: 10px;
+  white-space: nowrap;
+}
+
+.google-power {
+  display: block;
+  background: url('../images/powered-by-google-on-white.png') no-repeat center transparent;
+  height: 20px;
+  margin-bottom: 5px;
+}
+
+.gpr-widget-alert {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border: 1px solid #d6e9c6;
+  text-align: center;
+  font-style: italic;
+}
+
+.gpr-widget-alert a {
+  color: #3c763d;
+  display: block;
+  padding: 8px;
+}
+
+.gpr-widget-alert a span {
+  background: url('../images/new-window-icon.png') no-repeat 0 0 rgba(0, 0, 0, 0);
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+
+/* On Google Error */
+input.gm-err-autocomplete {
+  background-repeat: no-repeat;
+  background-size: 25px;
+}

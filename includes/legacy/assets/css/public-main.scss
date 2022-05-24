@@ -1,0 +1,425 @@
+/**
+ * Main stylesheet for public-facing styles.
+ */
+
+[id*='gpr_widget'] .google-places-reviews {
+    min-width: 250px;
+}
+
+/*--------------------------------
+Global Header
+------------------------------------*/
+
+[id*='gpr_widget'] {
+    .gpr-business-header {
+        margin: 0 0 20px;
+
+        .gpr-header-content-wrap {
+            margin: 0 0 0 75px;
+        }
+        .star-rating-wrap {
+            margin: 3px 6px 6px 0;
+        }
+    }
+}
+
+[id*='gpr_widget'] .gpr-business-header p.gpr-rating-value {
+    line-height: 15px;
+    width: 100%;
+}
+
+[id*='gpr_widget'] .gpr-business-avatar {
+    float: left;
+    width: 60px;
+    height: 60px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0;
+    border-radius: 50%;
+}
+
+[id*='gpr_widget'] .gpr-business-name {
+    display: block;
+    margin: 0 0 6px;
+    line-height: 16px;
+}
+
+[id*='gpr_widget'] div.gpr-google-logo-wrap {
+    float: left;
+    height: 18px;
+}
+
+[id*='gpr_widget'] img.gpr-google-logo-header {
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    border: none;
+}
+
+[id*='gpr_widget'] .gpr-business-name > a, [id*='gpr_widget'] .gpr-business-name > a:visited {
+    color: #dd4c39;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 18px;
+    border: none;
+    border-bottom: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+[id*='gpr_widget'] p.gpr-rating-value {
+    margin: 0;
+    padding: 0;
+    float: left;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+/*--------------------------------
+Star Ratings Global
+------------------------------------*/
+[id*='gpr_widget'] div.rating-wrap {
+    line-height: 18px;
+    vertical-align: middle;
+}
+
+[id*='gpr_widget'] .star-rating-wrap {
+    background: url('../images/review_stars.png') no-repeat 0 0 transparent;
+    height: 13px;
+    width: 67px;
+    float: left;
+    margin: 3px 6px 0 0;
+}
+
+[id*='gpr_widget'] .star-rating-size {
+    background: url('../images/review_stars.png') no-repeat 0 -13px transparent;
+    height: 13px;
+}
+
+[id*='gpr_widget'] span.gpr-rating-time {
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+    color: #848484;
+    font-size: 12px;
+    line-height: 13px;
+    font-style: italic;
+    float: left;
+    width: 100%;
+}
+
+[id*='gpr_widget'] div.gpr-business-header div.gpr-rating-value {
+    min-width: 200px;
+}
+
+/*--------------------------------
+Alignment
+------------------------------------*/
+
+[id*='gpr_widget'].gpr-widget-align-none {
+    margin-bottom: 30px;
+}
+
+[id*='gpr_widget'].gpr-widget-align-left {
+    float: left;
+    margin: 0 30px 30px 0;
+}
+
+[id*='gpr_widget'].gpr-widget-align-right {
+    float: right;
+    margin: 0 0 30px 30px;
+}
+
+/*--------------------------------
+Global Reviews
+------------------------------------*/
+[id*='gpr_widget'] div.gpr-review {
+    margin: 0 0 20px;
+    padding: 0;
+}
+
+[id*='gpr_widget'] .gpr-review-avatar {
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+}
+
+[id*='gpr_widget'] .gpr-review-avatar > img {
+    max-width: 100%;
+}
+
+[id*='gpr_widget'] div.gpr-review-info {
+    margin-left: 60px;
+}
+
+[id*='gpr_widget'] span.grp-reviewer-name {
+    display: block;
+    margin: 0;
+    line-height: 16px;
+}
+
+[id*='gpr_widget'] span.grp-reviewer-name > a, [id*='gpr_widget'] span.grp-reviewer-name > a:hover {
+    text-decoration: none;
+    border: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+[id*='gpr_widget'] div.gpr-review-content {
+    clear: both;
+    margin: 10px 0 0;
+}
+
+[id*='gpr_widget'] div.gpr-review-content > p {
+    font-size: 13px;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    margin: 0 0 10px;
+}
+
+[id*='gpr_widget'] div.gpr-review-content > p:last-of-type, [id*='gpr_widget'] div.gpr-review:last-of-type {
+    margin-bottom: 0;
+}
+
+/*--------------------------------
+GPR Alerts
+------------------------------------*/
+.gpr-alert {
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    padding: 8px 14px;
+    color: #c09853;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    background-color: #fcf8e3;
+    border: 1px solid #fbeed5;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.gpr-error {
+    color: #B94A48;
+    background-color: #F2DEDE;
+    border-color: #EED3D7;
+}
+
+.gpr-error a {
+    color: #B94A48 !important;
+}
+
+/*--------------------------------
+Misc
+------------------------------------*/
+
+.new-window {
+    background: url('../images/new-window-icon.png') no-repeat right 4px rgba(0, 0, 0, 0);
+    padding-right: 13px;
+}
+
+[id*='gpr_widget'] p.no-reviews {
+    margin: 0;
+    padding: 0;
+}
+
+/*--------------------------------
+GPR Clearfix
+------------------------------------*/
+.gpr-clearfix {
+    *zoom: 1;
+}
+
+.gpr-clearfix:before, .gpr-clearfix:after {
+    display: table;
+    content: "";
+    line-height: 0;
+}
+
+.gpr-clearfix:after {
+    clear: both;
+}
+
+/* ---------------------
+Read More
+-------------------------*/
+
+.readmore-js-toggle {
+    font-size: 12px;
+}
+
+
+/*--------------------------------
+Inset Theme
+------------------------------------*/
+
+[id*='gpr_widget'].gpr-inset-light-style, [id*='gpr_widget'] .gpr-inset-light-style, [id*='gpr_widget'].gpr-inset-dark-style, [id*='gpr_widget'] .gpr-inset-dark-style {
+    padding: 15px 20px;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+    background: linear-gradient(to bottom, #f9f9f9, #F5F5F5);
+    background: -o-linear-gradient(to bottom, #f9f9f9, #F5F5F5);
+    background: -moz-linear-gradient(to bottom, #f9f9f9, #F5F5F5);
+    background: -webkit-linear-gradient(to bottom, #F9F9F9, #F5F5F5);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#F5F5F5', GradientType=0);
+    background: -ms-linear-gradient(to bottom, #FFFFFF, #F5F5F5);
+    -moz-box-shadow: inset 0px 1px 6px rgba(0, 0, 0, 0.20);
+    -webkit-box-shadow: inset 0px 1px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0px 1px 6px rgba(0, 0, 0, 0.2);
+}
+
+[id*='gpr_widget'].gpr-inset-light-style .gpr-widget-title, [id*='gpr_widget'] .gpr-inset-light-style .gpr-widget-title, [id*='gpr_widget'].gpr-inset-dark-style .gpr-widget-title, [id*='gpr_widget'] .gpr-inset-dark-style .gpr-widget-title {
+    margin: 0 0 20px;
+    padding: 0 0 5px;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+/* Dark */
+
+[id*='gpr_widget'].gpr-inset-dark-style, [id*='gpr_widget'] .gpr-inset-dark-style {
+    color: #FFF;
+    background-color: #333;
+    background: linear-gradient(to bottom, #333, #525252);
+    background: -o-linear-gradient(to bottom, #333, #525252);
+    background: -moz-linear-gradient(to bottom, #333, #525252);
+    background: -webkit-linear-gradient(to bottom, #333, #525252);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333', endColorstr='#525252', GradientType=0);
+    background: -ms-linear-gradient(to bottom, #333, #525252);
+    -moz-box-shadow: inset 0px 1px 6px rgba(0, 0, 0, 0.50);
+    -webkit-box-shadow: inset 0px 1px 6px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0px 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+[id*='gpr_widget'].gpr-inset-dark-style .gpr-widget-title, [id*='gpr_widget'] .gpr-inset-dark-style .gpr-widget-title, .gpr-inset-dark-style span.gpr-rating-time {
+    color: #FFFFFF;
+}
+
+
+/*--------------------------------
+Minimal Theme
+------------------------------------*/
+
+.gpr-minimal-light-style, [id*='gpr_widget'].gpr-minimal-light-style {
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    padding: 15px;
+    position: relative;
+    background: #FFFFFF;
+    border-radius: 4px;
+    color: #7E7975;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2), 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+[id*='gpr_widget'].gpr-minimal-light-style a, [id*='gpr_widget'].gpr-minimal-light-style p, [id*='gpr_widget'] .gpr-minimal-light-style a, [id*='gpr_widget'] .gpr-minimal-light-style p {
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+[id*='gpr_widget'].gpr-minimal-light-style .gpr-widget-title, [id*='gpr_widget'].gpr-minimal-dark-style .gpr-widget-title, [id*='gpr_widget'] .gpr-minimal-dark-style .gpr-widget-title, [id*='gpr_widget'] .gpr-minimal-light-style .gpr-widget-title, [id*='gpr_widget'] .gpr-minimal-dark-style .gpr-widget-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: #757575;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #EBE6E2;
+    text-shadow: 0 2px 0 rgba(255, 255, 255, 0.8);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    margin: 0 0 15px;
+    line-height: 1.4em;
+}
+
+
+[id*='gpr_widget'] .gpr-rating-time {
+    font-style: italic;
+}
+
+.gpr-business-avatar {
+    border-radius: 50%;
+}
+
+
+
+/* Links */
+
+[id*='gpr_widget'] a, [id*='gpr_widget'] a:hover, [id*='gpr_widget'] a.leave-review, [id*='gpr_widget'] a.leave-review:visited, [id*='gpr_widget'] a.leave-review:visited, .gpr-minimal-light-style a, .gpr-minimal-light-style a:hover, .gpr-minimal-light-style a.leave-review, .gpr-minimal-light-style a.leave-review:visited, .gpr-minimal-light-style a.leave-review:visited {
+    color: #427fed;
+    text-decoration: none;
+}
+
+[id*='gpr_widget'] a:hover, [id*='gpr_widget'] a.leave-review:hover, .gpr-minimal-light-style a:hover, .gpr-minimal-light-style a.leave-review:hover {
+    /* text-decoration: underline; */
+}
+
+[id*='gpr_widget'] span.no-reviews-header, .gpr-minimal-light-style span.no-reviews-header {
+    display: block;
+    margin: 0 0 8px;
+    line-height: 1em;
+}
+
+[id*='gpr_widget'] span.no-reviews-header > a.leave-review, .gpr-minimal-light-style span.no-reviews-header > a.leave-review {
+    font-size: 12px;
+    color: #7E7975;
+}
+
+/* Dark */
+
+.gpr-minimal-dark-style {
+    padding: 15px;
+    position: relative;
+    background: #333;
+    border-radius: 4px;
+    color: #CCC;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2), 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+[id*='gpr_widget'].gpr-minimal-dark-style .gpr-widget-title, [id*='gpr_widget'] .gpr-minimal-dark-style .gpr-widget-title, [id*='gpr_widget'].gpr-inset-dark-style .gpr-widget-title {
+    color: #FFFFFF;
+    border-bottom: 1px solid #1F1F1F;
+    text-shadow: 0 2px 0 rgba(14, 14, 14, 0.8);
+    box-shadow: 0 1px 0 rgba(92, 92, 92, 0.8);
+}
+
+/*--------------------------------
+Shadow Theme
+------------------------------------*/
+
+[id*='gpr_widget'].gpr-shadow-light-style, [id*='gpr_widget'] .gpr-shadow-light-style, [id*='gpr_widget'].gpr-shadow-dark-style, [id*='gpr_widget'] .gpr-shadow-dark-style {
+    padding: 20px;
+    border: 1px solid #E6E6E6;
+    background-color: #F7F7F7;
+    -moz-box-shadow: inset 0 5px 5px #FEFEFE, 0px 0px 40px rgba(0, 0, 0, 0.08);
+    -webkit-box-shadow: inset 0 0 5px #FEFEFE, 0px 0px 40px rgba(0, 0, 0, 0.08);
+    box-shadow: inset 0 0 0 4px #FEFEFE, 0px 0px 40px rgba(0, 0, 0, 0.08);
+}
+
+[id*='gpr_widget'].gpr-shadow-light-style .gpr-widget-title, [id*='gpr_widget'] .gpr-shadow-light-style .gpr-widget-title, [id*='gpr_widget'].gpr-shadow-dark-style .gpr-widget-title, [id*='gpr_widget'] .gpr-shadow-dark-style .gpr-widget-title {
+    text-transform: uppercase;
+    margin: 0 0 20px;
+    padding: 3px 0;
+    border-top: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
+    text-align: center;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+/* Dark Style */
+
+[id*='gpr_widget'].gpr-shadow-dark-style, [id*='gpr_widget'] .gpr-shadow-dark-style {
+    color: #FFF;
+    background-color: #333;
+    border: 1px solid #000000;
+    -moz-box-shadow: inset 0 5px 5px #525252, 0px 0px 40px rgba(0, 0, 0, 0.08);
+    -webkit-box-shadow: inset 0 0 5px #525252, 0px 0px 40px rgba(0, 0, 0, 0.08);
+    box-shadow: inset 0 0 0 4px #525252, 0px 0px 40px rgba(26, 26, 26, 0.08);
+}
+
+[id*='gpr_widget'].gpr-shadow-dark-style .gpr-widget-title, [id*='gpr_widget'].gpr-shadow-dark-style .gpr-widget-title {
+    box-shadow: none;
+    color: #FFF;
+}
+
+.gpr-shadow-dark-style span.gpr-rating-time {
+    color:#FFF;
+}
+

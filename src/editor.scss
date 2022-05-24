@@ -1,0 +1,138 @@
+/**
+ * The following styles get applied inside the editor only.
+ */
+
+// 👋 Welcome and API Key.
+#rbg-admin-welcome-wrap {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: 30px;
+
+    .rbg-admin-google-logo {
+        margin: 20px auto;
+        width: 300px;
+    }
+
+    #google-block-admin-lottie-api {
+        margin: -70px 0 10px;
+    }
+
+    .rbg-admin-welcome-content-wrap {
+        max-width: 380px;
+        margin: 0 auto 30px;
+    }
+
+    .rbg-admin-google-welcome-heading {
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 30px;
+        margin: 0 0 15px;
+        padding: 0;
+    }
+
+    .rbg-admin-button {
+        margin: 20px 0 0;
+    }
+    .rbg-admin-google-welcome-text .dashicon {
+        font-size: 15px;
+        margin-top: 5px;
+    }
+}
+
+// 🏙 Business Lookup
+#rbg-admin-business-lookup-wrap {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: 30px 30px 60px;
+
+    .rbg-admin-business-lookup {
+    }
+
+    .rbg-admin-google-logo {
+        margin: 20px auto;
+        width: 150px;
+    }
+
+    #google-block-admin-lottie-search {
+        height: 280px;
+        margin: -70px 0 -50px;
+    }
+
+    .rbg-admin-business-lookup-content-wrap {
+        max-width: 380px;
+        margin: 0 auto 30px;
+    }
+
+    .rbg-admin-google-welcome-heading {
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 30px;
+        margin: 0 0 15px;
+        padding: 0;
+    }
+
+    // 🔎 Search fields
+    .rbg-admin-search-fields-wrap {
+        max-width: 420px;
+        margin: 0 auto;
+        text-align: left;
+        background: #efefef;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .rbg-admin-field {
+        margin-bottom: 20px;
+    }
+}
+
+
+// Gutenberg Fields
+.rbg-admin-subfields-wrap {
+    position: relative;
+    margin: 0 0 25px;
+    padding: 20px 20px 0;
+    background: #eee;
+
+    &:after {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: -15px;
+        width: 0;
+        height: 0;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-bottom: 20px solid #EEE;
+    }
+}
+
+.rbg-media-uploader {
+    width: 200px;
+
+    .editor-post-featured-image__toggle {
+        background-color: #e0e0e0;
+    }
+}
+
+.rbg-replace-image-btn {
+    margin-right: 10px;
+}
+
+.rbg-media-btns {
+    margin: 10px 0;
+}
+
+.rbg-label {
+    margin: 0 0 10px;
+}
+
+.rbg-help-text {
+    font-size: 12px;
+    font-style: normal;
+    color: rgb(117, 117, 117);
+}

@@ -131,13 +131,13 @@ function gpr_activation_admin_notice() {
         </style>
         <div class="updated wpbr">
             <header>
-                <img src="<?php echo GPR_PLUGIN_URL; ?>/assets/dist/images/platform-icon-wpbr.png"
+                <img src="<?php echo GPR_PLUGIN_URL; ?>/includes/legacy/assets/images/platform-icon-wpbr.png"
                      class="wpbr-logo"/>
                 <?php printf( __( '<a href="%1$s" class="dismiss"></a>', 'google-places-reviews' ), '?gpr_nag_ignore=0' ); ?>
 
                 <div class="wpbr-actions">
                     <?php $current_user = wp_get_current_user(); ?>
-                    <h2><?php printf( __( 'Welcome to Google Places Reviews by <a href="%s" target="_blank">WP Business Reviews</a>', 'google-places-reviews' ), 'https://wpbusinessreviews.com' ); ?></h2>
+                    <h2><?php printf( __( 'Welcome to Reviews Block for Google  by <a href="%s" target="_blank">WP Business Reviews</a>', 'google-places-reviews' ), 'https://wpbusinessreviews.com' ); ?></h2>
                     <p class="wpbr-intro-text"><?php esc_html_e( 'Display Google Places Reviews for one or many businesses anywhere on your WordPress site using this powerful block.', 'google-places-reviews' ); ?></p>
                     <div class="wpbr-action">
                         <a href="<?php echo admin_url( 'options-general.php?page=google_places_reviews' ); ?>">
@@ -230,7 +230,7 @@ add_filter( 'plugin_action_links', 'gpr_add_plugin_page_links', 10, 2 );
  */
 function gpr_add_plugin_meta_links( $meta, $file ) {
     if ( $file == GPR_PLUGIN_NAME ) {
-        $meta[] = "<a href='http://wordpress.org/support/view/plugin-reviews/google-places-reviews' target='_blank' rel='noopener noreferrer' title='" . __( 'Rate Google Places Reviews', 'google-places-reviews' ) . "'>" . __( 'Rate Plugin', 'google-places-reviews' ) . '</a>';
+        $meta[] = "<a href='http://wordpress.org/support/view/plugin-reviews/google-places-reviews' target='_blank' rel='noopener noreferrer' title='" . __( 'Rate Reviews Block for Google ', 'google-places-reviews' ) . "'>" . __( 'Rate Plugin', 'google-places-reviews' ) . '</a>';
         $meta[] = "<a href='https://wpbusinessreviews.com/' target='_blank' rel='noopener noreferrer' title='" . __( 'Upgrade to WP Business Reviews', 'google-places-reviews' ) . "'>" . __( 'Upgrade to WP Business Reviews', 'google-places-reviews' ) . '</a>';
     }
 
