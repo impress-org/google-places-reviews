@@ -11,23 +11,26 @@ Easily display Google business reviews and ratings with a simple and intuitive W
 
 == Description ==
 
-Easily display Google Reviews on your WordPress website using a powerful and intuitive widget. Great for restaurants, retail stores, franchisees, real estate firms, hotels and hospitality, and nearly any business with a website and reviews on Google.
+Beautifully display your businesses' hours, location, directions, reviews, and more in one convenient WordPress block.
+
+Sit back and relax as the data is dynamically updated every hour from Google’s APIs, making it a set it and forget it solution. 
+
+Great for restaurants, retail stores, franchisees, real estate firms, hotels and hospitality, and nearly any business with reviews on Google.
 
 = Why Use this Plugin? =
 
 This plugin allows you to display Google reviews on your WordPress website. Why is this important? Positive reviews on websites like Google help businesses gain additional exposure and further enhance their online credibility. As well, positive reviews add substantial credibility to any business and can lead to increased conversion rates and sales.
 
-= Plugin Features =
-
-* Google Business Reviews - Display up to 3 business reviews per location.
-* Detailed Business Information - Show the business name, website, Google+ page and more.
-* Versatile Widget Themes - Choose from a selection of stunning widget themes that fit light and dark color schemes that make integration with your website design effortless.
-* Google Places Autocomplete - Easily lookup businesses in your area through the widget interface using the power of Google search.
-* Actively Supported and Developed - We are a team of expert developers based in San Diego, California and we stand by our work. Got a problem? Hit us up.
-
 There is significant data that demonstrates consumers care about online reviews but very little information about what businesses are doing to respond to this phenomenon. How about displaying reviews on your WordPress website from Google?
 
-The Reviews Block for Google allows you to display up to 5 business reviews. Setup is quick and easy. Simply install the plugin, insert your Google API (free and documented), and drag the block into the block editor to configure the options.
+= Plugin Features =
+
+* Google Business Reviews - Display up to 5 business reviews per location.
+* Detailed Business Information - Show the business name, website, hours, and more.
+* Google Autocomplete - Easily lookup businesses and display businesses in your area without ever leaving the block.
+* Actively Supported and Developed - We are a team of expert developers based in San Diego, California and we stand by our work. Got a problem? Need a feature? Let us know and we'll do our best to get it added as soon as possible.
+
+The Reviews Block for Google allows you to display up to 5 business reviews. Setup is quick and easy. Simply install the plugin, insert your Google API key (instructions provided), and drag the block into the block editor to configure the options.
 
 = WP Business Reviews =
 
@@ -57,36 +60,28 @@ The Reviews Block for Google allows you to display up to 5 business reviews. Set
 
 In order for the plugin to access your Google reviews, you must have a valid Google Places API key with the Google Places API and Google Maps API enabled. To get started, please review [how to create a Google Places API key](https://wpbusinessreviews.com/documentation/platforms/google/).
 
-= Why does the widget look funny in my theme? =
+= Why does the block look funny in my theme? =
 
-Most likely your theme has conflicting CSS that is interfering with the themes included with the plugin. If you're handy with CSS this can be an easy fix. If you are new to CSS then try out the Bare Bones theme to see if that looks nicer.
+Most likely your theme has conflicting CSS that is interfering with the styles included with the plugin. If you're handy with CSS this can be an easy fix. If you are new to CSS then please submit a support request with the url of the website and we'll do our best to help you fix the issue.
 
-= Are style (CSS) and/or theme compatibility issues supported? =
+= Are CSS style and theme compatibility issues supported? =
 
-We do our best to support users of the free version of the plugin. [WP Business Reviews](https://wpbusinessreviews.com "Upgrade to WP Business Reviews") is where customers receive priority support. If you are experiencing a style issue and need help, post in the WordPress.org support forum and we will do our best to get it set up nicely for your theme.
-
-= Are there prebuilt styles included in the plugin? =
-
-Yes, there are three basic themes included in the free version of the plugin.
+We do our best to support users of the free version of the plugin. [WP Business Reviews](https://wpbusinessreviews.com "Upgrade to WP Business Reviews") is where our customers receive priority support. If you are experiencing a style issue and need help, post in the WordPress.org support forum and we will do our best to get it set up nicely for your theme.
 
 == Screenshots ==
 
-1. An admin view of the widget in a WordPress sidebar
+1. This block is good for displaying information about and reviews for any location on Google.
 
-2. Minimal widget themes displayed on the demo site
+2. Great for restaurants, bars, gyms, hotels, museums. Use the block for travel blogs, page content, location recommendations and more.
 
-3. Shadow widget themes displayed on the demo site
-
-4. Inset widget themes displayed on the demo site
-
-5. The plugins settings page found under Settings > Google Reviews
+3. Make it yours with extensive customization options.
 
 == Changelog ==
 
-= 2.0.0: May 5th, 2022 =
-* 🎉 Introducing the Reviews Block for Google WordPress plugin. This is a huge plugin revamp! In this new version we've added a new block for the WordPress block editor. Don't worry, if you're still using the widget it will still work just fine.
+= 2.0.0: May 26th, 2022 =
+* 🎉 Introducing the Reviews Block for Google WordPress plugin. This is a huge plugin revamp! In this new version we've added a new reviews block for the WordPress block editor. Don't worry, if you're still using the widget it will still work just fine.
 * What else? The plugin settings have been cleaned up, further secured, and improved.
-* Note: this plugin requires WordPress 5.0 or higher.
+* Note: this plugin requires WordPress 5.0 and PHP 7.2 or higher.
 
 = 1.5.2: October 28th, 2019 =
 * Maintenance: Reviewed plugin compatibility with WordPress 5.3 for compatibility and updated the plugin tested up to version.
