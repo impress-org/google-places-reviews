@@ -3,8 +3,8 @@ Contributors: impressorg, dlocc, webdevmattcrom, shawnhooper, jason_the_adams, a
 Donate link: https://wpbusinessreviews.com/
 Tags: google, reviews, google reviews, google places
 Requires at least: 5.0
-Tested up to: 6.0
-Stable tag: 2.0.0
+Tested up to: 6.1
+Stable tag: 2.0.1
 License: GPL2
 
 Easily display Google business reviews and ratings with a simple and intuitive WordPress block.

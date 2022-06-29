@@ -3,7 +3,7 @@
  * Plugin Name: Reviews Block for Google
  * Plugin URI: https://wpbusinessreviews.com/
  * Description: Easily display Google business reviews and ratings with a simple and intuitive WordPress block.
- * Version: 2.0.0
+ * Version: 2.0.1
  * Author: WP Business Reviews
  * Author URI: https://wpbusinessreviews.com/
  * Requires PHP: 7.2
@@ -14,7 +14,7 @@
  */
 
 // Define Constants
-define('GPR_VERSION', '2.0.0');
+define('GPR_VERSION', '2.0.1');
 define('GPR_PLUGIN_FILE', __FILE__);
 define('GPR_PLUGIN_NAME', plugin_basename(GPR_PLUGIN_FILE));
 define('GPR_PLUGIN_PATH', plugin_dir_path(GPR_PLUGIN_FILE));
