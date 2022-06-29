@@ -20,7 +20,6 @@ const BusinessLookup = ( { setAttributes } ) => {
         }
         const autocomplete = new google.maps.places.Autocomplete( locationRef.current, [placeType] );
 
-
         autocomplete.addListener( 'place_changed', () => {
             const { place_id, name } = autocomplete.getPlace();
 
