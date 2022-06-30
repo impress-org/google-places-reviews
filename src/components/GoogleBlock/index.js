@@ -15,7 +15,6 @@ import Address from '../Address';
 import Review from '../Review';
 import Priciness from '../Priciness';
 
-
 const GoogleBlock = ( props ) => {
 
     const [isLoading, setIsLoading] = useState( true );

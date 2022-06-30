@@ -78,6 +78,11 @@ We do our best to support users of the free version of the plugin. [WP Business 
 
 == Changelog ==
 
+= 2.0.1: May 26th, 2022 =
+* 🎨 Added a CSS tweak so the business review card has a white background. 
+* 🛠 Optimized loading Google's autocomplete script so it doesn't load unnecessarily when not needed.
+* 🛠 Fix "Google" logo image being overlapped on the API key screen.
+
 = 2.0.0: May 26th, 2022 =
 * 🎉 Introducing the Reviews Block for Google WordPress plugin. This is a huge plugin revamp! In this new version we've added a new reviews block for the WordPress block editor. Don't worry, if you're still using the widget it will still work just fine.
 * What else? The plugin settings have been cleaned up, further secured, and improved.

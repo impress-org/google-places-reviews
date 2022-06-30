@@ -7,7 +7,6 @@ import {
     TextControl,
     Button,
     Icon,
-    Spinner,
 } from '@wordpress/components';
 
 const WelcomeScreen = ( props ) => {
