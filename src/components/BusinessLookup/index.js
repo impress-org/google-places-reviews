@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { useState, useEffect, useRef } from '@wordpress/element';
-import { TextControl, SelectControl } from '@wordpress/components';
+import { TextControl } from '@wordpress/components';
 import GoogleLogo from '../../images/google-logo.svg';
 
 let autoComplete;
@@ -9,7 +9,6 @@ const loadScript = ( url, callback ) => {
     let script = document.createElement( 'script' );
     script.type = 'text/javascript';
 
-    // Callback fanciness.
     if ( script.readyState ) {
         script.onreadystatechange = function() {
             if ( script.readyState === 'loaded' || script.readyState === 'complete' ) {
@@ -21,7 +20,6 @@ const loadScript = ( url, callback ) => {
         script.onload = () => callback();
     }
 
-    // Only load the script once.
     script.src = url;
     document.getElementsByTagName( 'head' )[0].appendChild( script );
 };
@@ -86,38 +84,11 @@ const BusinessLookup = ( { setAttributes } ) => {
                         label={__( 'Place Name', 'google-places-reviews' )}
                         ref={autoCompleteRef}
                         onChange={event => setLocation( event )}
-                        // onChange={( location ) => {
-                        //     console.log( location );
-                        //     setLocation( location );
-                        //     // handleSearch( location );
-                        // }}
                         help={__(
                             'Enter the name of your place (business name, address, location).',
                             'google-places-reviews',
                         )}
                     />
-
-                    {/* <SelectControl
-                        label={__( 'Place Type', 'google-places-reviews' )}
-                        value={placeType}
-                        options={[
-                            { label: __( 'All', 'google-places-reviews' ), value: 'all' },
-                            { label: __( 'Addresses', 'google-places-reviews' ), value: 'address' },
-                            {
-                                label: __( 'Establishments', 'google-places-reviews' ),
-                                value: 'establishment',
-                            },
-                            { label: __( 'Regions', 'google-places-reviews' ), value: '(regions)' },
-                        ]}
-                        onChange={( placeType ) => {
-                            setPlaceType( placeType );
-                            setAttributes( { placeType } );
-                        }}
-                        help={__(
-                            'Specify how you would like to lookup your Google Place.',
-                            'google-places-reviews',
-                        )}
-                    />*/}
                 </div>
 
             </div>
