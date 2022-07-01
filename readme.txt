@@ -13,13 +13,13 @@ Easily display Google business reviews on your WordPress website with a simple a
 
 This free Google Reviews block includes a variety of options to customize how you display your Google Business information. 
 
-Great for restaurants, retail stores, franchisees, real estate firms, hotels and hospitality, and nearly any business with Google Revies.
+Great for restaurants, retail stores, franchisees, real estate firms, hotels and hospitality, and nearly any business with Google Reviews.
 
 === ✨ Reviews Block for Google Features ===
 
 The Reviews Block for Google allows you to display up to 5 business reviews. Setup is quick and easy. Simply install the plugin, insert your Google API key (instructions provided), and drag the block into the block editor to configure the options.
 
-Then, choose from block options to dislay or hide your: 
+Then, choose from block options to display or hide your: 
 
 * Businesses' hours
 * Location
@@ -92,9 +92,9 @@ We do our best to support users of the free version of the plugin. [WP Business 
 == Changelog ==
 
 = 2.0.1: May 26th, 2022 =
-* 🎨 Added a CSS tweak so the business review card has a white background. 
+* 🎨 Added CSS so the business review card has a white background and not transparent. This improves the look on non-white background websites. 
 * 🛠 Optimized loading Google's autocomplete script so it doesn't load unnecessarily when not needed.
-* 🛠 Fix "Google" logo image being overlapped on the API key screen.
+* 🛠 Fix "Google" logo image being overlapped on the API key insertion screen.
 
 = 2.0.0: May 26th, 2022 =
 * 🎉 Introducing the Reviews Block for Google WordPress plugin. This is a huge plugin revamp! In this new version we've added a new reviews block for the WordPress block editor. Don't worry, if you're still using the widget it will still work just fine.
