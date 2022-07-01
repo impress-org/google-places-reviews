@@ -237,11 +237,8 @@ class WP_Google_Places_Reviews_Free {
      */
     function render_block( $attributes, $content ) {
 
-        if ( is_admin() ) {
-            // Need API key localized for admin only so that autocomplete works.
-
-        } else {
-            // Only frontend scripts.
+        // Only frontend scripts.
+        if ( ! is_admin() ) {
             wp_enqueue_script( 'reviews-block-google-script' );
             wp_set_script_translations( 'reviews-block-google-script', 'google-places-reviews' );
         }
