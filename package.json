@@ -1,6 +1,6 @@
 {
     "name": "reviews-block-for-google",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "Easily display Google business reviews and ratings with a simple and intuitive WordPress block.",
     "main": "index.js",
     "author": "WP Business Reviews",

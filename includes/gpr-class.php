@@ -41,7 +41,6 @@ class WP_Google_Places_Reviews_Free {
 
         add_action( 'init', [ $this, 'load_plugin_textdomain' ] );
         add_action( 'init', [ $this, 'register_settings' ] );
-
         add_action( 'rest_api_init', [ $this, 'google_api_rest_endpoint' ] );
 
         // Register the widget if using older version of WP or Classic Widgets plugin is installed.
@@ -213,10 +212,6 @@ class WP_Google_Places_Reviews_Free {
             $assets['version']
         );
 
-        if ( ! empty( $this->api_key ) ) {
-            wp_register_script( 'reviews-block-google-autocomplete', 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=' . $this->api_key, [] );
-        }
-
         register_block_type(
             GPR_PLUGIN_PATH,
             [ 'render_callback' => [ $this, 'render_block' ], ]
@@ -226,10 +221,12 @@ class WP_Google_Places_Reviews_Free {
     /**
      * Enqueue the block's admin assets.
      * @return void
-     * @since 3.0.0
+     * @since 2.0.0
      */
     public function enqueue_block_admin_assets() {
-        wp_enqueue_script( 'reviews-block-google-autocomplete' );
+        wp_localize_script( 'google-places-reviews-reviews-editor-script', 'googleBlockSettings', [
+            'apiKey' => $this->api_key,
+        ] );
     }
 
     /**
@@ -240,6 +237,7 @@ class WP_Google_Places_Reviews_Free {
      */
     function render_block( $attributes, $content ) {
 
+        // Only frontend scripts.
         if ( ! is_admin() ) {
             wp_enqueue_script( 'reviews-block-google-script' );
             wp_set_script_translations( 'reviews-block-google-script', 'google-places-reviews' );
@@ -265,7 +263,6 @@ class WP_Google_Places_Reviews_Free {
         // Return clean buffer
         return ob_get_clean();
     }
-
 
     /**
      * Register GPR category

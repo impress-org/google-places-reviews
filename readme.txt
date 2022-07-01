@@ -1,46 +1,53 @@
 === Reviews Block for Google ===
 Contributors: impressorg, dlocc, webdevmattcrom, shawnhooper, jason_the_adams, alaca
 Donate link: https://wpbusinessreviews.com/
-Tags: google, reviews, google reviews, google places
+Tags: google, reviews, google reviews, google places, google business
 Requires at least: 5.0
-Tested up to: 6.0
-Stable tag: 2.0.0
+Tested up to: 6.1
+Stable tag: 2.0.1
 License: GPL2
 
-Easily display Google business reviews and ratings with a simple and intuitive WordPress block.
+Easily display Google business reviews on your WordPress website with a simple and intuitive block.
 
 == Description ==
 
-Beautifully display your businesses' hours, location, directions, reviews, and more in one convenient WordPress block.
+This free Google Reviews block includes a variety of options to customize how you display your Google Business information. 
 
-Sit back and relax as the data is dynamically updated every hour from Google’s APIs, making it a set it and forget it solution. 
+Great for restaurants, retail stores, franchisees, real estate firms, hotels and hospitality, and nearly any business with Google Reviews.
 
-Great for restaurants, retail stores, franchisees, real estate firms, hotels and hospitality, and nearly any business with reviews on Google.
-
-= Why Use this Plugin? =
-
-This plugin allows you to display Google reviews on your WordPress website. Why is this important? Positive reviews on websites like Google help businesses gain additional exposure and further enhance their online credibility. As well, positive reviews add substantial credibility to any business and can lead to increased conversion rates and sales.
-
-There is significant data that demonstrates consumers care about online reviews but very little information about what businesses are doing to respond to this phenomenon. How about displaying reviews on your WordPress website from Google?
-
-= Plugin Features =
-
-* Google Business Reviews - Display up to 5 business reviews per location.
-* Detailed Business Information - Show the business name, website, hours, and more.
-* Google Autocomplete - Easily lookup businesses and display businesses in your area without ever leaving the block.
-* Actively Supported and Developed - We are a team of expert developers based in San Diego, California and we stand by our work. Got a problem? Need a feature? Let us know and we'll do our best to get it added as soon as possible.
+=== ✨ Reviews Block for Google Features ===
 
 The Reviews Block for Google allows you to display up to 5 business reviews. Setup is quick and easy. Simply install the plugin, insert your Google API key (instructions provided), and drag the block into the block editor to configure the options.
 
-= WP Business Reviews =
+Then, choose from block options to display or hide your: 
 
-*WP Business Reviews* is a **significant upgrade** to the *Reviews Block for Google* that adds many features that will allow you to further customize how you display reviews on your WordPress website.
+* Businesses' hours
+* Location
+* Directions
+* Contact Information
+* Reviews (displays up to 5 reviews per location) 
+
+You can also set the header image from the block settings. This way, if you choose to display your Google Business Header, you can display it with a nice branded background image. 
+
+=== ⭐ WP Business Reviews ===
+While the Reviews Block for Google can help you display your Google reviews on your website for free, we have an even better solution for you! 
+
+*WP Business Reviews* is a **significant upgrade** to our free reviews blocks for Google and Yelp. With WP Business Reviews (WPBR), you can display reviews from many platforms, including:
+
+* Google 
+* Yelp 
+* Facebook 
+* WooCommerce 
+* Zomato 
+* Trustpilot 
+
+When you use WP Business Reviews, you also gain more control over the style of your displayed reviews as well as which reviews you show. WPBR also allows you to mix and match your reviews across platforms. So, your Google and WooCommerce reviews can be displayed right alongside your Facebook and Yelp reviews. 
 
 [Upgrade to WP Business Reviews](https://wpbusinessreviews.com "Upgrade to WP Business Reviews")
 
 [youtube https://www.youtube.com/watch?v=3xNJX5cjdQ0]
 
-== Installation ==
+=== 💡 Installation ===
 
 **Automatic Install:**
 
@@ -55,6 +62,12 @@ The Reviews Block for Google allows you to display up to 5 business reviews. Set
 3. That's it! You should now be able to use the widget.
 
 == Frequently Asked Questions ==
+
+= Why Use this Plugin? =
+
+This plugin allows you to display Google reviews on your WordPress website. Why is this important? Positive reviews on websites like Google help businesses gain additional exposure and further enhance their online credibility. As well, positive reviews add substantial credibility to any business and can lead to increased conversion rates and sales.
+
+There is significant data that demonstrates consumers care about online reviews but very little information about what businesses are doing to respond to this phenomenon. How about displaying reviews on your WordPress website from Google?
 
 = How do I obtain a Google Places API key? =
 
@@ -77,6 +90,11 @@ We do our best to support users of the free version of the plugin. [WP Business 
 3. Make it yours with extensive customization options.
 
 == Changelog ==
+
+= 2.0.1: July 1st, 2022 =
+* 🎨 Added CSS so the business review card has a white background and not transparent. This improves the look on non-white background websites. 
+* 🛠 Optimized loading Google's autocomplete script so it doesn't load unnecessarily when not needed.
+* 🛠 Fix "Google" logo image being overlapped on the API key insertion screen.
 
 = 2.0.0: May 26th, 2022 =
 * 🎉 Introducing the Reviews Block for Google WordPress plugin. This is a huge plugin revamp! In this new version we've added a new reviews block for the WordPress block editor. Don't worry, if you're still using the widget it will still work just fine.
