@@ -52,6 +52,7 @@ const BusinessLookup = ( { setAttributes } ) => {
 
         autoComplete.addListener( 'place_changed', () => {
                 const { place_id, name } = autoComplete.getPlace();
+
                 setAttributes( {
                     placeId: place_id,
                     reference: place_id,

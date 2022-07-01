@@ -73,7 +73,7 @@ const GoogleBlock = ( props ) => {
                                 </div>
 
                                 <div className={'rbg-business-meta-wrap'}>
-                                    {props.attributes.showBusinessRating && (
+                                    {props.attributes.showBusinessRating && businessData.rating && (
                                         <StarRating
                                             overallRating={businessData.rating}
                                             totalRatings={businessData.user_ratings_total}
@@ -92,13 +92,13 @@ const GoogleBlock = ( props ) => {
                                                         priceLevel={businessData.price_level}
                                                     />
                                                 )}
-                                                {businessData.opening_hours.open_now && (
+                                                {businessData.opening_hours?.open_now && (
                                                     <span
                                                         className={'rbg-business-open-status rbg-business-open-status__open'}>
                                                         {__( 'Open', 'google-places-reviews' )}
                                                     </span>
                                                 )}
-                                                {!businessData.opening_hours.open_now && (
+                                                {!businessData.opening_hours?.open_now && (
                                                     <span
                                                         className={
                                                             'rbg-business-open-status rbg-business-open-status__closed'
@@ -157,10 +157,10 @@ const GoogleBlock = ( props ) => {
                                     </div>
                                 </div>
                             )}
-                            {props.attributes.showHours && (
+                            {props.attributes.showHours && businessData.opening_hours?.weekday_text && (
                                 <div className={'rbg-additional-info-wrap__inner'}>
                                     <h4 className={'rbg-heading'}>{__( 'Hours', 'google-places-reviews' )}</h4>
-                                    <OpenHours days={businessData.opening_hours.weekday_text} />
+                                    <OpenHours days={businessData.opening_hours?.weekday_text} />
                                 </div>
                             )}
                             {props.attributes.showLocation && (
@@ -187,7 +187,7 @@ const GoogleBlock = ( props ) => {
                     {props.attributes.showReviews && (
                         <div className={'rbg-business-reviews-wrap'}>
                             <h3 className={'rbg-heading'}>{__( 'Highlighted Reviews', 'google-places-reviews' )}</h3>
-                            {businessData.reviews.map( ( review, index ) => {
+                            {businessData.reviews?.map( ( review, index ) => {
                                 return <Review key={index} review={review} reviewLines={props.attributes.reviewLines} />;
                             } )}
                         </div>
