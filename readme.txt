@@ -91,7 +91,7 @@ We do our best to support users of the free version of the plugin. [WP Business 
 
 == Changelog ==
 
-= 2.0.1: May 26th, 2022 =
+= 2.0.1: July 1st, 2022 =
 * 🎨 Added CSS so the business review card has a white background and not transparent. This improves the look on non-white background websites. 
 * 🛠 Optimized loading Google's autocomplete script so it doesn't load unnecessarily when not needed.
 * 🛠 Fix "Google" logo image being overlapped on the API key insertion screen.
