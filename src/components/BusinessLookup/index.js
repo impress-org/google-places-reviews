@@ -1,41 +1,65 @@
 import { __ } from '@wordpress/i18n';
-import { useState, createRef } from '@wordpress/element';
-import { TextControl, SelectControl } from '@wordpress/components';
+import { useState, useEffect, useRef } from '@wordpress/element';
+import { TextControl } from '@wordpress/components';
 import GoogleLogo from '../../images/google-logo.svg';
 
+let autoComplete;
+
+const loadScript = ( url, callback ) => {
+    let script = document.createElement( 'script' );
+    script.type = 'text/javascript';
+
+    if ( script.readyState ) {
+        script.onreadystatechange = function() {
+            if ( script.readyState === 'loaded' || script.readyState === 'complete' ) {
+                script.onreadystatechange = null;
+                callback();
+            }
+        };
+    } else {
+        script.onload = () => callback();
+    }
+
+    script.src = url;
+    document.getElementsByTagName( 'head' )[0].appendChild( script );
+};
 
 const BusinessLookup = ( { setAttributes } ) => {
 
-    const locationRef = createRef();
-
+    const autoCompleteRef = useRef( null );
     const [location, setLocation] = useState( '' );
-    const [placeType, setPlaceType] = useState( 'all' );
+    const urlGoogleMaps = `https://maps.googleapis.com/maps/api/js?key=${window.googleBlockSettings.apiKey}&libraries=places`;
 
-    const handleSearch = ( location ) => {
-
-        setAttributes( { location } );
-
-        if ( location.trim().length < 3 ) {
+    useEffect( () => {
+        let loadedScripts = Array.from( document.querySelectorAll( 'script' ) ).map( scr => scr.src );
+        if ( loadedScripts.includes( urlGoogleMaps ) ) {
+            handleScriptLoad( setLocation, autoCompleteRef );
             return;
         }
-        const autocomplete = new google.maps.places.Autocomplete( locationRef.current, [placeType] );
 
+        loadScript(
+            urlGoogleMaps,
+            () => handleScriptLoad( setLocation, autoCompleteRef ),
+        );
+    }, [] );
 
-        autocomplete.addListener( 'place_changed', () => {
-            const { place_id, name } = autocomplete.getPlace();
+    const handleScriptLoad = ( setLocation, autoCompleteRef ) => {
+        autoComplete = new window.google.maps.places.Autocomplete(
+            autoCompleteRef.current,
+            { types: ['establishment'] },
+        );
+        setAttributes( { location } );
 
-            if ( !place_id ) {
-                // return setState( {
-                //     error: __( 'No place reference found for this location.', 'google-places-reviews' ),
-                // } );
-            }
+        autoComplete.addListener( 'place_changed', () => {
+                const { place_id, name } = autoComplete.getPlace();
 
-            setAttributes( {
-                placeId: place_id,
-                reference: place_id,
-                location: name,
-            } );
-        } );
+                setAttributes( {
+                    placeId: place_id,
+                    reference: place_id,
+                    location: name,
+                } );
+            },
+        );
     };
 
     return (
@@ -59,36 +83,10 @@ const BusinessLookup = ( { setAttributes } ) => {
                         className={'rbg-admin-field'}
                         name='place_id'
                         label={__( 'Place Name', 'google-places-reviews' )}
-                        value={location}
-                        onChange={( location ) => {
-                            setLocation( location );
-                            handleSearch( location );
-                        }}
-                        ref={locationRef}
+                        ref={autoCompleteRef}
+                        onChange={event => setLocation( event )}
                         help={__(
                             'Enter the name of your place (business name, address, location).',
-                            'google-places-reviews',
-                        )}
-                    />
-
-                    <SelectControl
-                        label={__( 'Place Type', 'google-places-reviews' )}
-                        value={placeType}
-                        options={[
-                            { label: __( 'All', 'google-places-reviews' ), value: 'all' },
-                            { label: __( 'Addresses', 'google-places-reviews' ), value: 'address' },
-                            {
-                                label: __( 'Establishments', 'google-places-reviews' ),
-                                value: 'establishment',
-                            },
-                            { label: __( 'Regions', 'google-places-reviews' ), value: '(regions)' },
-                        ]}
-                        onChange={( placeType ) => {
-                            setPlaceType( placeType );
-                            setAttributes( { placeType } );
-                        }}
-                        help={__(
-                            'Specify how you would like to lookup your Google Place.',
                             'google-places-reviews',
                         )}
                     />

@@ -7,7 +7,6 @@ import {
     TextControl,
     Button,
     Icon,
-    Spinner,
 } from '@wordpress/components';
 
 const WelcomeScreen = ( props ) => {
@@ -60,7 +59,6 @@ const WelcomeScreen = ( props ) => {
                     src={GoogleLogo}
                     alt={__( 'Google Logo', 'google-places-reviews' )}
                 />
-                <div id={'google-block-admin-lottie-api'}></div>
                 <h2 className={'rbg-admin-google-welcome-heading'}>
                     {__(
                         'Welcome to the Reviews Block for Google! Let’s get started.',

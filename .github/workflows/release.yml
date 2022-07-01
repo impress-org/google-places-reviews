@@ -8,6 +8,7 @@ jobs:
     build:
         uses: impress-org/givewp-github-actions/.github/workflows/wp-org-release.yml@master
         with:
+            install_composer_packages: false
             wp_org_slug: google-places-reviews
             zip_name: google-places-reviews
             text_domain: google-places-reviews
